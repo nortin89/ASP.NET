@@ -38,15 +38,11 @@ namespace PartyInvites.Controllers
     [HttpPost]
     public ViewResult RsvpForm(GuestResponse guestResponse)
     {
-      if (ModelState.IsValid)
+      if (!ModelState.IsValid)
       {
-        return View("Thanks", guestResponse);
+        return View("RsvpForm", guestResponse);
       }
-      else
-      {
-        // there is validation error
-        return View();
-      }
+
 
       try
       {
@@ -55,16 +51,21 @@ namespace PartyInvites.Controllers
 
         using (SmtpClient smtp = new SmtpClient())
         {
-          smtp.Host = "smtp.gmail.com";
-          smtp.Port = 587;
+          string host = Environment.GetEnvironmentVariable("SMTP_HOST");
+          string port = Environment.GetEnvironmentVariable("SMTP_PORT");
+          string user = Environment.GetEnvironmentVariable("SMTP_USER");
+          string pass = Environment.GetEnvironmentVariable("SMTP_PASSWORD");
+
+          smtp.Host = host;
+          smtp.Port = int.Parse(port);
           smtp.EnableSsl = true;
           smtp.UseDefaultCredentials = false;
-          smtp.Credentials = new NetworkCredential("paulsmithkc@gmail.com", "pass");
+          smtp.Credentials = new NetworkCredential(user, pass);
 
           using (MailMessage message = new MailMessage())
           {
-            message.From = new MailAddress("paulsmithkc@gmail.com");
-            message.To.Add(new MailAddress("paulsmithkc@gmail.com"));
+            message.From = new MailAddress(user);
+            message.To.Add(new MailAddress(user));
             message.Subject = "RSVP Notification";
             message.Body =
               guestResponse.Name + " is "
