@@ -1,0 +1,304 @@
+/*!
+ * Start Bootstrap - Stylish Portfolio (https://startbootstrap.com/template-overviews/stylish-portfolio)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-stylish-portfolio/blob/master/LICENSE)
+ */
+
+/* Global Styles */
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.text-vertical-center {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.text-vertical-center h1 {
+  font-size: 4.5em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Custom Button Styles */
+
+.btn-dark {
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active {
+  color: #fff;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+.btn-light {
+  color: #333;
+  border: none;
+  border-radius: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+.btn-light:hover, .btn-light:focus, .btn-light:active {
+  color: #333;
+  background-color: rgba(255, 255, 255, .8);
+}
+
+
+/* Custom Horizontal Rule */
+
+hr.small {
+  max-width: 100px;
+}
+
+
+/* Side Menu */
+
+#sidebar-wrapper {
+  position: fixed;
+  z-index: 1000;
+  right: 0;
+  overflow-y: auto;
+  width: 250px;
+  height: 100%;
+  -webkit-transition: all .4s ease 0s;
+  -moz-transition: all .4s ease 0s;
+  -ms-transition: all .4s ease 0s;
+  -o-transition: all .4s ease 0s;
+  transition: all .4s ease 0s;
+  transform: translateX(250px);
+  background: #222;
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, .2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+  font-size: 18px;
+  line-height: 55px;
+  height: 55px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+  color: #999;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+#menu-toggle {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+}
+
+#sidebar-wrapper.active {
+  right: 250px;
+  width: 250px;
+  -webkit-transition: all .4s ease 0s;
+  -moz-transition: all .4s ease 0s;
+  -ms-transition: all .4s ease 0s;
+  -o-transition: all .4s ease 0s;
+  transition: all .4s ease 0s;
+}
+
+.toggle {
+  font-size: 1em;
+  margin: 5px 5px 0 0;
+  padding: 15px 20px;
+}
+
+.container4{
+  background-color: white;
+}
+
+
+/* Header */
+
+.header {
+  position: relative;
+  display: table;
+  width: 100%;
+  height: 100%;
+  background: url(../img/IMG_3591.jpg) no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color:whitesmoke;
+}
+
+
+/* About */
+
+.about {
+  padding: 5px 0;
+
+}
+.jumbotron{
+  background-color: white;
+  text-align: center;
+}
+/*.card{
+}*/
+.card p{
+  text-align: center;
+}
+/* Services */
+
+.services {
+  padding: 50px 0;
+}
+
+.service-item {
+  margin-bottom: 30px;
+}
+
+.card-header {
+    text-align: center;
+    font-family: sans-serif;
+    background-color: darkgrey;
+    color: white;
+
+}
+.card-body{
+    color: black;
+}
+#accordion{
+    text-align: center;
+}
+
+btn {
+    text-align: center;
+}
+
+/* Portfolio */
+
+/*.portfolio {
+  padding: 500px 0 5px 600px;
+}*/
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.img-portfolio {
+  display: block;
+  margin: 0 auto;
+}
+
+.img-portfolio:hover {
+  opacity: .8;
+}
+
+
+/* Call to Action */
+
+#contact-page{
+  text-align: center;
+
+}
+
+.rooster{
+ display: flex;
+ justify-content: center;
+}
+
+.card {
+  padding: .75rem;
+  margin-bottom: 2rem;
+
+}
+
+.card > img {
+    margin-bottom: .75rem;
+    max-width: 100%;
+}
+.container1{
+
+    padding-left: 0rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+    position: relative;
+    display: block;
+
+
+
+}
+
+.about-text{
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 1.875rem;
+    display: block;
+
+
+
+
+}
+#about1{
+    display: table;
+
+    width: 100%;
+    height: 100%;
+    background: url(../img/IMG_0286.jpg) no-repeat center center scroll;
+    background-size: 100%;
+
+}
+
+
+/* Footer */
+
+footer {
+  padding: 0px 0;
+}
+
+#to-top {
+  font-size: 1em;
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+  display: none;
+  padding: 15px 20px;
+}
