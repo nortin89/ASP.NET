@@ -21,7 +21,7 @@ namespace Porfolio.Controllers
     {
       if (!ModelState.IsValid)
       {
-        return View("ContactReply", contacts);
+        return View("Index", contacts);
       }
 
       try
