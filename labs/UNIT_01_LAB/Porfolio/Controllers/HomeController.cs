@@ -47,8 +47,8 @@ namespace Porfolio.Controllers
             message.From = new MailAddress(user);
             message.To.Add(new MailAddress(user));
             message.Subject = "User Contact Info";
-            message.Body =
-              contacts.Message;
+            message.Body = "Thank You " +
+              contacts.Name;
 
             smtp.Send(message);
           }
