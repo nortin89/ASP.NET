@@ -40,12 +40,12 @@
       </div>
     }
 
-    @if (Model != null && Model.Mpg != null && Model.TripCost != null && Model.PricePerGallon != null)
+    @*@if (Model != null && Model.Mpg != null && Model.TripCost != null && Model.PricePerGallon != null)
     {
       <div>Your average MPG is <output>@($"{Model.Mpg: 0.0}")</output></div>
       <div>Your average Trip Cost is <output>@($"{Model.TripCost:C}")</output></div>
       <div>Your average Cost per mile is <output>@($"{Model.CostPerMile:C}")</output></div>
-    }
+    }*@
 
 
   </main>

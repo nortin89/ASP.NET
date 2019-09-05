@@ -11,7 +11,6 @@ namespace Porfolio.Models
 
     [Required(ErrorMessage = "Please enter valid Email")]
     [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Please enter a valid email address")]
-
     public string Email { get; set; }
 
 
