@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiments", "MpgCalc\Experiments.csproj", "{E5B92772-157A-4D9E-A15F-A4F65CF42F5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiment", "Experiment.csproj", "{C9F5810F-187D-491D-BEEC-BC3D02CB5E9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E5B92772-157A-4D9E-A15F-A4F65CF42F5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5B92772-157A-4D9E-A15F-A4F65CF42F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5B92772-157A-4D9E-A15F-A4F65CF42F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5B92772-157A-4D9E-A15F-A4F65CF42F5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9F5810F-187D-491D-BEEC-BC3D02CB5E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F5810F-187D-491D-BEEC-BC3D02CB5E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F5810F-187D-491D-BEEC-BC3D02CB5E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F5810F-187D-491D-BEEC-BC3D02CB5E9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C15AE367-4B13-46F1-A494-DEA7CAA9A998}
+		SolutionGuid = {6ACCD6F0-32E7-40E1-B1E5-EE81210FF285}
 	EndGlobalSection
 EndGlobal
