@@ -1,0 +1,46 @@
+﻿@model HOT1.Models.OrderForm
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Index</title>
+</head>
+<body>
+  <main>
+    <h1>Crazy Crank's T-Shirt Factory</h1>
+    <p>Order Form</p>
+    @using (Html.BeginForm())
+    {
+      <div class="form-group mb-2">
+        <label for="Quantity">Quantity</label>
+        @Html.TextBoxFor(x => x.Quantity, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Quantity, null, htmlAttributes: new { @class = "text-danger" })
+      </div>
+      <div class="form-group mb-2">
+        <label for="DiscountCode">Discount Code</label>
+        @Html.TextBoxFor(x => x.DiscountCode, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.DiscountMessage, null, htmlAttributes: new { @class = "text-danger" })
+      </div>
+      <div class="form-group mb-2">
+        <button type="submit" class="btn btn-primary">Order</button>
+      </div>
+      <div style ="padding: 15px; border: solid 1px black; font-size: 15pt">
+        <p>@($"{ViewBag.Quantity}") T-Shirts@($" @{ViewBag.PricePerShirt:C}") each</p>
+        <p>-------------------------------</p>
+        <p>Subtotal @($"{ViewBag.Subtotal:C}")</p>
+        <p>Tax @($"{ViewBag.Tax:C}")</p>
+        <p>Total @($"{ViewBag.Total:C}")</p>
+      </div>
+
+    }
+  </main>
+</body>
+</html>
