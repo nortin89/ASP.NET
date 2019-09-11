@@ -1,0 +1,18 @@
+﻿@model SportsStore.Models.Product
+
+  <div class="card bg-light m-3">
+    <div class="card-body">
+      <h3>
+        <strong>@Model.Name</strong>
+        <span class="float-right badge badge-success">@Model.Price.ToString("c")</span>
+      </h3>
+      <span class="lead">@Model.Description</span>
+
+      @using (Html.BeginForm("AddToCart", "Cart"))
+      {
+        @Html.Hidden("productId",Model.ProductID)
+        @Html.Hidden("returnUrl",Request.Url.PathAndQuery)
+        <button type="submit" class="btn btn-primary float-left-right">Add to cart</button>
+      }
+    </div>
+  </div>

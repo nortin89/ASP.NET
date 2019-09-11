@@ -1,0 +1,18 @@
+﻿@model IEnumerable<string>
+  @{
+    string currentCategory = (string)ViewContext.RouteData.Values["category"];
+  }
+
+<ul class="nav nav-tabs mt-2">
+  <li class="nav-item">
+    <a class="nav-link @(currentCategory == null ? "active" : "")"
+       href="@Url.Action("List","Product")">All Products</a>
+  </li>
+
+  @foreach (string category in Model)
+  {
+    <li class="nav-item" >
+      <a class="nav-link @(currentCategory == category ? "active":"")" href="@Url.Action("List","Product",new { category,page = 1 })">@category</a>
+    </li>
+  }
+</ul>

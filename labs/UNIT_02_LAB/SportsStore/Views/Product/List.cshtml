@@ -1,0 +1,21 @@
+﻿@model SportsStore.Models.ProductListViewModel
+
+@{
+  ViewBag.Title = "Products";
+}
+
+@foreach (var item in Model.Products)
+{
+  @Html.Partial("ProductSummary",item)
+  @*<div>
+    <h3>@item.Name</h3>
+    <div>@item.Description</div>
+    <div>@item.Price.ToString("C")</div>
+  </div>*@
+}
+
+<div>
+  @Html.PageLinks(Model.PagingInfo,
+  page => Url.Action("List",
+  new { page, category = Model.CurrentCategory }))
+</div>
