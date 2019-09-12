@@ -1,4 +1,5 @@
-﻿using SportsStore.Models;
+﻿using SportsStore.Abstract;
+using SportsStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace SportsStore.Controllers
   {
     private SportsStoreDatabase _db = new SportsStoreDatabase();
 
+    private IOrderProcessor orderProcessor;
+
     private Cart GetCart()
     {
       Cart cart = Session["Cart"] as Cart;
@@ -22,16 +25,42 @@ namespace SportsStore.Controllers
       return cart;
     }
 
+    [HttpPost]
+    public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
+    {
+      if (cart.Lines.Count() == 0)
+      {
+        ModelState.AddModelError("", "Sorry, your cart is empty!");
+      }
+      if (ModelState.IsValid)
+      {
+        orderProcessor.ProcessOrder(cart, shippingDetails);
+        cart.Clear();
+        return View("Completed");
+      }
+      else
+      {
+        return View(shippingDetails);
+
+      }
+    }
+
     // GET: Cart
-    public ActionResult Index(string returnUrl)
+    public ViewResult Index(Cart cart, string returnUrl)
     {
       ViewBag.returnUrl = returnUrl;
 
-      return View(GetCart());
+      return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl});
+
     }
 
+    //public ViewResult Index(string returnUrl)
+    //{
+    //  return View(new CartIndexViewModel { Cart = GetCart(), ReturnUrl = returnUrl });
+    //}
+
     [HttpPost]
-    public ActionResult AddToCart(int productId,string returnUrl)
+    public RedirectToRouteResult AddToCart(Cart cart, int productId,string returnUrl)
     {
       //Find, Single, First, Last
       //FirstOrDefault, SingleOrDefault, LastOrDefault
@@ -39,16 +68,37 @@ namespace SportsStore.Controllers
       Product product = _db.Products.SingleOrDefault(x => x.ProductID == productId);
       if(product != null)
       {
-        GetCart().Add(product, 1);
+        cart.Add(product, 1);
       }
       return RedirectToAction("Index", routeValues: new { returnUrl });
 
     }
 
     [HttpPost]
-    public ActionResult RemoveFromCart(int productId,string returnUrl)
+    public ActionResult RemoveFromCart(Cart cart, int productId, string returnUrl)
     {
+      Product product = _db.Products.FirstOrDefault(x => x.ProductID == productId);
 
+      if(product != null)
+      {
+        cart.Remove(product);
+      }
+      return RedirectToAction("Index", new { returnUrl });
     }
+
+    public PartialViewResult Summary(Cart cart)
+    {
+      return PartialView(cart);
+    }
+    //private Cart GetCart()
+    //{
+    //  Cart cart = (Cart)Session["Cart"];
+    //  if(cart == null)
+    //  {
+    //    cart = new Cart();
+    //    Session["Cart"] = cart;
+    //  }
+    //  return cart;
+    //}
   }
 }

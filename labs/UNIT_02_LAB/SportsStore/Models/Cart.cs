@@ -34,6 +34,12 @@ namespace SportsStore.Models
     {
       _lines.RemoveAll(x => x.Product.ProductID == product.ProductID);
     }
+
+    public decimal ComputeTotalValue()
+    {
+      return _lines.Sum(x => x.Product.Price * x.Quantity);
+    }
+
     public void Clear()
     {
       _lines.Clear();
