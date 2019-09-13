@@ -1,7 +1,11 @@
-﻿using SportsStore.Abstract;
+﻿
+using SportsStore.Abstract;
+using SportsStore.Infrastructure.Binders;
+
 using SportsStore.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,15 +18,21 @@ namespace SportsStore.Controllers
 
     private IOrderProcessor orderProcessor;
 
-    private Cart GetCart()
+
+    //private Cart GetCart()
+    //{
+    //  Cart cart = Session["Cart"] as Cart;
+    //  if (cart == null)
+    //  {
+    //    cart = new Cart();
+    //    Session["Cart"] = cart;
+    //  }
+    //  return cart;
+    //}
+
+    public ViewResult CheckOut()
     {
-      Cart cart = Session["Cart"] as Cart;
-      if (cart == null)
-      {
-        cart = new Cart();
-        Session["Cart"] = cart;
-      }
-      return cart;
+      return View(new ShippingDetails());
     }
 
     [HttpPost]
@@ -34,14 +44,13 @@ namespace SportsStore.Controllers
       }
       if (ModelState.IsValid)
       {
-        orderProcessor.ProcessOrder(cart, shippingDetails);
+        //orderProcessor.ProcessOrder(cart, shippingDetails);
         cart.Clear();
         return View("Completed");
       }
       else
       {
         return View(shippingDetails);
-
       }
     }
 
@@ -50,7 +59,7 @@ namespace SportsStore.Controllers
     {
       ViewBag.returnUrl = returnUrl;
 
-      return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl});
+      return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl });
 
     }
 
@@ -60,13 +69,13 @@ namespace SportsStore.Controllers
     //}
 
     [HttpPost]
-    public RedirectToRouteResult AddToCart(Cart cart, int productId,string returnUrl)
+    public RedirectToRouteResult AddToCart(Cart cart, int productId, string returnUrl)
     {
       //Find, Single, First, Last
       //FirstOrDefault, SingleOrDefault, LastOrDefault
 
       Product product = _db.Products.SingleOrDefault(x => x.ProductID == productId);
-      if(product != null)
+      if (product != null)
       {
         cart.Add(product, 1);
       }
@@ -79,12 +88,14 @@ namespace SportsStore.Controllers
     {
       Product product = _db.Products.FirstOrDefault(x => x.ProductID == productId);
 
-      if(product != null)
+      if (product != null)
       {
         cart.Remove(product);
       }
       return RedirectToAction("Index", new { returnUrl });
     }
+
+
 
     public PartialViewResult Summary(Cart cart)
     {
