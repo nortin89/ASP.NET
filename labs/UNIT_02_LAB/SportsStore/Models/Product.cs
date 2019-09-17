@@ -25,5 +25,8 @@ namespace SportsStore.Models
 
         [Required]
         public decimal Price { get; set; }
-    }
+
+        [StringLength(100)]
+        public string Photo { get; set; }
+  }
 }

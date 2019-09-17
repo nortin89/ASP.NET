@@ -1,18 +1,21 @@
 ﻿@model SportsStore.Models.Product
 
-  <div class="card bg-light m-3">
-    <div class="card-body">
-      <h3>
-        <strong>@Model.Name</strong>
-        <span class="float-right badge badge-success">@Model.Price.ToString("c")</span>
-      </h3>
-      <span class="lead">@Model.Description</span>
+<div class="card bg-light m-3">
+  <img src="~/Content/Products/@Model.Photo" class="card-img-top" alt="">
+  <div class="card-body">
+    <h3 class="d-flex align-items-start flex-column flex-md-row">
+      <strong>@Model.Name</strong>
+      <span class="flex-grow-1"></span>
+      <span class="badge badge-success">@Model.Price.ToString("c")</span>
+    </h3>
 
-      @using (Html.BeginForm("AddToCart", "Cart"))
-      {
-        @Html.Hidden("productId",Model.ProductID)
-        @Html.Hidden("returnUrl",Request.Url.PathAndQuery)
-        <button type="submit" class="btn btn-primary float-right">Add to cart</button>
-      }
-    </div>
+    @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, htmlAttributes: new { @class = "d-flex align-items-start flex-column flex-md-row" }))
+    {
+      @Html.Hidden("productId", Model.ProductID)
+      @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+
+      <span class="lead flex-grow-1">@Model.Description</span>
+      <button type="submit" class="btn btn-primary">Add to cart</button>
+    }
   </div>
+</div>

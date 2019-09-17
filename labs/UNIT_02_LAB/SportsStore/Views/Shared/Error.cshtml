@@ -1,0 +1,10 @@
+﻿@model System.Exception
+@{
+  ViewBag.Title = "Error";
+}
+
+@for (var ex = Model; ex != null; ex = ex.InnerException)
+{
+  <h3 class="text-danger">@ex.GetType().Name</h3>
+  <p class="text-danger">@ex.Message</p>
+}

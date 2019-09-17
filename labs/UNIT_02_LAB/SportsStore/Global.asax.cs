@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using SportsStore.Models;
 using SportsStore.Infrastructure.Binders;
+using System.Data.Entity;
 
 namespace SportsStore
 {
@@ -15,7 +16,8 @@ namespace SportsStore
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
+            Database.SetInitializer<SportsStoreDatabase>(null);
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder()); //p.229
         }
     }
 }

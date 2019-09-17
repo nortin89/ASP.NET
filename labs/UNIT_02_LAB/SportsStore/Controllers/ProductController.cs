@@ -11,8 +11,6 @@ namespace SportsStore.Controllers
 {
   public class ProductController : Controller
   {
-    // GET: Product
-
     private SportsStoreDatabase _db = new SportsStoreDatabase();
 
     // p. 164

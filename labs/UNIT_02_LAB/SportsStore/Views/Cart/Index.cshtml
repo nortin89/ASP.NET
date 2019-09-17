@@ -1,19 +1,21 @@
 ﻿@model SportsStore.Models.CartIndexViewModel
 @{
-    ViewBag.Title = "Sports Store: Your Cart";
+  ViewBag.Title = "Sports Store: Your Cart";
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+  <meta name="viewport" content="width=device-width" />
+  <title>Index</title>
 </head>
 <body>
   <main class="container">
     <style>
-      #cartTable td {vertical-align: middle}
+      #cartTable td {
+        vertical-align: middle
+      }
     </style>
     <h2>Your cart</h2>
     <table id="cartTable" class="table">
@@ -36,9 +38,9 @@
             <td>
               @using (Html.BeginForm("RemoveFromCart", "Cart"))
               {
-                @Html.Hidden("ProductId",line.Product.ProductID)
-                @Html.HiddenFor(x=> x.ReturnUrl)
-                <input class="btn btn-sm btn-warning" type="submit" value="Remove"/>
+                @Html.Hidden("ProductId", line.Product.ProductID)
+                @Html.HiddenFor(x => x.ReturnUrl)
+                <input class="btn btn-sm btn-warning" type="submit" value="Remove" />
               }
             </td>
           </tr>
@@ -53,8 +55,9 @@
       </tfoot>
     </table>
     <div class="text-center">
-      <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
-      @Html.ActionLink("Checkout now", "Checkout", null, new { @class = "btn btn-primary"})
+      <a class="btn btn-primary" href="@Model.ReturnUrl"><i class="fas fa-arrow-left"></i> Continue shopping</a>
+      <a class="btn btn-primary " href="@Url.Action("Checkout","Cart")"><i class="fa-fw far fa-credit-card"></i> Checkout Now</a>
+
     </div>
   </main>
 </body>

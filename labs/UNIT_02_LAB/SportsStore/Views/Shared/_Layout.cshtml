@@ -8,17 +8,23 @@
   <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
 
 </head>
-<body class="d-flex flex-column" style="min-height: 100vh">
+<body class="d-flex flex-column min-vh-100">
   <div class="navbar navbar-dark bg-dark" role="navigation">
-    <a class="navbar-brand" href="#">SPORTS STORE</a>
-    @Html.Action("Summary","Cart")
+    <a class="navbar-brand" href="#">
+      <i class="d-none d-md-inline far fa-futbol"></i>
+      <span class="d-block d-md-inline"> SPORTS</span>
+      <span class="d-block d-md-inline">STORE</span>
+    </a>
+    @Html.Action("Summary", "Cart")
   </div>
   <div>@Html.Action("Menu", "Nav")</div>
-  <div class="container p-2 flex-grow-1" >
+  <div class="container p-2 flex-grow-1">
     @RenderBody()
   </div>
   <footer class="bg-dark text-white text-center">
     &copy; Scott Nortin 2019
   </footer>
+  <script src="https://kit.fontawesome.com/0f0c0162b2.js"></script>
+
 </body>
 </html>

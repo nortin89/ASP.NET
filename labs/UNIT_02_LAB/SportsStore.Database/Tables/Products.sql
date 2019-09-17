@@ -5,5 +5,6 @@
 	[Description] NVARCHAR(500) NOT NULL,
 	[Category] NVARCHAR(50) NOT NULL,
 	[Price] DECIMAL(16,2) NOT NULL,
-  [TEST] INT NULL,
+  [Photo] NVARCHAR(100) NULL
+
 )

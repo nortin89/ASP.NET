@@ -28,7 +28,17 @@ namespace SportsStore.Models
     public void Add(Product product,int quantity)
     {
       //FIXME: prevent duplicate products
-      _lines.Add(new CartLine { Product = product, Quantity = quantity });
+      CartLine line = _lines.SingleOrDefault(x => x.Product.ProductID == product.ProductID);
+      if(line == null)
+      {
+        _lines.Add(new CartLine { Product = product, Quantity = quantity });
+      }
+      else
+      {
+        line.Quantity += quantity;
+      }
+
+      //_lines.Add(new CartLine { Product = product, Quantity = quantity });
     }
     public void Remove(Product product)
     {
