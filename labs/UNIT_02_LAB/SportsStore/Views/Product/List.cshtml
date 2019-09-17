@@ -4,15 +4,12 @@
   ViewBag.Title = "Products";
 }
 
-@foreach (var item in Model.Products)
-{
-  @Html.Partial("ProductSummary",item)
-  @*<div>
-    <h3>@item.Name</h3>
-    <div>@item.Description</div>
-    <div>@item.Price.ToString("C")</div>
-  </div>*@
-}
+  <div class="row">
+    @foreach (var item in Model.Products)
+    {
+      <div class="col-md-6">@Html.Partial("ProductSummary", item)</div>
+    }
+  </div>
 
 <div>
   @Html.PageLinks(Model.PagingInfo,

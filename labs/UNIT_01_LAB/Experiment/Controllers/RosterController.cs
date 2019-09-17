@@ -7,8 +7,8 @@ using System.Web.Mvc;
 
 namespace Experiment.Controllers
 {
-    public class RosterController : Controller
-    {
+  public class RosterController : Controller
+  {
     // GET: Roster
     public ActionResult Index()
     {

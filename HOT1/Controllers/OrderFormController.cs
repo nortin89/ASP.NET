@@ -7,35 +7,52 @@ using System.Web.Mvc;
 
 namespace HOT1.Controllers
 {
-    public class OrderFormController : Controller
+  public class OrderFormController : Controller
+  {
+    [HttpGet]
+    public ActionResult Index()
     {
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View();
-        }
+      return View();
+    }
 
     [HttpPost]
     public ActionResult Index(OrderForm order)
     {
+      order.PricePerShirt = 15;
 
-      if(order.DiscountCode == null)
+      if(order.DiscountCode == "" || order.DiscountCode == null)
       {
-        ViewBag.Quantity = order.Quantity;
-        ViewBag.PricePerShirt = 15;
-        ViewBag.Subtotal = (order.Quantity) * ViewBag.PricePerShirt;
-        ViewBag.Tax = ViewBag.Subtotal * .08;
-        ViewBag.Total = (ViewBag.Tax + ViewBag.Subtotal);
+
       }
-      else if (order.DiscountCode.ToLower() == "BB88")
+      else if(order.DiscountCode == "6175")
       {
-        order.Total = order.Total - Convert.ToSingle(order.Total * .20);
+        order.PricePerShirt *= 0.7f;
+        order.DiscountMessage = "30% Discount Applied";
+
       }
-      else if (order.DiscountCode.ToLower() == "CC99")
+      else if(order.DiscountCode == "1390")
       {
-        order.Total = order.Total - Convert.ToSingle(order.Total * .10);
+        order.PricePerShirt *= 0.8f;
+        order.DiscountMessage = "20% Discount Applied";
+
       }
-            return View("Index");
+      else if(order.DiscountCode == "BB88")
+      {
+        order.PricePerShirt *= 0.9f;
+        order.DiscountMessage = "10% Discount Applied";
+
+      }
+      else
+      {
+        order.DiscountMessage = "Invalid Discount Code";
+      }
+
+
+      order.Subtotal = (order.Quantity ?? 0) * order.PricePerShirt;
+      order.Tax = order.Subtotal * .08f;
+      order.Total = order.Tax + order.Subtotal;
+      return View("Index",order);
+
     }
-    }
+  }
 }

@@ -195,6 +195,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ErrorStyles.css" />
     <Content Include="Content\Products\gold_King.jpg" />
+    <Content Include="Content\Products\Human_Chess_Board.jpg" />
+    <Content Include="Content\Products\Kayak_Boat.jpg" />
+    <Content Include="Content\Products\Life_Jackets.jpg" />
+    <Content Include="Content\Products\Little_Flags.jpg" />
+    <Content Include="Content\Products\Soccer_Ball.jpg" />
+    <Content Include="Content\Products\Soccer_Stadium.jpg" />
+    <Content Include="Content\Products\Thinking_Cap.jpg" />
+    <Content Include="Content\Products\Unsteady_Chair.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\SportsStore.csproj.FileListAbsolute.txt" />

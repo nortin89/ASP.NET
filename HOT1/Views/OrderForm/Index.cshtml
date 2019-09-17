@@ -1,6 +1,6 @@
 ﻿@model HOT1.Models.OrderForm
 @{
-    Layout = null;
+  Layout = null;
 }
 
 <!DOCTYPE html>
@@ -27,19 +27,28 @@
       <div class="form-group mb-2">
         <label for="DiscountCode">Discount Code</label>
         @Html.TextBoxFor(x => x.DiscountCode, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.DiscountMessage, null, htmlAttributes: new { @class = "text-danger" })
+        @Html.ValidationMessageFor(x => x.DiscountCode, null, htmlAttributes: new { @class = "text-danger" })
       </div>
+
+      if (Model != null)
+      {
+       <div>@Model.DiscountMessage </div>
+      }
+
       <div class="form-group mb-2">
         <button type="submit" class="btn btn-primary">Order</button>
       </div>
-      <div style ="padding: 15px; border: solid 1px black; font-size: 15pt">
-        <p>@($"{ViewBag.Quantity}") T-Shirts@($" @{ViewBag.PricePerShirt:C}") each</p>
-        <p>-------------------------------</p>
-        <p>Subtotal @($"{ViewBag.Subtotal:C}")</p>
-        <p>Tax @($"{ViewBag.Tax:C}")</p>
-        <p>Total @($"{ViewBag.Total:C}")</p>
-      </div>
 
+      if (Model != null && Model.Quantity != null)
+      {
+        <div style="padding: 15px; border: solid 1px black; font-size: 15pt">
+          <p>@($"{Model.Quantity}") T-Shirts@($" @{Model.PricePerShirt:C}") each</p>
+          <p>-------------------------------</p>
+          <p>Subtotal @($"{Model.Subtotal:C}")</p>
+          <p>Tax @($"{Model.Tax:C}")</p>
+          <p>Total @($"{Model.Total:C}")</p>
+        </div>
+      }
     }
   </main>
 </body>

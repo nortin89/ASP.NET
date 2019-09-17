@@ -62,3 +62,7 @@ bld/
 *.sbr
 *.tmp
 *.tmp_proj
+*.dbmdl
+*.jfm
+
+

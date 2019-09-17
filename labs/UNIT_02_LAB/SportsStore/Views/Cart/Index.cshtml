@@ -12,52 +12,32 @@
 </head>
 <body>
   <main class="container">
-    <style>
-      #cartTable td {
-        vertical-align: middle
-      }
-    </style>
-    <h2>Your cart</h2>
-    <table id="cartTable" class="table">
-      <thead>
-        <tr>
-          <th>Quantity</th>
-          <th>Item</th>
-          <th class="text-right">Price</th>
-          <th class="text-right">Subtotal</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach (var line in Model.Cart.Lines)
-        {
-          <tr>
-            <td class="text-center">@line.Quantity</td>
-            <td class="text-left">@line.Product.Name</td>
-            <td class="text-right">@line.Product.Price.ToString("c")</td>
-            <td class="text-right">@((line.Quantity * line.Product.Price).ToString("c"))</td>
-            <td>
+
+    <h2 class="border-bottom border-dark">Your cart</h2>
+    <div class="row p-2">
+      @foreach (var line in Model.Cart.Lines)
+      {
+        <div class="w-100">
+          <div class="border-bottom border-dark w-100 pb-2">
+            <div class="col-12 font-weight-bold">@line.Quantity x @line.Product.Name</div>
+            <div class="col-12">@line.Product.Price.ToString("c") each</div>
+            <div class="col-12">
               @using (Html.BeginForm("RemoveFromCart", "Cart"))
               {
                 @Html.Hidden("ProductId", line.Product.ProductID)
                 @Html.HiddenFor(x => x.ReturnUrl)
-                <input class="btn btn-sm btn-warning" type="submit" value="Remove" />
+                <button class="btn btn-sm btn-warning" type="submit">Remove</button>
               }
-            </td>
-          </tr>
-        }
-
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3" class="text-right">Total:</td>
-          <td class="text-right">@Model.Cart.ComputeTotalValue().ToString("c")</td>
-        </tr>
-      </tfoot>
-    </table>
-    <div class="text-center">
-      <a class="btn btn-primary" href="@Model.ReturnUrl"><i class="fas fa-arrow-left"></i> Continue shopping</a>
-      <a class="btn btn-primary " href="@Url.Action("Checkout","Cart")"><i class="fa-fw far fa-credit-card"></i> Checkout Now</a>
-
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <div>
+      <div class="text-center">
+        <a class="btn btn-primary m-2" href="@Model.ReturnUrl"><i class="fas fa-arrow-left"></i> Continue Shopping </a>
+        <a class="btn btn-primary m-2" href="@Url.Action("Checkout","Cart")"> Checkout <i class="fa-fw far fa-credit-card"></i></a>
+      </div>
     </div>
   </main>
 </body>
