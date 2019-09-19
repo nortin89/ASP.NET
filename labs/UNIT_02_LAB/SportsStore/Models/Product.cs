@@ -5,26 +5,30 @@ namespace SportsStore.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     public partial class Product
     {
         [Key]
+        [HiddenInput(DisplayValue = false)]
         public int ProductID { get; set; }
 
         [Required(ErrorMessage ="Product name is required")]
         [StringLength(100, ErrorMessage = "Product name cannot be longer than 100 characters")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter a description")]
         [StringLength(500)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please specify a category")]
         [StringLength(50)]
         public string Category { get; set; }
 
-        [Required]
-        public decimal Price { get; set; }
+        [Required(ErrorMessage ="Please enter a positive price")]
+        [Range(0.01,double.MaxValue,ErrorMessage ="Please enter a positive price")]
+        public decimal? Price { get; set; }
 
         [StringLength(100)]
         public string Photo { get; set; }

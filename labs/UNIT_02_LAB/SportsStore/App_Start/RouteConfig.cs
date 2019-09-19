@@ -15,10 +15,12 @@ namespace SportsStore
 
       routes.MapRoute(name: null, url: "", defaults: new { controller = "Product", action = "List", category = (string)null, page = 1 });
 
+      routes.MapRoute(name: null, url: "Admin", defaults: new { controller = "Admin", action = "Index" });
+
       routes.MapRoute(
         name: null,
         url: "Page{page}",
-        defaults: new { controller = "Product", action = "List",category = (string)null,page=1 }, constraints: new {page = @"\d+"}
+        defaults: new { controller = "Product", action = "List", category = (string)null, page = 1 }, constraints: new { page = @"\d+" }
         );
 
       routes.MapRoute(name: null, url: "{category}", defaults: new { controller = "Product", action = "List", category = (string)null, page = 1 });

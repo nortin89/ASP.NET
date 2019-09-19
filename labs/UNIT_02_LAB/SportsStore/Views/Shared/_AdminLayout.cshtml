@@ -9,15 +9,6 @@
 
 </head>
 <body class="d-flex flex-column min-vh-100">
-  <nav class="navbar navbar-dark bg-dark" role="navigation">
-    <a class="navbar-brand" href="#">
-      <i class="d-none d-md-inline far fa-futbol"></i>
-      <span class="d-block d-md-inline"> SPORTS</span>
-      <span class="d-block d-md-inline">STORE</span>
-    </a>
-    @Html.Action("Summary", "Cart")
-  </nav>
-  <nav>@Html.Action("Menu", "Nav")</nav>
   <main class="container p-2 flex-grow-1">
     @if(TempData["message"] != null)
     {
@@ -25,9 +16,6 @@
     }
     @RenderBody()
   </main>
-  <footer class="bg-dark text-white text-center">
-    &copy; Scott Nortin 2019
-  </footer>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
           integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
           crossorigin="anonymous"></script>
@@ -36,6 +24,5 @@
   <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
   <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
   <script src="https://kit.fontawesome.com/0f0c0162b2.js"></script>
-
 </body>
 </html>

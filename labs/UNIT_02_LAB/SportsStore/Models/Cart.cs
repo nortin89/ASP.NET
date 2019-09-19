@@ -47,7 +47,7 @@ namespace SportsStore.Models
 
     public decimal ComputeTotalValue()
     {
-      return _lines.Sum(x => x.Product.Price * x.Quantity);
+      return _lines.Sum(e => (e.Product.Price ?? 0)* e.Quantity);
     }
 
     public void Clear()

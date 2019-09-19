@@ -6,7 +6,7 @@
     <h3 class="d-flex align-items-start flex-column flex-md-row">
       <strong>@Model.Name</strong>
       <span class="flex-grow-1"></span>
-      <span class="badge badge-success">@Model.Price.ToString("c")</span>
+      <span class="badge badge-success">@($"{Model.Price:C}")</span>
     </h3>
 
     @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, htmlAttributes: new { @class = "d-flex align-items-start flex-column flex-md-row" }))
