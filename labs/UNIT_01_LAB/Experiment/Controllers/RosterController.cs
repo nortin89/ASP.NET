@@ -9,26 +9,35 @@ namespace Experiment.Controllers
 {
   public class RosterController : Controller
   {
-    // GET: Roster
+    private ExperimentDatabase _db = new ExperimentDatabase();
+
     public ActionResult Index()
     {
-      var roster = new Roster()
+      Roster roster = new Roster()
       {
-        Items = new List<RosterItem> {
-                new RosterItem{FirstName = "Bob", LastName = "Dole", Email= "bobdole@gmail.com"},
-                new RosterItem{FirstName = "Scott", LastName = "Nortin", Email= "nortin89@gmail.com"},
-                new RosterItem{FirstName = "Esten", LastName = "Kirby", Email= "kirby99@gmail.com"},
-                new RosterItem{FirstName = "Caleb", LastName = "G", Email= "calebB@gmail.com"}
-        }
+        Items = _db.RosterItems.ToList()
       };
       return View(roster);
-
-
     }
 
-    public ActionResult Add(Roster roster)
+    [HttpGet]
+    public ActionResult Add()
     {
-      return View(roster);
+      return View();
     }
+
+    [HttpPost]
+    public ActionResult Add(RosterItem item)
+    {
+      if (!ModelState.IsValid)
+      {
+        return View("Add", item);
+      }
+
+      _db.RosterItems.Add(item);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
   }
 }
