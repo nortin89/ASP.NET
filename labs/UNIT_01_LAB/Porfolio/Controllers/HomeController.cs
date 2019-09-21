@@ -1,5 +1,7 @@
 ﻿using Porfolio.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
@@ -8,10 +10,21 @@ namespace Porfolio.Controllers
 {
   public class HomeController : Controller
   {
+    private PortfolioDatabase _db = new PortfolioDatabase();
+
+
     // GET: Home
     [HttpGet]
     public ActionResult Index()
     {
+      List<ProjectViewModel> projects = _db.Projects.Select(x => new ProjectViewModel
+      {
+        ProjectID = x.ProjectId,
+        Name = x.Name,
+        Description = x.Description
+      }).ToList();
+
+      ViewBag.Projects = projects;
       return View();
     }
 

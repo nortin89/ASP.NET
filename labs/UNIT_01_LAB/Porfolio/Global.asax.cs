@@ -1,3 +1,5 @@
+using Porfolio.Models;
+using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -9,6 +11,7 @@ namespace Porfolio
     {
       AreaRegistration.RegisterAllAreas();
       RouteConfig.RegisterRoutes(RouteTable.Routes);
+      Database.SetInitializer<PortfolioDatabase>(null);
     }
   }
 }
