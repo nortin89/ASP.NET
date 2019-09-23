@@ -76,7 +76,6 @@
     </div>
   </header>
 
-
   <!-- AboutJumbotron -->
   <section id="about" class="about">
     <div class="jumbotron jumbotron-fluid">
@@ -233,16 +232,6 @@
     </div>
   </div>
 
-  @*Map
-    <div class="container">
-      <section id="contact" class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3118.627319409484!2d-90.27221588465875!3d38.588429179619595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87d8b5c83f61a293%3A0xaef0770527f3a50b!2s4462+Beethoven+Ave%2C+St.+Louis%2C+MO+63116!5e0!3m2!1sen!2sus!4v1507217941193" width="1100" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
-        <br />
-        <small>
-          <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3118.627319409484!2d-90.27221588465875!3d38.588429179619595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87d8b5c83f61a293%3A0xaef0770527f3a50b!2s4462+Beethoven+Ave%2C+St.+Louis%2C+MO+63116!5e0!3m2!1sen!2sus!4v1507217941193" width="30" height="100" frameborder="0" style="border:0" allowfullscreen></a>
-        </small>
-      </section>
-    </div>*@
   <hr>
   <section id="contact-page">
 
@@ -271,31 +260,12 @@
           <button type="submit" value="Submit Info" class="btn btn-primary btn-lg">Submit</button>
         </div>
       }
-      @*@if (Model != null && Model.Name != null && Model.Email != null && Model.Message != null)
-        {
-          @Html.ActionLink("Contact Reply", "ContactReply", "Home")
-          <div>Your message was sent!</div>
-        }*@
-
     </main>
-    <!--/.container-->
   </section>
   <!--/#contact-page-->
   @foreach (var item in ViewBag.Projects)
   {
 
-    @*<div class="justify-content-center col-md-4">
-        <div class="card container">
-          <div class="card-header">
-            Project Name
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Website Name</h5>
-            <p class="card-text">This is a site I did for my friends Colombian Farm.</p>
-            <a href="#" class="btn btn-primary">Button</a>
-          </div>
-        </div>
-      </div>*@
     <div class="card container col-md-4">
       <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -343,19 +313,7 @@
             </li>
           </ul>
           <br>
-          @*<ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="https://www.facebook.com/scott.nortin">
-                  <i class="fa fa-facebook fa-fw fa-3x"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://twitter.com/NortinScott">
-                  <i class="fa fa-twitter fa-fw fa-3x"></i>
-                </a>
-              </li>
 
-            </ul>*@
           <hr class="small">
           <p class="text-muted">Copyright &copy; 2017</p>
         </div>

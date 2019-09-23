@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[BlogComments]
+(
+  [BlogCommentId] INT NOT NULL PRIMARY KEY IDENTITY,
+  [BlogPostId] INT NOT NULL,
+  [AuthorName] NVARCHAR(100) NOT NULL,
+  [Posted] DATETIME DEFAULT(GETDATE()) NOT NULL,
+  [Text] NVARCHAR(1000) NOT NULL,
+
+  FOREIGN KEY ([BlogPostId]) REFERENCES [BlogPosts] ([BlogPostId]) ON DELETE CASCADE
+);
