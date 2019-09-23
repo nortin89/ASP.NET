@@ -4,29 +4,37 @@
 }
 
 
+  <table class="table table-striped">
+    <main class="card container">
+      <div>
+        <h2>Blog Article</h2>
+        <div>My blog starts here...</div>
+      </div>
+      @*<div>
+        <h2>@ViewBag.BlogPost</h2>
+        <div>@ViewBag.Posted</div>
+        <div>@ViewBag.Text</div>
+      </div>*@
+      <div>
+        @foreach (var item in Model)
+        {
+          @item.BlogPostId
+          <div>@item.Title</div>
+          <div>@item.Posted</div>
+          <div>@item.Text</div>
+        }
+      </div>
+      <div>
+        <h2>Blog Article</h2>
+        <div>My blog starts here...</div>
+      </div>
 
-<main class="card container">
-  <div>
-    <h2>Blog Article</h2>
-    <div>My blog starts here...</div>
-  </div>
-  @*<div>
-      <h2>@ViewBag.BlogPost</h2>
-      <div>@ViewBag.Posted</div>
-      <div>@ViewBag.Text</div>
-    </div>*@
-
-  <div>
-    <h2>Blog Article</h2>
-    <div>My blog starts here...</div>
-  </div>
-
-  <div>
-    <h2>Blog Article</h2>
-    <div>My blog starts here...</div>
-  </div>
+      <div>
+        <h2>Blog Article</h2>
+        <div>My blog starts here...</div>
+      </div>
 
 
-</main>
-
+    </main>
+  </table>
 
