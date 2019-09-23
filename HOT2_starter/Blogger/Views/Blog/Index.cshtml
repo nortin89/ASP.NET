@@ -1,19 +1,32 @@
-﻿
+﻿@model IEnumerable<Blogger.Models.BlogPost>
 @{
   ViewBag.Title = "My Personal Blog";
 }
 
-<div>
-  <h2>Blog Article</h2>
-  <div>My blog starts here...</div>
-</div>
 
-<div>
-  <h2>Blog Article</h2>
-  <div>My blog starts here...</div>
-</div>
 
-<div>
-  <h2>Blog Article</h2>
-  <div>My blog starts here...</div>
-</div>
+<main class="card container">
+  <div>
+    <h2>Blog Article</h2>
+    <div>My blog starts here...</div>
+  </div>
+  @*<div>
+      <h2>@ViewBag.BlogPost</h2>
+      <div>@ViewBag.Posted</div>
+      <div>@ViewBag.Text</div>
+    </div>*@
+
+  <div>
+    <h2>Blog Article</h2>
+    <div>My blog starts here...</div>
+  </div>
+
+  <div>
+    <h2>Blog Article</h2>
+    <div>My blog starts here...</div>
+  </div>
+
+
+</main>
+
+
