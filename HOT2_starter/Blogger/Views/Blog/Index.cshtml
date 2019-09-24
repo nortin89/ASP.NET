@@ -3,38 +3,17 @@
   ViewBag.Title = "My Personal Blog";
 }
 
+<div class="card container">
 
-  <table class="table table-striped">
-    <main class="card container">
-      <div>
-        <h2>Blog Article</h2>
-        <div>My blog starts here...</div>
-      </div>
-      @*<div>
-        <h2>@ViewBag.BlogPost</h2>
-        <div>@ViewBag.Posted</div>
-        <div>@ViewBag.Text</div>
-      </div>*@
-      <div>
-        @foreach (var item in Model)
-        {
-          @item.BlogPostId
-          <div>@item.Title</div>
-          <div>@item.Posted</div>
-          <div>@item.Text</div>
-        }
-      </div>
-      <div>
-        <h2>Blog Article</h2>
-        <div>My blog starts here...</div>
-      </div>
+    @foreach (var item in Model)
+    {
+      <div><h3>@item.Title</h3></div>
+      <div>@item.Posted</div>
+      <hr />
+      <div>@item.Text</div>
+      <br />
+    }
 
-      <div>
-        <h2>Blog Article</h2>
-        <div>My blog starts here...</div>
-      </div>
+  </div>
 
-
-    </main>
-  </table>
-
+@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page}))

@@ -16,28 +16,47 @@ namespace Blogger.Controllers
   {
     private BloggerDatabase _db = new BloggerDatabase();
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index(int page = 1, int pageSize = 3)
     {
       // FIXME: implement this action method
-      return View(_db.BlogPosts);
+      var posts = await _db.BlogPosts.
+        OrderByDescending(x=> x.Posted).
+        ThenByDescending(x=>x.BlogPostId).
+        Skip((page-1) * pageSize).
+        Take(pageSize).
+        ToListAsync();
+
+      var count =
+        await _db.BlogPosts.CountAsync();
+
+      ViewBag.PagingInfo = new PagingInfo
+      {
+        CurrentPage = page,
+        ItemsPerPage = pageSize,
+        TotalItems = count
+      };
+      return View(posts);
     }
 
     [HttpGet]
+    [Authorize]
     public ActionResult CreatePost()
     {
-      // FIXME: implement this action method
-      return View("EditPost",new BlogPost());
+      var post = new BlogPost();
+      post.Posted = DateTime.Now;
+      return View("EditPost",post);
     }
 
     [HttpGet]
-    public ActionResult EditPost(int postId)
+    [Authorize]
+    public async Task<ActionResult> EditPost(int postId)
     {
-      BlogPost post = _db.BlogPosts.SingleOrDefault(x => x.BlogPostId == postId);
-      // FIXME: implement this action method
+      var post = await _db.BlogPosts.SingleOrDefaultAsync(x => x.BlogPostId == postId);
       return View("EditPost",post);
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult> SubmitPost(BlogPost post)
     {
       if (!ModelState.IsValid)
@@ -46,22 +65,24 @@ namespace Blogger.Controllers
       }
       else if(post.BlogPostId == 0)
       {
+        post.Posted = DateTime.Now;
         _db.BlogPosts.Add(post);
         await _db.SaveChangesAsync();
-        TempData["message"] = $"{post.Title} has been submited";
+
+
+        TempData["message"] = "Blog posted created";
         return RedirectToAction("Index");
       }
       else
       {
-        BlogPost dbEntry = _db.BlogPosts.SingleOrDefault(x => x.BlogPostId == post.BlogPostId);
+        var dbEntry = _db.BlogPosts.SingleOrDefault(x => x.BlogPostId == post.BlogPostId);
         dbEntry.Title = post.Title;
-        dbEntry.Posted = post.Posted;
         dbEntry.Text = post.Text;
         await _db.SaveChangesAsync();
-        TempData["message"] = $"{post.Title} has been changed";
+
+        TempData["message"] = "Blog posted updated";
         return RedirectToAction("Index");
       }
-      // FIXME: implement this action method
     }
 
     [HttpPost]
@@ -69,27 +90,29 @@ namespace Blogger.Controllers
     {
       if (!ModelState.IsValid)
       {
-        return View("EditPost", comment);
-      }
-      else if (comment.BlogCommentId == 0)
-      {
-        _db.BlogComments.Add(comment);
-        await _db.SaveChangesAsync();
-        TempData["message"] = $"{comment.AuthorName} left a comment";
+        var message = new StringBuilder();
+        message.AppendLine("Failed to save comment<ul>");
+        foreach (var error in ModelState)
+        {
+          message.AppendLine($"<li>{error.Value}</li>");
+        }
+        message.AppendLine("</ul>");
+        TempData["message"] = message;
         return RedirectToAction("Index");
       }
       else
       {
-        BlogComment dbEntry = _db.BlogComments.SingleOrDefault(x => x.BlogCommentId == comment.BlogCommentId);
-        dbEntry.AuthorName = comment.AuthorName;
-        dbEntry.BlogPost = comment.BlogPost;
-        dbEntry.Text = comment.Text;
+        var post = await _db.BlogPosts.SingleOrDefaultAsync(x => x.BlogPostId == comment.BlogCommentId);
+
+        comment.Posted = DateTime.Now;
+        _db.BlogComments.Add(comment);
         await _db.SaveChangesAsync();
-        TempData["message"] = $"{comment.AuthorName} left a comment";
+
+        TempData["message"] = "Comment posted";
         return RedirectToAction("Index");
+
       }
-      // FIXME: implement this action method
-      //return View("Index");
+
     }
   }
 }
