@@ -62,6 +62,7 @@
   <ItemGroup>
     <Build Include="Tables\BlogPosts.sql" />
     <Build Include="Tables\BlogComments.sql" />
+    <Build Include="Tables\Photos.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\localhost.publish.xml" />

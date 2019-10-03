@@ -30,6 +30,9 @@ namespace Blogger.Models
     public string Text { get; set; }
 
     [ForeignKey("BlogPostId")]
-    public virtual ICollection<BlogComment> BlogComments { get; set; }
+    public virtual IList<BlogComment> BlogComments { get; set; }
+
+    [StringLength(100)]
+    public string Tags { get; set; }
   }
 }

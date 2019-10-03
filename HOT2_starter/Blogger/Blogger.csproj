@@ -162,14 +162,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Models\BlogCommentViewModel.cs" />
     <Compile Include="Models\BloggerDatabase.cs" />
     <Compile Include="Models\BlogPost.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlogPostPhoto.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
   </ItemGroup>
@@ -182,6 +187,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Blog\PostsAndComments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -191,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Photos\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -16,10 +16,33 @@ namespace Blogger.Controllers
   {
     private BloggerDatabase _db = new BloggerDatabase();
 
+    public ActionResult PostsAndComments()
+    {
+      var postsAndComments = from p in _db.BlogPosts
+                             join c in _db.BlogComments
+                             on p.BlogPostId equals c.BlogPostId
+                             orderby
+                             p.Posted descending, p.BlogPostId descending,
+                             c.Posted descending, c.BlogCommentId descending
+                             select new BlogCommentViewModel
+                             {
+                               PostTitle = p.Title,
+                               PostPosted = p.Posted,
+                               PostText = p.Text,
+                               CommentAuthor = c.AuthorName,
+                               CommentPosted = c.Posted,
+                               CommentText = c.Text
+                             };
+
+      ViewBag.Comments = postsAndComments;
+      return View("PostsAndComments");
+    }
+
     public async Task<ActionResult> Index(int page = 1, int pageSize = 3)
     {
-      // FIXME: implement this action method
+
       var posts = await _db.BlogPosts.
+        Include("BlogComments").
         OrderByDescending(x=> x.Posted).
         ThenByDescending(x=>x.BlogPostId).
         Skip((page-1) * pageSize).
@@ -78,6 +101,7 @@ namespace Blogger.Controllers
         var dbEntry = _db.BlogPosts.SingleOrDefault(x => x.BlogPostId == post.BlogPostId);
         dbEntry.Title = post.Title;
         dbEntry.Text = post.Text;
+        dbEntry.Tags = post.Tags;
         await _db.SaveChangesAsync();
 
         TempData["message"] = "Blog posted updated";

@@ -14,6 +14,8 @@ namespace Blogger.Models
 
     public virtual DbSet<BlogComment> BlogComments { get; set; }
     public virtual DbSet<BlogPost> BlogPosts { get; set; }
+    public virtual DbSet<BlogPostPhoto> BlogPostPhotos { get; set; }
+    public virtual DbSet<Photo>Photos { get; set; }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {

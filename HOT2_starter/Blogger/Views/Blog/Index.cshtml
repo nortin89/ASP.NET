@@ -3,17 +3,52 @@
   ViewBag.Title = "My Personal Blog";
 }
 
-<div class="card container">
+@foreach (var post in Model)
+{
+  <div class="card bg-light m-3">
+    <div class="card-body">
+      @using (Html.BeginForm("EditPost", "Blog", FormMethod.Post))
+      {
+        @Html.Hidden("productId", post.BlogPostId)
+        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        <div class="flex-grow-l">
+          <div class="float-right">
+            <a class="btn btn-outline-dark" href="@Url.Action("EditPost","Blog",routeValues: new { postId = post.BlogPostId})">
+              <i class="fa-fw fas fa-pencil-alt"></i>
+              Edit
+            </a>
+          </div>
+        </div>
+        <h3>
+          @post.Title
+        </h3>
+        <div style="font-size: .75rem" class="text-muted font-italic"> Posted @post.Posted</div>
+        <div class="lead flex-grow-1" style="white-space: pre-line">@post.Text</div>
 
-    @foreach (var item in Model)
-    {
-      <div><h3>@item.Title</h3></div>
-      <div>@item.Posted</div>
-      <hr />
-      <div>@item.Text</div>
-      <br />
-    }
-
+        if (post.Tags != null)
+        {
+          foreach (var tag in post.Tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+          {
+            if (!string.IsNullOrWhiteSpace(tag))
+            {
+              <div class="badge badge-primary">@tag</div>
+            }
+          }
+        }
+        <hr />
+        <div>
+          @foreach (var comment in post.BlogComments)
+          {
+            <div>
+              @comment.Posted
+              <br />@comment.AuthorName
+              <br />@comment.Text
+            </div>
+          }
+        </div>
+      }
+    </div>
   </div>
+}
 
-@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page}))
+@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page }))
