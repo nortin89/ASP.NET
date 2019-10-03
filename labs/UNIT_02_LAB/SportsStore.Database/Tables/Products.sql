@@ -5,6 +5,9 @@
 	[Description] NVARCHAR(500) NOT NULL,
 	[Category] NVARCHAR(50) NOT NULL,
 	[Price] DECIMAL(16,2) NOT NULL,
-  [Photo] NVARCHAR(100) NULL
+  [Tags] VARCHAR(100) NULL,
+  [PhotoId] INT NULL,
+
+  FOREIGN KEY ([PhotoId]) REFERENCES [Photos] ([PhotoId])
 
 )

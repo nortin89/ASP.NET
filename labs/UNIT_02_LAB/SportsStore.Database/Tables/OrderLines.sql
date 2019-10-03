@@ -7,6 +7,6 @@
 
   /*Validation Check*/
   PRIMARY KEY ([OrderID],[ProductID]),
-  FOREIGN KEY ([OrderID]) REFERENCES [Orders] ([OrderID]),
+  FOREIGN KEY ([OrderID]) REFERENCES [Orders] ([OrderId]),
   FOREIGN KEY ([ProductID]) REFERENCES [Products]([ProductID]),
 );

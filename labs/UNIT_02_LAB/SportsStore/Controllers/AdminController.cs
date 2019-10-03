@@ -54,6 +54,7 @@ namespace SportsStore.Controllers
         dbEntry.Description = product.Description;
         dbEntry.Price = product.Price;
         dbEntry.Category = product.Category;
+        dbEntry.Tags = product.Tags;
         await _db.SaveChangesAsync();
         TempData["message"] = $"{product.Name} has been updated";
         return RedirectToAction("Index");

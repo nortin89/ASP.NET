@@ -15,6 +15,7 @@ namespace SportsStore.Models
     public virtual DbSet<Product> Products { get; set; }
     public virtual DbSet<Order> Orders { get; set; }
     public virtual DbSet<OrderLine> OrderLines { get; set; }
+    public virtual DbSet<Photo> Photos { get; set; }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {

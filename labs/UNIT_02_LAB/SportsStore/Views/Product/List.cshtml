@@ -4,10 +4,21 @@
   ViewBag.Title = "Products";
 }
 
+  <div>
+    @using (Html.BeginForm("List", "Product", FormMethod.Get))
+    {
+      <div class="input-group">
+        <input name="q" class="form-control" type="text" value="@Model.Query" />
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-outline-primary"><i class="fa-fw fas fa-search"></i>Search</button>
+        </div>
+      </div>
+    }
+  </div>
   <div class="row">
     @foreach (var item in Model.Products)
     {
-      <div class="col-md-6">@Html.Partial("ProductSummary", item)</div>
+      <div class="col-lg-6">@Html.Partial("ProductSummary", item)</div>
     }
   </div>
 
