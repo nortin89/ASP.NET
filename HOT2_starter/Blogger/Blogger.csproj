@@ -163,7 +163,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\PhotosController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Models\BlogCommentViewModel.cs" />
@@ -188,6 +188,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Blog\PostsAndComments.cshtml" />
+    <Content Include="Views\Photo\Index.cshtml" />
+    <Content Include="Views\Photo\Upload.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

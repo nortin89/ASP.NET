@@ -38,25 +38,32 @@ namespace Blogger.Controllers
       return View("PostsAndComments");
     }
 
-    public async Task<ActionResult> Index(int page = 1, int pageSize = 3)
+    public async Task<ActionResult> Index(int page = 1, int pageSize = 3,string q = null)
     {
-
       var posts = await _db.BlogPosts.
+        //Include("BlogPhotos").
         Include("BlogComments").
-        OrderByDescending(x=> x.Posted).
-        ThenByDescending(x=>x.BlogPostId).
-        Skip((page-1) * pageSize).
+        Where(x => q == null || x.Tags.Contains(q) || x.Text.Contains(q) || x.Title.Contains(q)).
+        OrderByDescending(x => x.Posted).
+        ThenByDescending(x => x.BlogPostId).
+        Skip((page - 1) * pageSize).
         Take(pageSize).
         ToListAsync();
 
       var count =
-        await _db.BlogPosts.CountAsync();
+        await _db.BlogPosts.Where(x => q == null || 
+        x.Tags.Contains(q) || 
+        x.Text.Contains(q) || 
+        x.Title.Contains(q))
+                .CountAsync();
 
       ViewBag.PagingInfo = new PagingInfo
       {
         CurrentPage = page,
         ItemsPerPage = pageSize,
-        TotalItems = count
+        TotalItems = count,
+        Query = q,
+        
       };
       return View(posts);
     }

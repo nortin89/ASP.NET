@@ -3,6 +3,18 @@
   ViewBag.Title = "My Personal Blog";
 }
 
+
+@using (Html.BeginForm("Index","Blog",FormMethod.Get))
+{
+  <div class="input-group">
+    <input name="q" class="form-control" type="text" value="" />
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-outline-primary">
+      <i class="fa-fw fas fa-search"></i>Search</button>
+    </div>
+  </div>
+}
+
 @foreach (var post in Model)
 {
   <div class="card bg-light m-3">
