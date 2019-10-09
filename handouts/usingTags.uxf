@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>230</y>
+      <w>100</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Tags
+--
++ TagId
++ ProductId
++ TagName</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>50</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Product
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>50</y>
+      <w>270</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Products
+--
++ Tags : string
++ ImageData : BUFFER
++ ImageMimeType : VARCHAR(100) </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>30</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Products
+--
++ PhotoId</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>240</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Product Tags
+--
++ ProductId
++ TagId FK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>470</y>
+      <w>210</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Tags 
+--
++ TagId
++ TagName PK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>140</y>
+      <w>50</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>350</y>
+      <w>210</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>190.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>130</y>
+      <w>220</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>930</x>
+      <y>240</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Photo
+--
++ ImageData
++ ImageMimeType
++ PhotoId
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>130</y>
+      <w>130</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>110.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

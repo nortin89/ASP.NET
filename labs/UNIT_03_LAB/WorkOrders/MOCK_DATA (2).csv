@@ -1,0 +1,6 @@
+OrderId,CustomerId,RepairDate,TechName,LicencePlate,VehicleYear,VehicleMake,VehicleModel,Mileage,Lube,OilChange,FlushTransmission,FlushDifferential,Wash,Polish,LaborHours,LaborCostPerHour,TotalCostParts,TotalCostLabor,TotalCostLaborParts,TotalTax,GrandTotal
+1,047975,8/25/2019,Mariska Leaman,001409,2007,GMC,Sierra,17288892,,,,,,,,,,,,,
+2,713735,4/16/2019,Ardene Gwynne,419190,1992,Mazda,MX-3,80824548,,,,,,,,,,,,,
+3,290881,7/29/2019,Selig Silverton,288036,2003,Oldsmobile,Aurora,85750376,,,,,,,,,,,,,
+4,621145,1/25/2019,Graeme Bingall,021831,2000,Isuzu,VehiCROSS,11244835,,,,,,,,,,,,,
+5,851770,3/7/2019,Niles Bakesef,270024,1989,Mazda,MPV,46683319,,,,,,,,,,,,,

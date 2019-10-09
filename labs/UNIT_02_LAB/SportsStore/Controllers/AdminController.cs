@@ -1,6 +1,7 @@
 ﻿using SportsStore.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,15 +20,17 @@ namespace SportsStore.Controllers
     }
 
     [HttpGet]
-    public ActionResult Create()
+    public async Task<ActionResult> Create()
     {
+      await PopulatePhotoDropdown();
       return View("Edit",new Product());
     }
 
     [HttpGet]
-    public ActionResult Edit(int productId)
+    public async Task<ActionResult> Edit(int productId)
     {
-      Product product = _db.Products.SingleOrDefault(x => x.ProductID == productId);
+      Product product = await _db.Products.SingleOrDefaultAsync(x => x.ProductID == productId);
+      await PopulatePhotoDropdown();
       return View("Edit", product);
     }
 
@@ -36,6 +39,7 @@ namespace SportsStore.Controllers
     {
       if (!ModelState.IsValid)
       {
+        await PopulatePhotoDropdown();
         return View("Edit", product);
       }
       else if(product.ProductID == 0)
@@ -73,6 +77,13 @@ namespace SportsStore.Controllers
 
       }
       return RedirectToAction("Index");
+    }
+
+    private async Task PopulatePhotoDropdown()
+    {
+      List<Photo> photos = await _db.Photos.ToListAsync();
+      ViewBag.PhotoId = new SelectList(photos, "PhotoId","ImageName");
+       
     }
   }
 }

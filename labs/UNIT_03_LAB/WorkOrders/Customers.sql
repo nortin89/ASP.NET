@@ -1,0 +1,54 @@
+SET IDENTITY_INSERT Customers On;
+GO
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('615854', '41951', 'Ramona Itscowicz', '910-570-8435', '60 Reinke Center', 'Fayetteville', 'North Carolina', '28305');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('114932', '88267', 'Judi Delahunt', '215-759-9976', '17708 Banding Plaza', 'Philadelphia', 'Pennsylvania', '19141');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('125490', '72126', 'Dredi Ping', '415-172-6424', '87 Clyde Gallagher Terrace', 'San Francisco', 'California', '94177');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('841784', '39775', 'Royal Stansell', '217-146-9211', '89846 Kenwood Point', 'Springfield', 'Illinois', '62723');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('401481', '34389', 'Aretha Hylands', '916-784-5194', '2883 Hintze Road', 'Sacramento', 'California', '94291');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('722111', '45204', 'Timoteo Baily', '903-218-4999', '52 Derek Alley', 'Tyler', 'Texas', '75705');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('277196', '61799', 'Rosabella Lief', '862-697-2948', '973 Farragut Court', 'Paterson', 'New Jersey', '07505');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('367269', '50830', 'Stacia Forsbey', '347-415-9752', '57 Glacier Hill Drive', 'Bronx', 'New York', '10469');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('014508', '41721', 'Jules Rabb', '937-593-8280', '9 Bonner Point', 'Dayton', 'Ohio', '45490');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('599427', '66535', 'Barb Gudeman', '317-557-5357', '4667 Loomis Place', 'Indianapolis', 'Indiana', '46207');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('104956', '52352', 'Oralie Deneve', '212-502-5070', '401 Pawling Junction', 'New York City', 'New York', '10160');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('639633', '15573', 'Ruth Ralton', '858-388-1334', '257 4th Street', 'San Diego', 'California', '92105');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('675946', '73299', 'Hussein Duffie', '937-961-6826', '93024 Clarendon Parkway', 'Hamilton', 'Ohio', '45020');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('234389', '22648', 'Llywellyn Dorbon', '213-770-7549', '54240 Morningstar Center', 'Los Angeles', 'California', '90030');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('192122', '47532', 'Barr Rubinsohn', '202-321-3328', '776 Hintze Way', 'Washington', 'District of Columbia', '20414');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('891592', '58909', 'Carena Twittey', '816-102-3987', '59896 Hooker Parkway', 'Kansas City', 'Missouri', '64199');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('178966', '83034', 'Juliet Jelley', '754-403-1853', '51 Schlimgen Circle', 'Fort Lauderdale', 'Florida', '33320');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('959278', '76836', 'Madeline Seabrooke', '480-577-9930', '9 Steensland Parkway', 'Scottsdale', 'Arizona', '85255');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('186052', '99347', 'Dyanna Rosiello', '508-589-8540', '86 Toban Circle', 'Worcester', 'Massachusetts', '01654');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('507866', '29821', 'Aleksandr Garard', '404-949-9752', '9 Tony Center', 'Atlanta', 'Georgia', '30380');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('680683', '45068', 'Stacia Williams', '915-817-2938', '34454 Katie Junction', 'El Paso', 'Texas', '79940');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('861001', '15478', 'Giustino Lacaze', '832-558-5691', '69 Forest Dale Terrace', 'Houston', 'Texas', '77055');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('047921', '38486', 'Belita Ternott', '309-370-0276', '3 Sunnyside Plaza', 'Peoria', 'Illinois', '61614');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('217600', '34506', 'Cristionna Poundsford', '650-457-3403', '01 Blaine Terrace', 'San Francisco', 'California', '94105');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('143027', '42947', 'Clifford Norfolk', '702-217-6401', '95 Lakewood Way', 'Las Vegas', 'Nevada', '89193');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('849667', '35116', 'Franni Caulcott', '330-786-9257', '827 Oxford Trail', 'Akron', 'Ohio', '44305');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('515634', '12418', 'Shermy Arend', '619-954-4546', '396 Corben Crossing', 'Chula Vista', 'California', '91913');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('798892', '50042', 'Antone Trowsdale', '610-189-8783', '8697 Meadow Ridge Drive', 'Philadelphia', 'Pennsylvania', '19120');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('724489', '36690', 'Alfred Queste', '704-970-1593', '3 6th Hill', 'Charlotte', 'North Carolina', '28235');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('452169', '29303', 'Abba Braikenridge', '714-673-2725', '7 Heffernan Center', 'Brea', 'California', '92822');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('319828', '12831', 'Aland MacKey', '717-508-0010', '95 Sycamore Alley', 'Harrisburg', 'Pennsylvania', '17126');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('908007', '99923', 'Jenifer Mayers', '915-673-8601', '5974 Columbus Court', 'El Paso', 'Texas', '88546');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('121150', '31768', 'Ynez Pheasant', '713-410-5114', '6 Debra Point', 'Houston', 'Texas', '77288');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('313602', '68918', 'Arvie Soigne', '708-148-1242', '3 Trailsway Point', 'Chicago', 'Illinois', '60604');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('83735', '03695', 'Hugo Laxen', '713-920-8967', '410 Westend Center', 'Houston', 'Texas', '77271');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('36363', '82098', 'Delilah Barends', '816-297-7151', '72 Jay Point', 'Kansas City', 'Kansas', '66112');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('028419', '63564', 'Arnuad Deverale', '540-391-5484', '935 Old Gate Circle', 'Roanoke', 'Virginia', '24024');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('933333', '92791', 'Corbin McDougle', '937-401-9395', '65 Bartelt Avenue', 'Dayton', 'Ohio', '45426');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('153378', '86596', 'Clarita Skyme', '515-347-2062', '10 New Castle Pass', 'Des Moines', 'Iowa', '50936');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('591341', '15182', 'Alberto Deek', '616-442-0408', '52231 Shelley Road', 'Grand Rapids', 'Michigan', '49544');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('046303', '88145', 'Adlai Castangia', '813-166-6709', '057 Nobel Circle', 'Tampa', 'Florida', '33625');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('753633', '17193', 'Tom Niezen', '254-640-5525', '46 Vidon Park', 'Killeen', 'Texas', '76544');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('508607', '70866', 'Iorgos Redwing', '757-586-3188', '732 Parkside Way', 'Newport News', 'Virginia', '23612');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('226284', '03923', 'Deloris Haseman', '404-317-4989', '9458 International Street', 'Decatur', 'Georgia', '30033');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('468169', '59341', 'Domeniga Warmington', '304-904-5447', '49 Heath Way', 'Charleston', 'West Virginia', '25313');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('911013', '86295', 'Micky Grimsdyke', '505-750-7336', '93915 Northland Court', 'Albuquerque', 'New Mexico', '87105');
+insert into Customers (CustomerId, OrderNumber, ClientName, PhoneNumber, StreetAddress, City, State, Zip) values ('097558', '74287', 'Leonid Jearum', '313-518-2376', '84165 Westport Parkway', 'Detroit', 'Michigan', '48242');
+SET IDENTITY_INSERT Customers OFF;
+GO
+
+SELECT * 
+FROM Customers

@@ -12,31 +12,42 @@
 
   @using (Html.BeginForm("SubmitPost", "Blog"))
   {
-    @Html.ValidationSummary(true,null, new { @class = "text-danger" })
+    @Html.ValidationSummary(true, null, new { @class = "text-danger" })
     @Html.HiddenFor(x => x.BlogPostId)
-    @Html.HiddenFor(x=> x.Posted)
-<div class="p-3">
-  <div class="form-group">
-    @Html.LabelFor(x => x.Title)
-    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
-  </div>
-  <div class="form-group">
-    @Html.LabelFor(x => x.Posted)
-    @Html.TextBoxFor(x => x.Posted, new { @class = "form-control", rows = 1 })
-    @Html.ValidationMessageFor(x => x.Posted, null, new { @class = "text-danger" })
-  </div>
-  <div class="form-group">
-    @Html.LabelFor(x => x.Text)
-    @Html.TextAreaFor(x => x.Text, new { @class = "form-control", rows = 3 })
-    @Html.ValidationMessageFor(x => x.Text, null, new { @class = "text-danger" })
-  </div>
-  <div class="form-group">
-    @Html.LabelFor(x => x.Tags)
-    @Html.TextBoxFor(x => x.Tags, new { @class = "form-control"})
-    @Html.ValidationMessageFor(x => x.Tags, null, new { @class = "text-danger" })
-  </div>
-</div>
+    @Html.HiddenFor(x => x.Posted)
+    <div class="p-3">
+      <div class="form-group">
+        @Html.LabelFor(x => x.Title)
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+      </div>
+      <div class="form-group">
+        @Html.LabelFor(x => x.Posted)
+        @Html.TextBoxFor(x => x.Posted, new { @class = "form-control", rows = 1 })
+        @Html.ValidationMessageFor(x => x.Posted, null, new { @class = "text-danger" })
+      </div>
+      <div class="form-group">
+        @Html.LabelFor(x => x.Text)
+        @Html.TextAreaFor(x => x.Text, new { @class = "form-control", rows = 3 })
+        @Html.ValidationMessageFor(x => x.Text, null, new { @class = "text-danger" })
+      </div>
+      <div class="form-group">
+        @Html.LabelFor(x => x.Tags)
+        @Html.TextBoxFor(x => x.Tags, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Tags, null, new { @class = "text-danger" })
+      </div>
+      <fieldset class="form-group">
+        <legend>Photos</legend>
+        @for (int i = 0; i < Model.BlogPostPhotos.Count; i++)
+        {
+          var list = new SelectList(ViewBag.Photos, "PhotoId", "ImageName", Model.BlogPostPhotos[i].PhotoId);
+
+          @Html.LabelFor(x => x.BlogPostPhotos[i].PhotoId)
+          @Html.DropDownListFor(x => x.BlogPostPhotos[i].PhotoId, list, "Please Select Image.....", new { @class = "form-control" })
+          @Html.ValidationMessageFor(x => x.BlogPostPhotos[i].PhotoId, null, new { @class = "text-danger" })
+        }
+      </fieldset>
+    </div>
     <div class="bg-light p-3">
       <button type="submit" class="btn btn-primary">Save</button>
       @Html.ActionLink("Cancel and return to Blog", "Index", null,

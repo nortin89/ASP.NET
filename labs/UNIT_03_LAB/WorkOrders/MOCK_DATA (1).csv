@@ -1,0 +1,6 @@
+OrderId,CustomerId,RepairDate,TechName,LicencePlate,VehicleYear,VehicleMake,VehicleModel,Mileage,Lube,OilChange,FlushTransmission,FlushDifferential,Wash,Polish,LaborHours,LaborCostPerHour,TotalCostPerHour,TotalCostLabor,TotalCostLaborPerHour,TotalTax,GrandTotal
+1,758540,11/12/2018,Haley Foskew,539883,2012,Kia,Soul,92179305,true,true,true,false,false,true,200.85.180.246,,,,,,
+2,552108,8/5/2019,Brunhilde Crankshaw,399661,2004,Acura,RSX,23493813,false,false,true,false,false,false,10.155.224.3,,,,,,
+3,219316,6/9/2019,Field Parriss,206275,2010,Toyota,Sequoia,65679320,true,true,true,false,true,false,136.126.18.13,,,,,,
+4,651888,4/24/2019,Jean Gorghetto,640636,1994,GMC,Sonoma,79752523,true,false,false,false,true,true,96.189.19.237,,,,,,
+5,114637,4/1/2019,Colman Raoul,269838,1996,Dodge,Ram 3500 Club,12985820,false,true,false,false,true,true,101.214.245.42,,,,,,

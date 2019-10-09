@@ -38,7 +38,10 @@ namespace Blogger.Controllers
       return View("PostsAndComments");
     }
 
-    public async Task<ActionResult> Index(int page = 1, int pageSize = 3,string q = null)
+    public async Task<ActionResult> Index(
+      int page = 1, 
+      int pageSize = 3, 
+      string q = null)
     {
       var posts = await _db.BlogPosts.
         //Include("BlogPhotos").
@@ -51,9 +54,9 @@ namespace Blogger.Controllers
         ToListAsync();
 
       var count =
-        await _db.BlogPosts.Where(x => q == null || 
-        x.Tags.Contains(q) || 
-        x.Text.Contains(q) || 
+        await _db.BlogPosts.Where(x => q == null ||
+        x.Tags.Contains(q) ||
+        x.Text.Contains(q) ||
         x.Title.Contains(q))
                 .CountAsync();
 
@@ -62,27 +65,39 @@ namespace Blogger.Controllers
         CurrentPage = page,
         ItemsPerPage = pageSize,
         TotalItems = count,
-        Query = q,
-        
       };
+      ViewBag.Query = q;
+
       return View(posts);
     }
 
     [HttpGet]
     [Authorize]
-    public ActionResult CreatePost()
+    public async Task<ActionResult> CreatePost()
     {
       var post = new BlogPost();
       post.Posted = DateTime.Now;
-      return View("EditPost",post);
+      await PopulatePhotoDropdown();
+      return View("EditPost", post);
     }
 
     [HttpGet]
     [Authorize]
     public async Task<ActionResult> EditPost(int postId)
     {
-      var post = await _db.BlogPosts.SingleOrDefaultAsync(x => x.BlogPostId == postId);
-      return View("EditPost",post);
+      var post = 
+        await _db.BlogPosts.SingleOrDefaultAsync(x => x.BlogPostId == postId);
+        await PopulatePhotoDropdown();
+          return View("EditPost", post);
+    }
+
+    private async Task PopulatePhotoDropdown()
+    {
+      List<Photo> photos = 
+        await _db.Photos.OrderBy(x=>x.ImageName).ToListAsync();
+          ViewBag.Photos = photos;
+      //_db.Photos.Add(photos);
+      //return RedirectToAction("Index");
     }
 
     [HttpPost]
@@ -91,15 +106,16 @@ namespace Blogger.Controllers
     {
       if (!ModelState.IsValid)
       {
-        return View("EditPost",post);
+        await PopulatePhotoDropdown();
+        return View("EditPost", post);
       }
-      else if(post.BlogPostId == 0)
+      else if (post.BlogPostId == 0)
       {
         post.Posted = DateTime.Now;
         _db.BlogPosts.Add(post);
+
+
         await _db.SaveChangesAsync();
-
-
         TempData["message"] = "Blog posted created";
         return RedirectToAction("Index");
       }
@@ -109,8 +125,11 @@ namespace Blogger.Controllers
         dbEntry.Title = post.Title;
         dbEntry.Text = post.Text;
         dbEntry.Tags = post.Tags;
-        await _db.SaveChangesAsync();
 
+
+        // save photos
+
+        await _db.SaveChangesAsync();
         TempData["message"] = "Blog posted updated";
         return RedirectToAction("Index");
       }
