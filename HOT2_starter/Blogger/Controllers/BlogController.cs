@@ -39,8 +39,8 @@ namespace Blogger.Controllers
     }
 
     public async Task<ActionResult> Index(
-      int page = 1, 
-      int pageSize = 3, 
+      int page = 1,
+      int pageSize = 3,
       string q = null)
     {
       var posts = await _db.BlogPosts.
@@ -75,9 +75,17 @@ namespace Blogger.Controllers
     [Authorize]
     public async Task<ActionResult> CreatePost()
     {
+      await PopulatePhotoDropdown();
+
       var post = new BlogPost();
       post.Posted = DateTime.Now;
-      await PopulatePhotoDropdown();
+      post.Photos = new List<BlogPostPhoto>();
+
+      while (post.Photos.Count < 3)
+      {
+        post.Photos.Add(new BlogPostPhoto());
+      }
+
       return View("EditPost", post);
     }
 
@@ -85,17 +93,26 @@ namespace Blogger.Controllers
     [Authorize]
     public async Task<ActionResult> EditPost(int postId)
     {
-      var post = 
+      var post =
         await _db.BlogPosts.SingleOrDefaultAsync(x => x.BlogPostId == postId);
-        await PopulatePhotoDropdown();
-          return View("EditPost", post);
+      if (post.Photos == null)
+      {
+        post.Photos = new List<BlogPostPhoto>();
+      }
+      while (post.Photos.Count < 3)
+      {
+        post.Photos.Add(new BlogPostPhoto() { BlogPostId = post.BlogPostId});
+      }
+
+      await PopulatePhotoDropdown();
+      return View("EditPost", post);
     }
 
     private async Task PopulatePhotoDropdown()
     {
-      List<Photo> photos = 
-        await _db.Photos.OrderBy(x=>x.ImageName).ToListAsync();
-          ViewBag.Photos = photos;
+      List<Photo> photos =
+        await _db.Photos.OrderBy(x => x.ImageName).ToListAsync();
+      ViewBag.Photos = photos;
       //_db.Photos.Add(photos);
       //return RedirectToAction("Index");
     }
@@ -111,26 +128,68 @@ namespace Blogger.Controllers
       }
       else if (post.BlogPostId == 0)
       {
+        //Create new Post
         post.Posted = DateTime.Now;
         _db.BlogPosts.Add(post);
 
+        for (int i = post.Photos.Count - 1; i >= 0; --i)
+        {
+          if (post.Photos[i].PhotoId != null)
+          {
+            post.Photos[i].BlogPost = post;
+            _db.BlogPostPhotos.Add(post.Photos[i]);
 
+          }
+          else
+          {
+            post.Photos.RemoveAt(i);
+          }
+        }
         await _db.SaveChangesAsync();
-        TempData["message"] = "Blog posted created";
+        TempData["message"] = $"{post.Title} has been inserted";
         return RedirectToAction("Index");
       }
       else
       {
+        //Edit existing Post
         var dbEntry = _db.BlogPosts.SingleOrDefault(x => x.BlogPostId == post.BlogPostId);
         dbEntry.Title = post.Title;
         dbEntry.Text = post.Text;
         dbEntry.Tags = post.Tags;
 
+        //Remove items from the model that do not have a photo selected
+        for (int i = post.Photos.Count - 1; i >= 0; --i)
+        {
+          if (post.Photos[i].PhotoId == null)
+          {
+            post.Photos.RemoveAt(i);
+          }
+        }
 
-        // save photos
+        // Add new photos
+        var photosToAdd = new List<BlogPostPhoto>();
+        foreach (var photo in post.Photos)
+        {
+          if (!dbEntry.Photos.Any(x => x.PhotoId == photo.PhotoId))
+          {
+            photosToAdd.Add(photo);
+          }
+        }
+        _db.BlogPostPhotos.AddRange(photosToAdd);
+
+        //Remove existing photos
+        var photosToRemove = new List<BlogPostPhoto>();
+        foreach (var photo in dbEntry.Photos)
+        {
+          if (!post.Photos.Any(x => x.PhotoId == photo.PhotoId))
+          {
+            photosToRemove.Add(photo);
+          }
+        }
+        _db.BlogPostPhotos.RemoveRange(photosToRemove);
 
         await _db.SaveChangesAsync();
-        TempData["message"] = "Blog posted updated";
+        TempData["message"] = $"{post.Title} has been updated";
         return RedirectToAction("Index");
       }
     }

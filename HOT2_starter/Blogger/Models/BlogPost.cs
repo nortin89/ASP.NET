@@ -37,7 +37,7 @@ namespace Blogger.Models
     [StringLength(100)]
     public string Tags { get; set; }
 
-    public virtual IList<BlogPostPhoto> BlogPostPhotos { get; set; }
+    public virtual IList<BlogPostPhoto> Photos { get; set; }
 
   }
 }

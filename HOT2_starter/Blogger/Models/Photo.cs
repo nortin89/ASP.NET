@@ -24,7 +24,7 @@ namespace Blogger.Models
     [StringLength(100)]
     public string ImageMimeType { get; set; }
 
-    public virtual IList<BlogPostPhoto> BlogPostPhotos { get; set; }
+    public virtual IList<BlogPostPhoto> Posts { get; set; }
 
   }
 }

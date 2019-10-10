@@ -38,13 +38,13 @@
       </div>
       <fieldset class="form-group">
         <legend>Photos</legend>
-        @for (int i = 0; i < Model.BlogPostPhotos.Count; i++)
+        @for (int i = 0; i < Model.Photos.Count; i++)
         {
-          var list = new SelectList(ViewBag.Photos, "PhotoId", "ImageName", Model.BlogPostPhotos[i].PhotoId);
-
-          @Html.LabelFor(x => x.BlogPostPhotos[i].PhotoId)
-          @Html.DropDownListFor(x => x.BlogPostPhotos[i].PhotoId, list, "Please Select Image.....", new { @class = "form-control" })
-          @Html.ValidationMessageFor(x => x.BlogPostPhotos[i].PhotoId, null, new { @class = "text-danger" })
+          var list = new SelectList(ViewBag.Photos, "PhotoId", "ImageName", Model.Photos[i].PhotoId);
+          @Html.HiddenFor(x=> x.Photos[i].BlogPostId)
+          //@Html.LabelFor(x => x.Photos[i].PhotoId)
+          @Html.DropDownListFor(x => x.Photos[i].PhotoId, list, "Please Select Image.....", new { @class = "form-control" })
+          @Html.ValidationMessageFor(x => x.Photos[i].PhotoId, null, new { @class = "text-danger" })
         }
       </fieldset>
     </div>
