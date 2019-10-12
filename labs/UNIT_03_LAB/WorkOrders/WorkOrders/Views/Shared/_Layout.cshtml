@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title</title>
+  <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+  <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body style="margin-top: 5em;">
+  <nav class="navbar navbar-dark bg-dark fixed-top p-2">
+    <a class="navbar-brand" href="@Url.Action("Index", "Order")">
+
+      Louie's Auto Repair
+    </a>
+
+    <a class="btn btn-outline-light" href="@Url.Action("Start", "Order")">
+      <i class="fas fa-briefcase"></i>
+      Start Work Order
+    </a>
+  </nav>
+
+  @if (TempData["message"] != null)
+  {
+    <div class="alert alert-primary m-3">@TempData["message"]</div>
+  }
+  <main class="container">
+    @RenderBody()
+  </main>
+  <footer class="bg-dark text-white text-center">
+    &copy; Scott Nortin 2019
+  </footer>
+
+
+
+  <script src="~/Scripts/jquery-3.4.1.js"></script>
+  <script src="~/Scripts/jquery.validate.js"></script>
+  <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/054ec314b5.js" crossorigin="anonymous"></script>
+  <script src="~/Scripts/main.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

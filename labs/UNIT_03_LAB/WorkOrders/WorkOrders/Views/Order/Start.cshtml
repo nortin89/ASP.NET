@@ -1,0 +1,75 @@
+﻿@model WorkOrders.Models.Order
+@{
+  ViewBag.Title = "Start Work Order";
+}
+
+<div class="card container">
+
+  @using (Html.BeginForm("Start", "Order", FormMethod.Post))
+  {
+    @Html.AntiForgeryToken()
+
+    <div class="bg-light p-3 m-2">
+
+      <h3>
+        <i class="fas fa-briefcase"></i>
+        @ViewBag.Title
+      </h3>
+    </div>
+    @*<div class="form-horizontal">
+      <h4>Start Work Order</h4>*@
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+      @Html.LabelFor(x => x.Customer.ClientName)
+      @Html.TextBoxFor(x => x.Customer.ClientName, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Customer.ClientName, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.Customer.PhoneNumber)
+      @Html.TextBoxFor(x => x.Customer.PhoneNumber, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Customer.PhoneNumber, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.OrderNumber)
+      @Html.TextBoxFor(x => x.OrderNumber, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.OrderNumber, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.TechName)
+      @Html.TextBoxFor(x => x.TechName, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.TechName, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.RepairDate)
+      @Html.TextBoxFor(x => x.RepairDate, new { @class = "form-control",type = "date" })
+      @Html.ValidationMessageFor(x => x.RepairDate, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.VehicleYear)
+      @Html.TextBoxFor(x => x.VehicleYear, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.VehicleYear, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.VehicleMake)
+      @Html.TextBoxFor(x => x.VehicleMake, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.VehicleMake, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.Mileage)
+      @Html.TextBoxFor(x => x.Mileage, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Mileage, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.LicencePlate)
+      @Html.TextBoxFor(x => x.LicencePlate, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.LicencePlate, null, new { @class = "text-danger" })
+    </div>
+    <div class="bg-light p-3">
+      <button type="submit" class="btn btn-primary">Save</button>
+      @Html.ActionLink("Back to List", "Index", null,
+              htmlAttributes: new { @class = "btn btn-secondary" })
+    </div>
+
+  }
+</div>

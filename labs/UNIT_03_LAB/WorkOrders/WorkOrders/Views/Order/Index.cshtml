@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WorkOrders.Models.Order>
+
+@{
+  ViewBag.Title = "Louie's Auto Repair";
+}
+
+@using (Html.BeginForm("Index", "Order", FormMethod.Get))
+{
+  <div class="card-body">
+    @foreach (var order in Model)
+    {
+      <div class="card bg-light mb-3">
+        <div class="card-body">
+          <p>
+            Order # @order.OrderId
+            @order.RepairDate
+          </p>
+          <p>
+            @order.Customer.ClientName
+          </p>
+          <p>
+            @order.VehicleYear
+            @order.VehicleMake
+            @order.VehicleModel
+          </p>
+          <p>
+            @Html.ActionLink("View Order", "View", "Order", new { OrderId = order.OrderId }, null)
+          </p>
+        </div>
+      </div>
+    }
+  </div>
+}
+
+
+
+
+

@@ -1,0 +1,134 @@
+﻿@model WorkOrders.Models.Order
+
+@{
+  ViewBag.Title = "Customer Order";
+}
+
+<div class="table table-bordered table-responsive">
+  <table class="table">
+    <tr>
+      <td>
+        Work Order
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ORDERID
+      </td>
+      <td>
+        @Model.OrderId
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CLIENT NAME
+      </td>
+      <td>
+        @Model.Customer.ClientName
+      </td>
+      <td>
+        PHONE NUMBER
+      </td>
+      <td>
+        @Model.Customer.PhoneNumber
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ORDER NUMBER
+      </td>
+      <td>
+        @Model.OrderNumber
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        TECH NAME
+      </td>
+      <td>
+        @Model.TechName
+      </td>
+    </tr>
+    <tr>
+      <td>
+        REPAIR DATE
+      </td>
+      <td>
+        @Model.RepairDate
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VEHICLE YEAR
+      </td>
+      <td>
+        @Model.VehicleYear
+      </td>
+      <td>
+        VEHICLE MAKE
+      </td>
+      <td>
+        @Model.VehicleMake
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VEHICLE MODEL
+      </td>
+      <td>
+        @Model.VehicleModel
+      </td>
+      <td>
+        LICENCE PLATE
+      </td>
+      <td>
+        @Model.LicencePlate
+      </td>
+      <td>
+        MILEAGE
+      </td>
+      <td>
+        @Model.Mileage
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+@*<div>
+      @Model.OrderId
+    </div>
+  <div>
+    @Model.Customer.ClientName
+  </div>
+  <div>
+    @Model.Customer.PhoneNumber
+  </div>
+  <div>
+    @Model.OrderNumber
+  </div>
+  <div>
+    @Model.TechName
+  </div>
+  <div>
+    @Model.RepairDate
+  </div>
+  <div>
+    @Model.VehicleYear
+  </div>
+  <div>
+    @Model.VehicleMake
+  </div>
+  <div>
+    @Model.VehicleModel
+  </div>
+  <div>
+    @Model.Mileage
+  </div>
+  <div>
+    @Model.LicencePlate
+  </div>*@
+
+
+
