@@ -69,41 +69,42 @@ namespace WorkOrders.Controllers
       return View("Start", order);
     }
 
-    //public async Task<ActionResult> Edit(Order order)
-    //{
-    //  if (!ModelState.IsValid)
-    //  {
-    //    return View("Edit", order);
-    //  }
-    //  else if(order.OrderId == 0)
-    //  {
-    //    //Create new Order
-    //    order.RepairDate = DateTime.Now;
-    //    _db.Orders.Add(order);
+    [HttpPost]
+    public async Task<ActionResult> Start(Order order)
+    {
+      if (!ModelState.IsValid)
+      {
+        return View("Start", order);
+      }
+      else if (order.OrderId == 0)
+      {
+        //Create new Order
+        order.RepairDate = DateTime.Now;
+        _db.Orders.Add(order);
 
-    //    await _db.SaveChangesAsync();
-    //    TempData["message"] = $"Order # {order.OrderNumber} has been inserted";
-    //    return RedirectToAction("Index");
-    //  }
-    //  else
-    //  {
-    //    //Edit existing Order
-    //    var dbEntry = _db.Orders.SingleOrDefault(x => x.OrderId == order.OrderId);
-    //    dbEntry.OrderNumber = order.OrderNumber;
-    //    dbEntry.Customer.ClientName = order.Customer.ClientName;
-    //    dbEntry.TechName = order.TechName;
-    //    dbEntry.RepairDate = order.RepairDate;
-    //    dbEntry.VehicleYear = order.VehicleYear;
-    //    dbEntry.VehicleMake = order.VehicleMake;
-    //    dbEntry.VehicleModel = order.VehicleModel;
-    //    dbEntry.Mileage = order.Mileage;
+        await _db.SaveChangesAsync();
+        TempData["message"] = $"Order # {order.OrderNumber} has been inserted";
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        //Edit existing Order
+        var dbEntry = _db.Orders.SingleOrDefault(x => x.OrderId == order.OrderId);
+        dbEntry.OrderNumber = order.OrderNumber;
+        dbEntry.Customer.ClientName = order.Customer.ClientName;
+        dbEntry.TechName = order.TechName;
+        dbEntry.RepairDate = order.RepairDate;
+        dbEntry.VehicleYear = order.VehicleYear;
+        dbEntry.VehicleMake = order.VehicleMake;
+        dbEntry.VehicleModel = order.VehicleModel;
+        dbEntry.Mileage = order.Mileage;
 
-    //    await _db.SaveChangesAsync();
-    //    TempData["message"] = $"{order.OrderNumber} has been updated";
-    //    return RedirectToAction("Index");
+        await _db.SaveChangesAsync();
+        TempData["message"] = $"{order.OrderNumber} has been updated";
+        return RedirectToAction("Index");
 
-    //  }
-    //}
+      }
+    }
 
 
   }

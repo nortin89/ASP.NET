@@ -17,25 +17,27 @@ namespace WorkOrders.Models
 
         public int? CustomerId { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string ClientName { get; set; }
 
+        [Required]
         [StringLength(20)]
         public string PhoneNumber { get; set; }
 
-        [Required]
+
         [StringLength(50)]
         public string StreetAddress { get; set; }
 
-        [Required]
+
         [StringLength(50)]
         public string City { get; set; }
 
-        [Required]
+
         [StringLength(30)]
         public string State { get; set; }
 
-        [Required]
+
         [StringLength(10)]
         public string Zip { get; set; }
 

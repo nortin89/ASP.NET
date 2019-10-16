@@ -1,0 +1,21 @@
+﻿@model Chatterbox.Models.LoginViewModel
+@{
+  ViewBag.Title = "Chatterbox Login";
+}
+
+<main class="container text-center">
+  <h1>Chatterbox</h1>
+  <h3>Welcome! Please enter your user name below to login.</h3>
+
+  @using (Html.BeginForm())
+  {
+    <div class="form-group">
+      @Html.LabelFor(x => x.UserName, new { @class = "sr-only"})
+      @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.UserName, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-lg">Login</button>
+    </div>
+  }
+</main>
