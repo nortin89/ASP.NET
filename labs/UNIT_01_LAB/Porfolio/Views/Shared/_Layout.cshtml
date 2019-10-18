@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed-top">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <h5 class="text-white h4">Scott Nortin</h5>
+
+        <a class="js-scroll-trigger " href="#top"><i class="fas fa-home"></i> Home</a>
+        <br>
+
+        <a class="js-scroll-trigger" href="#about"><i class="fas fa-address-card"></i> About</a>
+        <br>
+
+        <a class="js-scroll-trigger" href="#resume"><i class="fas fa-file"></i> Resume</a>
+        <br>
+
+        <a class="js-scroll-trigger" href="#portfolio"><i class="fas fa-briefcase"></i> My Work</a>
+        <br>
+
+        <a class="js-scroll-trigger" href="#gallery"><i class="fas fa-images"></i> Gallery</a>
+        <br>
+
+        <a class="js-scroll-trigger" href="#contact-page">
+          <i class="fas fa-address-book"> </i>@Html.ActionLink("Contact", "Index", "Contact", null, new { @class = "btn btn-secondary m-1" })
+        </a>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  <main class="container p-2 flex-grow-1">
+    @if (TempData["message"] != null)
+    {
+      <div class="alert alert-success m-3">@TempData["message"]</div>
+    }
+    @RenderBody()
+  </main>
+
+  <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+  <script src="~/Scripts/jquery.validate.min.js"></script>
+  <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+  <script src="~/Scripts/main.js"></script>
+  @RenderSection("Scripts", required: false)
+
+</body>
+</html>

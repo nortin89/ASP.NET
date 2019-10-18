@@ -35,5 +35,8 @@ namespace SportsStore.Models
 
     public int? PhotoId { get; set; }
 
+    public virtual IList<ProductPhoto> Photos { get; set; }
+
+
   }
 }

@@ -15,11 +15,15 @@
       <span class="d-block d-md-inline"> SPORTS</span>
       <span class="d-block d-md-inline">STORE</span>
     </a>
+    @Html.ActionLink("Products", "List", "Product", null, new { @class = "btn btn-secondary m-1" })
+    @Html.ActionLink("Contact", "Index", "Contact", null, new { @class = "btn btn-secondary m-1" })
+    <span class="flex-grow-1"></span>
     @Html.Action("Summary", "Cart")
+
   </nav>
   <nav>@Html.Action("Menu", "Nav")</nav>
   <main class="container p-2 flex-grow-1">
-    @if(TempData["message"] != null)
+    @if (TempData["message"] != null)
     {
       <div class="alert alert-success m-3">@TempData["message"]</div>
     }
@@ -36,6 +40,7 @@
   <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
   <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
   <script src="https://kit.fontawesome.com/0f0c0162b2.js"></script>
+  @RenderSection("Scripts", required: false)
 
 </body>
 </html>

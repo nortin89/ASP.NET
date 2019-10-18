@@ -1,7 +1,7 @@
 ﻿@model SportsStore.Models.Product
 
 @{
-  if(Model != null && Model.ProductID != 0)
+  if (Model != null && Model.ProductID != 0)
   {
     ViewBag.Title = "Admin: Edit " + Model.Name;
   }
@@ -9,52 +9,102 @@
   {
     ViewBag.Title = "Admin: Create";
   }
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+  Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
 }
 
-  <div class="bg-light p-3">
-    <h3>@ViewBag.Title</h3>
-  </div>
+<div class="bg-light p-3">
+  <h3>@ViewBag.Title</h3>
+</div>
 @using (Html.BeginForm("Edit", "Admin"))
 {
-  @Html.ValidationSummary("", new { @class = "text-danger"})
-  @Html.HiddenFor(x=> x.ProductID)
-<div class="p-3">
-  <div class="form-group">
-    @Html.LabelFor(x => x.Name)
-    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Name, null, new { @class = "text-danger" })
+  @Html.ValidationSummary("", new { @class = "text-danger" })
+  @Html.HiddenFor(x => x.ProductID)
+  <div class="p-3">
+    <div class="form-group">
+      @Html.LabelFor(x => x.Name)
+      @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Name, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.Description)
+      @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = 5 })
+      @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.Price)
+      @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.Category)
+      @Html.TextBoxFor(x => x.Category, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Category, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.Tags)
+      @Html.TextBoxFor(x => x.Tags, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Tags, null, new { @class = "text-danger" })
+    </div>
+    <fieldset class="form-group">
+      <legend>Photos </legend>
+      @for (int i = 0; i < Model.Photos.Count; ++i)
+      {
+        var options = new SelectList(ViewBag.PhotoId, "PhotoId", "ImageName", Model.Photos[i].PhotoId);
+
+        @Html.HiddenFor(x => x.Photos[i].ProductID)
+        @Html.DropDownListFor(x => x.Photos[i].PhotoId,options,"Please Slect an Image...", new { @class = "form-control"})
+        @Html.ValidationMessageFor(x => x.Photos[i].PhotoId, null, new { @class = "text-danger"})
+        <img src="@Url.Action("GetImage","Photo",new { photoId = Model.Photos[i].PhotoId })" alt="" height="100" class="ProductPhotoPreview" />
+      }
+    </fieldset>
+    @*<div class="form-group">
+      @Html.LabelFor(x => x.PhotoId)
+      @Html.DropDownListFor(x => x.PhotoId, null, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.PhotoId, null, new { @class = "text-danger" })
+    </div>*@
   </div>
-  <div class="form-group">
-    @Html.LabelFor(x => x.Description)
-    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = 5 })
-    @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
-  </div>
-  <div class="form-group">
-    @Html.LabelFor(x => x.Price)
-    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
-  </div>
-  <div class="form-group">
-    @Html.LabelFor(x => x.Category)
-    @Html.TextBoxFor(x => x.Category, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Category, null, new { @class = "text-danger" })
-  </div>
-  <div class="form-group">
-    @Html.LabelFor(x => x.Tags)
-    @Html.TextBoxFor(x => x.Tags, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Tags, null, new { @class = "text-danger" })
-  </div>
-  <div class="form-group">
-    @Html.LabelFor(x => x.PhotoId)
-    @Html.DropDownListFor(x => x.PhotoId,null, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.PhotoId, null, new { @class = "text-danger" })
-  </div>
-</div>
   <div class="bg-light p-3">
     <button type="submit" class="btn btn-primary">Save</button>
-    @Html.ActionLink("Cancel and return to List","Index",null,
-            htmlAttributes: new { @class = "btn btn-secondary"})
+    @Html.ActionLink("Cancel and return to List", "Index", null,
+            htmlAttributes: new { @class = "btn btn-secondary" })
   </div>
+}
+
+@section Scripts{
+  <script>
+    const productId = '@Model.ProductID';
+    let nameChangeHandler = null;
+
+    function onNameChange() {
+      const name = $("#Name").val();
+      if (!name) { return; }
+
+      $.post('@Url.Action("GetProductByName")'{ name })
+        .done(function (data) {
+          if (data && data.productId != productId) {
+            $('Nameerror').html('That Name is already in use');
+          }
+          else {
+            $('NameError').html('');
+          }
+        })
+        .fail(function (xhr, textStatus, errorThrown) {
+          console.log(textStatus);
+        });
+    }
+
+    function onNameChangeDelayed() {
+      clearTimeout(nameChangeHandler);
+      nameChangeHandler = setTimeout(onNameChange, 200)
+    }
+
+    $("#Name").keyup(onNameChangeDelayed).blur(onNameChangeDelayed);
+
+    $('.ProductPhotoDropDown').change(function () {
+      const photoId = $(this).val();
+      const src = '@Url.Action("GetImage","Photo")?photoId=' + photoId;
+      $(this).next().next().attr('src',src);
+    });
+  </script>
 }

@@ -14,6 +14,7 @@ namespace Porfolio.Models
     public DbSet<Project> Projects { get; set; }
     public DbSet<ProjectPhoto> ProjectPhotos { get; set; }
     public DbSet<ProjectTag> ProjectTags { get; set; }
+    public virtual DbSet<Message> Messages { get; set; }
   }
 
 

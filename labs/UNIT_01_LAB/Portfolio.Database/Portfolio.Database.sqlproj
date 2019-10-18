@@ -65,6 +65,7 @@
     <Build Include="Tables\Projects.sql" />
     <Build Include="Tables\ProjectPhotos.sql" />
     <Build Include="Tables\ProjectTags.sql" />
+    <Build Include="Tables\Messages.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\localhost.publish.xml" />

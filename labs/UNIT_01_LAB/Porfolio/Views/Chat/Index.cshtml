@@ -1,0 +1,109 @@
+﻿
+@{
+  ViewBag.Title = "Portfolio: Chatroom";
+}
+
+<div class="d-flex flex-column vh-100">
+  <header class="bg-dark text-white d-flex  align-items-center p-2">
+    <h2 class="flex-grow-1">Portfolio Chat</h2>
+    <a href="@Url.Action("Login", "Account")"
+       class="btn btn-outline-light">Logout</a>
+  </header>
+
+  <main id="messages"
+        class="flex-grow-1 p-2 d-flex flex-column-reverse">
+    <span class="font-italic text-muted">Messages loading.....</span>
+  </main>
+
+  <footer class="bg-dark p-2">
+    @using (Html.BeginForm("SendMessage",
+     "Chat",
+     FormMethod.Post,
+     new { id = "SendMessageForm" }))
+    {
+      <input type="hidden"
+             name="user"
+             value="@ViewBag.user" />
+      <label for="text"
+             class="sr-only">
+        Enter message here...
+      </label>
+      <div class="input-group">
+
+        <input type="text"
+               name="text"
+               id="text"
+               placeholder="Enter message here..."
+               class="form-control" />
+        <div class="input-group-append">
+          <button type="submit"
+                  class="btn btn-light">
+            Send
+          </button>
+        </div>
+      </div>
+    }
+  </footer>
+</div>
+
+@section Scripts{
+  <script>
+    const user = '@ViewBag.user';
+
+    if (!user) {
+      window.location = '@Url.Action("Login","Account")';
+    }
+
+    function loadMessages() {
+      $.post('@Url.Action("GetMessages")')
+        .done(function (data) {
+          //$('#messages').html('');
+          $('#messages').empty();
+
+          $('#messages').append(data.map(
+            msg => `<div>
+                 <span class = "text-muted">${msg.Sent}</span>
+                 <span class = "font-weight-bold">${msg.User}:</span>
+                 <span>${msg.Text}</span>
+                </div>`
+          ));
+
+          //for (const msg of data) {
+          //  const div = `<div>
+          //                <span>${msg.Sent}</span>
+          //                <span>${msg.User}</span>
+          //                <span>${msg.Text}</span>
+          //              </div>`;
+          //  $('#messages').append(div);
+          //}
+        })
+        .fail(function (xhr, textStatus, errorThrown) {
+          console.error(textStatus);
+        });
+    }
+
+    function sendMessage(text) {
+
+      $.post('@Url.Action("SendMessage")', {user: user, text: text})
+        .done(function (data) {
+          loadMessages();
+          $('#text').val('').focus();
+          //alert(data);
+        })
+      .fail(function (xhr, textStatus, errorThrown) {
+          console.error(textStatus);
+        });
+    }
+
+    loadMessages();
+
+    //Handeling submit telling for to not do anything. Go grab value and do nothing. If empty stop there.
+    $('#SendMessageForm').submit(function (e) {
+      e.preventDefault();
+      const text = $('#text').val();
+      if (text) { sendMessage(text);}
+    });
+
+    setInterval(loadMessages, 1000);
+  </script>
+}

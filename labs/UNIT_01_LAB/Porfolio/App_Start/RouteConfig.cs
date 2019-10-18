@@ -9,6 +9,12 @@ namespace Porfolio
     {
       routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+      //routes.MapRoute(
+      //  name: null,
+      //  url: "",
+      //  defaults: new { controller = "Account", action = "Login" });
+
+
       routes.MapRoute(
           name: "Default",
           url: "{controller}/{action}/{id}",
