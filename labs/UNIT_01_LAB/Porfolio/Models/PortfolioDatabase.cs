@@ -11,9 +11,9 @@ namespace Porfolio.Models
         : base("name=PortfolioDatabase")
     {
     }
-    public DbSet<Project> Projects { get; set; }
-    public DbSet<ProjectPhoto> ProjectPhotos { get; set; }
-    public DbSet<ProjectTag> ProjectTags { get; set; }
+    public virtual DbSet<Project> Projects { get; set; }
+    public virtual DbSet<ProjectPhoto> ProjectPhotos { get; set; }
+    public virtual DbSet<ProjectTag> ProjectTags { get; set; }
     public virtual DbSet<Message> Messages { get; set; }
   }
 

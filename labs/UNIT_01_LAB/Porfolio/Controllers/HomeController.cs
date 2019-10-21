@@ -67,7 +67,7 @@ namespace Porfolio.Controllers
           }
         }
 
-        return View("ContactReply", contacts);
+        return View("Index", contacts);
       }
       catch (Exception ex)
       {
