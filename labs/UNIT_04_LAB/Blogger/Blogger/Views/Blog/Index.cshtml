@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Blogger.Models.BlogPost>
+@{
+  ViewBag.Title = "My Personal Blog";
+}
+
+
+@using (Html.BeginForm("Index", "Blog", FormMethod.Get))
+{
+  <div class="input-group">
+    <input name="q" class="form-control" type="text" value="@ViewBag.Query" />
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-outline-primary">
+        <i class="fa-fw fas fa-search"></i>Search
+      </button>
+    </div>
+  </div>
+}
+
+@foreach (var post in Model)
+{
+<div class="card bg-light m-3">
+  @if (post.Photos != null && post.Photos.Any())
+  {
+
+    <div id="BlogPhotos-@post.BlogPostId" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        @for (int i = 0; i < post.Photos.Count; ++i)
+        {
+          <div class="carousel-item @(i == 0 ? "active" : "")">
+            <img src="@Url.Action("GetImage", "Photo", new { photoId = post.Photos[i].PhotoId })" class="d-block w-100"  alt="" />
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+<div class="card-body">
+
+
+  @using (Html.BeginForm("EditPost", "Blog", FormMethod.Post))
+  {
+    @Html.Hidden("productId", post.BlogPostId)
+    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+    <div class="flex-grow-l">
+      <div class="float-right">
+        <a class="btn btn-outline-dark" href="@Url.Action("EditPost","Blog",routeValues: new { postId = post.BlogPostId})">
+          <i class="fa-fw fas fa-pencil-alt"></i>
+          Edit
+        </a>
+      </div>
+    </div>
+    <h3>
+      @post.Title
+    </h3>
+    <div style="font-size: .75rem" class="text-muted font-italic"> Posted @post.Posted</div>
+    <div class="lead flex-grow-1" style="white-space: pre-line">@post.Text</div>
+
+    if (post.Tags != null)
+    {
+      foreach (var tag in post.Tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+      {
+        if (!string.IsNullOrWhiteSpace(tag))
+        {
+          <div class="badge badge-primary">@tag</div>
+        }
+      }
+    }
+    <hr />
+    <div>
+      @foreach (var comment in post.BlogComments)
+      {
+        <div>
+          @comment.Posted
+          <br />@comment.AuthorName
+          <br />@comment.Text
+        </div>
+      }
+    </div>
+
+  }
+
+  @using (Html.BeginForm("LikePost", "Blog", FormMethod.Post, new {@class = "LikeForm" }))
+  {
+    <input type="hidden" name="blogPostId" value="@post.BlogPostId" />
+    <button class="btn btn-outline-dark likeBtn" type="submit">
+      <i class="fas fa-thumbs-up"></i> Like @post.Likes
+    </button>
+    <span class="flex-grow-l"></span>
+    <span></span>
+    
+  }
+</div>
+
+</div>
+}
+
+@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page, ViewBag.Query }))
+
+@section Scripts{
+  <script>
+        $('.LikeForm').submit(function (e) {
+      e.preventDefault();
+
+          const form = $(this)
+
+          const blogPostId = $(this).find('[name=blogPostId]').val();
+
+
+
+          $.post('@Url.Action("LikePost")', { blogPostId })
+        .done(function (data) {
+          if (data && data.Success === true) {
+            form.find('.likeBtn').html('Likes '+ data.LikeCount);
+
+          }
+          else {
+            alert(data.Message);
+          }
+        })
+        .fail(function (xhr, textStatus, errorThrown) {
+          alert(textStatus);
+        });
+    });
+
+  </script>
+  }

@@ -1,0 +1,18 @@
+﻿
+@{
+  ViewBag.Title = "PostsAndComments";
+}
+
+<h2>PostsAndComments</h2>
+
+@foreach (var item in ViewBag.Comments)
+{
+  <div class="border border-dark m-3">
+    <br />@item.PostTitle
+    <br />@item.PostPosted
+    <br />@item.CommentAuthor
+    <br />@item.CommentPosted
+    <br />@item.CommentText
+
+  </div>
+}
