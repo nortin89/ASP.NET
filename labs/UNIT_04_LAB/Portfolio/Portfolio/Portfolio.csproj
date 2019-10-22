@@ -103,6 +103,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -138,6 +139,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -156,17 +158,30 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactForm.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\PortfolioDatabase.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectPhoto.cs" />
+    <Compile Include="Models\ProjectTag.cs" />
+    <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Views\Home\ContactReply.cshtml" />
+    <Content Include="Views\Home\_ContactForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -176,8 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
