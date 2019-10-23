@@ -14,7 +14,7 @@ namespace WorkOrders.Models
             Parts = new HashSet<Part>();
         }
 
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
 
         public int? OrderNumber { get; set; }
 

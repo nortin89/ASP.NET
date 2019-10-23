@@ -43,15 +43,18 @@ namespace Blogger.Controllers
       int pageSize = 3,
       string q = null)
     {
-      var posts = await _db.BlogPosts.
-        //Include("BlogPhotos").
-        Include("BlogComments").
-        Where(x => q == null || x.Tags.Contains(q) || x.Text.Contains(q) || x.Title.Contains(q)).
-        OrderByDescending(x => x.Posted).
-        ThenByDescending(x => x.BlogPostId).
-        Skip((page - 1) * pageSize).
-        Take(pageSize).
-        ToListAsync();
+      var posts = 
+        await _db.BlogPosts
+        .Include("BlogComments")
+        .Where(x => q == null ||
+        x.Tags.Contains(q) ||
+        x.Text.Contains(q) ||
+        x.Title.Contains(q))
+        .OrderByDescending(x => x.Posted)
+        .ThenByDescending(x => x.BlogPostId)
+        .Skip((page - 1) * pageSize)
+        .Take(pageSize)
+        .ToListAsync();
 
       var count =
         await _db.BlogPosts.Where(x => q == null ||

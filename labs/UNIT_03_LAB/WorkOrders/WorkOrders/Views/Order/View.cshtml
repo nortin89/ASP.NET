@@ -4,97 +4,127 @@
   ViewBag.Title = "Customer Order";
 }
 
-<div class="table table-bordered table-responsive">
-  <table class="table">
-    <tr>
-      <td>
-        Work Order
-      </td>
-    </tr>
-    <tr>
-      <td>
-        ORDERID
-      </td>
-      <td>
-        @Model.OrderId
-      </td>
-    </tr>
-    <tr>
-      <td>
-        CLIENT NAME
-      </td>
-      <td>
-        @Model.Customer.ClientName
-      </td>
-      <td>
-        PHONE NUMBER
-      </td>
-      <td>
-        @Model.Customer.PhoneNumber
-      </td>
-    </tr>
-    <tr>
-      <td>
-        ORDER NUMBER
-      </td>
-      <td>
-        @Model.OrderNumber
-      </td>
-    </tr>
+  <div class="table table-bordered table-responsive">
+    <table class="table">
+      <tr>
+        <td>
+          Work Order
+        </td>
+      </tr>
+      <tr>
+        <td>
+          ORDERID
+        </td>
+        <td>
+          @Model.OrderId
+        </td>
+      </tr>
+      <tr>
+        <td>
+          CLIENT NAME
+        </td>
+        <td>
+          @Model.Customer.ClientName
+        </td>
+        <td>
+          PHONE NUMBER
+        </td>
+        <td>
+          @Model.Customer.PhoneNumber
+        </td>
+      </tr>
+      <tr>
+        <td>
+          ORDER NUMBER
+        </td>
+        <td>
+          @Model.OrderNumber
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        TECH NAME
-      </td>
-      <td>
-        @Model.TechName
-      </td>
-    </tr>
-    <tr>
-      <td>
-        REPAIR DATE
-      </td>
-      <td>
-        @Model.RepairDate
-      </td>
-    </tr>
-    <tr>
-      <td>
-        VEHICLE YEAR
-      </td>
-      <td>
-        @Model.VehicleYear
-      </td>
-      <td>
-        VEHICLE MAKE
-      </td>
-      <td>
-        @Model.VehicleMake
-      </td>
-    </tr>
-    <tr>
-      <td>
-        VEHICLE MODEL
-      </td>
-      <td>
-        @Model.VehicleModel
-      </td>
-      <td>
-        LICENCE PLATE
-      </td>
-      <td>
-        @Model.LicencePlate
-      </td>
-      <td>
-        MILEAGE
-      </td>
-      <td>
-        @Model.Mileage
-      </td>
-    </tr>
-  </table>
+      <tr>
+        <td>
+          TECH NAME
+        </td>
+        <td>
+          @Model.TechName
+        </td>
+      </tr>
+      <tr>
+        <td>
+          REPAIR DATE
+        </td>
+        <td>
+          @Model.RepairDate
+        </td>
+      </tr>
+      <tr>
+        <td>
+          VEHICLE YEAR
+        </td>
+        <td>
+          @Model.VehicleYear
+        </td>
+        <td>
+          VEHICLE MAKE
+        </td>
+        <td>
+          @Model.VehicleMake
+        </td>
+      </tr>
+      <tr>
+        <td>
+          VEHICLE MODEL
+        </td>
+        <td>
+          @Model.VehicleModel
+        </td>
+        <td>
+          LICENCE PLATE
+        </td>
+        <td>
+          @Model.LicencePlate
+        </td>
+        <td>
+          MILEAGE
+        </td>
+        <td>
+          @Model.Mileage
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+ @*Button Delete Part 
+<button type="submit" class="btn btn-danger btn-sm">Delete</button>*@
+
+<!-- Button trigger modal -->
+<button type="submit" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+  Delete
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
-
 
 @*<div>
       @Model.OrderId

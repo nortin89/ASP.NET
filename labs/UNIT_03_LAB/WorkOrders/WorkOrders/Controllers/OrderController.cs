@@ -70,6 +70,20 @@ namespace WorkOrders.Controllers
     }
 
     [HttpPost]
+    public async Task<ActionResult> Delete(int partId)
+    {
+      Part part = _db.Parts.SingleOrDefault(x => x.PartId == partId);
+      if (part != null)
+      {
+        _db.Parts.Remove(part);
+        await _db.SaveChangesAsync();
+        TempData["message"] = $"{part.PartNumber} has been deleted";
+
+      }
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
     public async Task<ActionResult> Start(Order order)
     {
       if (!ModelState.IsValid)
