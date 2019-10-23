@@ -7,14 +7,11 @@
 
 @using (Html.BeginForm("Index", "Resume", FormMethod.Get))
 {
-  <div class="input-group">
-    <input name="q" class="form-control" type="text" value="@ViewBag.Query" />
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-outline-primary">
-        <i class="fa-fw fas fa-search"></i>Search
-      </button>
-    </div>
-  </div>
+<div class="input-group-append">
+  <input name="q" class="form-control" type="text" value="@ViewBag.Query" />
+  <button type="submit" class="btn btn-outline-primary">
+  <i class="fa-fw fas fa-search"></i>Search</button>
+</div>
 }
 
 @foreach (var post in Model)
@@ -23,7 +20,7 @@
     @if (post.Photos != null && post.Photos.Any())
     {
 
-      <div id="ResumePhotos-@post.ApplicantId" class="carousel slide" data-ride="carousel">
+      <div id="ResumePhotos-@post.ResumeId" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           @for (int i = 0; i < post.Photos.Count; ++i)
           {
@@ -37,7 +34,7 @@
 
     <div class="card-body">
 
-      
+
       @foreach (var resume in Model)
       {
         <div class="card bg-light mb-3">
@@ -54,7 +51,7 @@
       }
     </div>
   </div>
+}
 
 
-
-  @*@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page, ViewBag.Query }))*@
+@*@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page, ViewBag.Query }))*@

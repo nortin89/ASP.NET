@@ -24,7 +24,7 @@ namespace HOT4.Controllers
         x.FullName.Contains(q) ||
         x.PhoneNumber.Contains(q) ||
         x.EmailAddress.Contains(q))
-        .OrderByDescending(x => x.ApplicantId)
+        .OrderByDescending(x => x.ResumeId)
         .ThenByDescending(x => x.FullName)
         .Skip((page - 1) * pageSize)
         .Take(pageSize)
@@ -51,7 +51,7 @@ namespace HOT4.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult> CreateResume()
+    public async Task<ActionResult> Create()
     {
       var resume = new Resume();
       resume.LastUpdate = DateTime.Now;
@@ -61,14 +61,27 @@ namespace HOT4.Controllers
       {
         resume.Photos.Add(new ResumePhoto());
       }
-
+      await _db.SaveChangesAsync();
       return View("Index", resume);
     }
 
-    public async Task<ActionResult> View(int applicantId)
+    //[HttpGet]
+    //public async Task<ActionResult> Edit()
+    //{
+    //  await _db.SaveChangesAsync
+    //}
+
+    //[HttpPost]
+    //public async Task<ActionResult> Create()
+    //{
+
+    //}
+
+
+    public async Task<ActionResult> View(int resumeId)
     {
       var resume =
-        await _db.Resumes.SingleOrDefaultAsync(x => x.ApplicantId == applicantId);
+        await _db.Resumes.SingleOrDefaultAsync(x => x.ResumeId == resumeId);
 
       return View("View", resume);
     }

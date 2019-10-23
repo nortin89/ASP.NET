@@ -10,7 +10,7 @@ namespace HOT4.Models
     public partial class FormalEducation
     {
         [Key]
-        public int ApplicantId { get; set; }
+        public int ResumeId { get; set; }
 
         [Required]
         [StringLength(100)]

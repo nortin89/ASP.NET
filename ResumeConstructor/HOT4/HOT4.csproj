@@ -116,7 +116,7 @@
     <Content Include="Views\Resume\View.cshtml" />
     <Content Include="Views\Photo\Index.cshtml" />
     <Content Include="Views\Photo\Upload.cshtml" />
-    <Content Include="Views\Resume\EditResume.cshtml" />
+    <Content Include="Views\Resume\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -127,7 +127,6 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Models\FormalEducation.cs" />
-    <Compile Include="Models\MSreplication_options.cs" />
     <Compile Include="Models\PastJob.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Product.cs" />
@@ -135,10 +134,6 @@
     <Compile Include="Models\Resume.cs" />
     <Compile Include="Models\ResumeConstructorDatabase.cs" />
     <Compile Include="Models\ResumePhoto.cs" />
-    <Compile Include="Models\spt_fallback_db.cs" />
-    <Compile Include="Models\spt_fallback_dev.cs" />
-    <Compile Include="Models\spt_fallback_usg.cs" />
-    <Compile Include="Models\spt_monitor.cs" />
     <Compile Include="Models\TopSkill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -157,6 +152,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Resume\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -12,7 +12,7 @@ namespace HOT4.Models
   {
     [Key]
     [Column(Order = 0)]
-    public int? ApplicantId { get; set; }
+    public int? ResumeId { get; set; }
 
     [Key]
     [Display(Name = "Photo")]

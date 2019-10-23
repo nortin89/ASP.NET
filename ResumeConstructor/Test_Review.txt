@@ -1,0 +1,33 @@
+SELECT *
+FROM Orders o
+WHERE (@OrderNumber ISNULL OR  @OrderNumber = o.OrderNumber) 
+AND (@CustomerName ISNULL OR o.CustomerName LIKE '%' + @CustomerName + '%')
+AND (@StartDate ISNULL OR @StartDate <= o.RepairDate)
+
+AND (@EndDate ISNULL OR @EndDate >= o.RepairDate)
+
+
+
+Search by:
+1.Name
+2.Email
+3.Date Range (based on when resume last updated)
+
+Date Range
+All Time ^
+Past 30 days	start = today - 30
+Past 90 days	start = today - 90
+Past year	start = today - 365
+All Time	start = null
+
+1.Add column to schema DEFAULT(GETDATE)
+2.Add to model 
+3.Get Resume/Create
+	Resume model = new Resume();
+	model.Lastupdated = DateTime.Now;
+	return View(model)
+4.Both Edit and Create Views
+	@Html.HiddenFor(x => x.LastUpdated)
+
+5.Controller POST Create/Edit
+	model.LastUpdated = DateTime.Now;

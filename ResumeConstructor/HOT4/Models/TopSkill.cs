@@ -9,21 +9,14 @@ namespace HOT4.Models
     public partial class TopSkill
     {
         [Key]
-        public int ApplicantId { get; set; }
+        public int ResumeId { get; set; }
 
         [Required]
         [StringLength(100)]
         public string SkillName { get; set; }
 
-        public bool? ExpLevelOptionOne { get; set; }
+        public int ExperienceLevel { get; set; }
 
-        public bool? ExpLevelOptionTwo { get; set; }
-
-        public bool? ExpLevelOptionThree { get; set; }
-
-        public bool? ExpLevelOptionFour { get; set; }
-
-        public bool? ExpLevelOptionFive { get; set; }
 
         public virtual Resume Resume { get; set; }
     }
