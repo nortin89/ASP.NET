@@ -11,10 +11,10 @@ using WorkOrders.Models;
 namespace WorkOrders.Controllers
 {
 
-    public class OrderController : Controller
-    {
+  public class OrderController : Controller
+  {
     private WorkOrdersDatabase _db = new WorkOrdersDatabase();
-    
+
     public async Task<ActionResult> Index(
          int page = 1,
          int pageSize = 3,
@@ -25,9 +25,9 @@ namespace WorkOrders.Controllers
     {
       var order = await _db.Orders
         .Where(x => orderNumber == null || x.OrderNumber == orderNumber)
-        .Where(x => startDate == null || x.RepairDate  >= startDate )
+        .Where(x => startDate == null || x.RepairDate >= startDate)
         .Where(x => clientName == null || x.Customer.ClientName.Contains(clientName))
-        .Where(x => endDate == null || x.RepairDate <= endDate )
+        .Where(x => endDate == null || x.RepairDate <= endDate)
         .OrderByDescending(x => x.RepairDate)
         .ThenByDescending(x => x.Customer.ClientName)
         .Skip((page - 1) * pageSize)
@@ -37,7 +37,7 @@ namespace WorkOrders.Controllers
       var count =
         await _db.Orders
         .CountAsync();
-        
+
 
       ViewBag.PagingInfo = new PagingInfo
       {
@@ -70,17 +70,25 @@ namespace WorkOrders.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Delete(int partId)
+    public async Task<ActionResult> AddPart(Part part)
+    {
+      _db.Parts.Add(part);
+      await _db.SaveChangesAsync();
+
+      TempData["message"] = $"{part.PartNumber} has been added.";
+      return RedirectToAction("View", new { OrderId = part.OrderId });
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> DeletePart(int partId)
     {
       Part part = _db.Parts.SingleOrDefault(x => x.PartId == partId);
-      if (part != null)
-      {
-        _db.Parts.Remove(part);
-        await _db.SaveChangesAsync();
-        TempData["message"] = $"{part.PartNumber} has been deleted";
 
-      }
-      return RedirectToAction("Index");
+      _db.Parts.Remove(part);
+      await _db.SaveChangesAsync();
+
+      TempData["message"] = $"{part.PartNumber} has been deleted";
+      return RedirectToAction("View", new { OrderId = part.OrderId });
     }
 
     [HttpPost]

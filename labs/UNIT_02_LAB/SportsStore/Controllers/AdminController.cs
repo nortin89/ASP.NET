@@ -32,7 +32,7 @@ namespace SportsStore.Controllers
         product.Photos.Add(new ProductPhoto());
       }
 
-      return View("Edit",new Product());
+      return View("Edit", product);
     }
 
     [HttpGet]

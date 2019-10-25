@@ -183,6 +183,7 @@
     <Content Include="Views\Order\Start.cshtml" />
     <Content Include="Views\Order\View.cshtml" />
     <Content Include="Views\Order\Edit.cshtml" />
+    <Content Include="Views\Order\AddPart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

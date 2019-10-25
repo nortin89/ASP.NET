@@ -5,53 +5,60 @@
 
 <h2>Contact Information</h2>
 
-@using (Html.BeginForm("Index", "Resume", FormMethod.Get))
-{
-<div class="input-group-append">
-  <input name="q" class="form-control" type="text" value="@ViewBag.Query" />
-  <button type="submit" class="btn btn-outline-primary">
-  <i class="fa-fw fas fa-search"></i>Search</button>
-</div>
-}
+<div class="row">
 
-@foreach (var post in Model)
-{
-  <div class="card bg-light m-3">
-    @if (post.Photos != null && post.Photos.Any())
+  <div class="col-md-8">
+    @using (Html.BeginForm("Index", "Resume", FormMethod.Get))
     {
+      <div class="input-group-append">
+        <input name="q" class="form-control" type="text" value="@ViewBag.Query" />
+        <button type="submit" class="btn btn-outline-primary">
+          <i class="fa-fw fas fa-search"></i>Search
+        </button>
+      </div>
+    }
+  </div>
+  <div class="col-md-8">
+    @foreach (var post in Model)
+    {
+      <div class="">
+        @if (post.Photos != null && post.Photos.Any())
+        {
 
-      <div id="ResumePhotos-@post.ResumeId" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          @for (int i = 0; i < post.Photos.Count; ++i)
+          <div id="ResumePhotos-@post.ResumeId" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              @for (int i = 0; i < post.Photos.Count; ++i)
+              {
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                  <img src="@Url.Action("GetImage", "Photo", new { photoId = post.Photos[i].PhotoId })" class="d-block w-100" alt="" />
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="card-body">
+
+
+          @foreach (var resume in Model)
           {
-            <div class="carousel-item @(i == 0 ? "active" : "")">
-              <img src="@Url.Action("GetImage", "Photo", new { photoId = post.Photos[i].PhotoId })" class="d-block w-100" alt="" />
+            <div class="card bg-light mb-3">
+              <div class="card-body">
+                <p>
+                  Full Name @resume.FullName
+                  Phone Number @resume.PhoneNumber
+                  Email Address @resume.EmailAddress
+                  @*<p>
+                      @Html.ActionLink("View Resume", "View", "Resume", new { OrderId = order.OrderId }, null)
+                    </p>*@
+              </div>
             </div>
           }
         </div>
       </div>
     }
-
-    <div class="card-body">
-
-
-      @foreach (var resume in Model)
-      {
-        <div class="card bg-light mb-3">
-          <div class="card-body">
-            <p>
-              Full Name @resume.FullName
-              Phone Number @resume.PhoneNumber
-              Email Address @resume.EmailAddress
-              @*<p>
-                  @Html.ActionLink("View Resume", "View", "Resume", new { OrderId = order.OrderId }, null)
-                </p>*@
-          </div>
-        </div>
-      }
-    </div>
   </div>
-}
+</div>
 
 
 @*@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page, ViewBag.Query }))*@

@@ -4,109 +4,155 @@
   ViewBag.Title = "Customer Order";
 }
 
-  <div class="table table-bordered table-responsive">
-    <table class="table">
-      <tr>
-        <td>
-          Work Order
-        </td>
-      </tr>
-      <tr>
-        <td>
-          ORDERID
-        </td>
-        <td>
-          @Model.OrderId
-        </td>
-      </tr>
-      <tr>
-        <td>
-          CLIENT NAME
-        </td>
-        <td>
-          @Model.Customer.ClientName
-        </td>
-        <td>
-          PHONE NUMBER
-        </td>
-        <td>
-          @Model.Customer.PhoneNumber
-        </td>
-      </tr>
-      <tr>
-        <td>
-          ORDER NUMBER
-        </td>
-        <td>
-          @Model.OrderNumber
-        </td>
-      </tr>
+<div class="table table-bordered table-responsive">
+  <table class="table">
+    <tr>
+      <td>
+        Work Order
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ORDERID
+      </td>
+      <td>
+        @Model.OrderId
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CLIENT NAME
+      </td>
+      <td>
+        @Model.Customer.ClientName
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PHONE NUMBER
+      </td>
+      <td>
+        @Model.Customer.PhoneNumber
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ORDER NUMBER
+      </td>
+      <td>
+        @Model.OrderNumber
+      </td>
+    </tr>
 
-      <tr>
-        <td>
-          TECH NAME
-        </td>
-        <td>
-          @Model.TechName
-        </td>
-      </tr>
-      <tr>
-        <td>
-          REPAIR DATE
-        </td>
-        <td>
-          @Model.RepairDate
-        </td>
-      </tr>
-      <tr>
-        <td>
-          VEHICLE YEAR
-        </td>
-        <td>
-          @Model.VehicleYear
-        </td>
-        <td>
-          VEHICLE MAKE
-        </td>
-        <td>
-          @Model.VehicleMake
-        </td>
-      </tr>
-      <tr>
-        <td>
-          VEHICLE MODEL
-        </td>
-        <td>
-          @Model.VehicleModel
-        </td>
-        <td>
-          LICENCE PLATE
-        </td>
-        <td>
-          @Model.LicencePlate
-        </td>
-        <td>
-          MILEAGE
-        </td>
-        <td>
-          @Model.Mileage
-        </td>
-      </tr>
+    <tr>
+      <td>
+        TECH NAME
+      </td>
+      <td>
+        @Model.TechName
+      </td>
+    </tr>
+    <tr>
+      <td>
+        REPAIR DATE
+      </td>
+      <td>
+        @Model.RepairDate
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VEHICLE YEAR
+      </td>
+      <td>
+        @Model.VehicleYear
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VEHICLE MAKE
+      </td>
+      <td>
+        @Model.VehicleMake
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VEHICLE MODEL
+      </td>
+      <td>
+        @Model.VehicleModel
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LICENCE PLATE
+      </td>
+      <td>
+        @Model.LicencePlate
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MILEAGE
+      </td>
+      <td>
+        @Model.Mileage
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PART NAME
+      </td>
+      <td>
+        
+      </td>
+    </tr>
+  </table>
+  @foreach (var item in Model.Parts)
+  {
+    
+  }
+</div>
 
-    </table>
+@*Button Delete Part
+  <button type="submit" class="btn btn-danger btn-sm">Delete</button>*@
 
-  </div>
-
- @*Button Delete Part 
-<button type="submit" class="btn btn-danger btn-sm">Delete</button>*@
-
+<button type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addPartDialog">
+  Add Part
+</button>
 <!-- Button trigger modal -->
-<button type="submit" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
-  Delete
+<button type="submit" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#deletePartDialog">
+  Delete Part
 </button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Add Modal -->
+<div class="modal fade" id="addPartDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add Part</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <section>
+        @Html.Partial("AddPart", new WorkOrders.Models.Part { CustomerId = Model.CustomerId, OrderId = Model.OrderId })
+      </section>
+
+
+    @*<div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+      @Html.ActionLink("Go Back","View",null,htmlAttributes: new { @class = "btn btn-secondary"})
+      <button type="submit" class="btn btn-primary">Add Item</button>
+
+    </div>*@
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deletePartDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -116,49 +162,14 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        Are you sure you want to delete?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+        <button type="button" class="btn btn-primary">Delete Item</button>
       </div>
     </div>
   </div>
 </div>
-
-@*<div>
-      @Model.OrderId
-    </div>
-  <div>
-    @Model.Customer.ClientName
-  </div>
-  <div>
-    @Model.Customer.PhoneNumber
-  </div>
-  <div>
-    @Model.OrderNumber
-  </div>
-  <div>
-    @Model.TechName
-  </div>
-  <div>
-    @Model.RepairDate
-  </div>
-  <div>
-    @Model.VehicleYear
-  </div>
-  <div>
-    @Model.VehicleMake
-  </div>
-  <div>
-    @Model.VehicleModel
-  </div>
-  <div>
-    @Model.Mileage
-  </div>
-  <div>
-    @Model.LicencePlate
-  </div>*@
-
 
 

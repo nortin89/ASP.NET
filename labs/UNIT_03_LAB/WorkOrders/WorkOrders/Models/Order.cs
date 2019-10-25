@@ -8,11 +8,11 @@ namespace WorkOrders.Models
 
     public partial class Order
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
-        {
-            Parts = new HashSet<Part>();
-        }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        //public Order()
+        //{
+        //    Parts = new HashSet<Part>();
+        //}
 
         public int? OrderId { get; set; }
 
@@ -70,6 +70,6 @@ namespace WorkOrders.Models
         public virtual Customer Customer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Part> Parts { get; set; }
+        public virtual IList<Part> Parts { get; set; }
     }
 }

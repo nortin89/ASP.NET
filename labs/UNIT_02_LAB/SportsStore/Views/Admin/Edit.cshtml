@@ -53,7 +53,7 @@
         var options = new SelectList(ViewBag.PhotoId, "PhotoId", "ImageName", Model.Photos[i].PhotoId);
 
         @Html.HiddenFor(x => x.Photos[i].ProductID)
-        @Html.DropDownListFor(x => x.Photos[i].PhotoId,options,"Please Slect an Image...", new { @class = "form-control"})
+        @Html.DropDownListFor(x => x.Photos[i].PhotoId,options,"Please Select an Image...", new { @class = "form-control"})
         @Html.ValidationMessageFor(x => x.Photos[i].PhotoId, null, new { @class = "text-danger"})
         <img src="@Url.Action("GetImage","Photo",new { photoId = Model.Photos[i].PhotoId })" alt="" height="100" class="ProductPhotoPreview" />
       }
