@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="cee41204-1686-4646-8950-02424b808e34" ChangeDateTime="10/23/2019 19:55:11">
+    <Property Name="ElementName" Value="[dbo].[FormalEducation]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[Education]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e517058c-3a40-48ba-ad24-00fb82604aaf" ChangeDateTime="10/23/2019 19:55:28">
+    <Property Name="ElementName" Value="[dbo].[PastJobs]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[Jobs]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fe185053-70c1-4622-b0eb-e81970ecc7a1" ChangeDateTime="10/23/2019 19:55:57">
+    <Property Name="ElementName" Value="[dbo].[ReleventProjects]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[Projects]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c9c4bc6e-40e1-46c9-9424-41bea27d0a0c" ChangeDateTime="10/23/2019 19:57:04">
+    <Property Name="ElementName" Value="[dbo].[TopSkills]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[Skills]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b309c807-e61f-44df-96f6-a80b604ad540" ChangeDateTime="10/23/2019 19:58:10">
+    <Property Name="ElementName" Value="[dbo].[Resumes].[ApplicantId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Resumes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[ResumeId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="31530b2e-2486-410d-82be-f207a0bcb897" ChangeDateTime="10/23/2019 19:58:49">
+    <Property Name="ElementName" Value="[dbo].[Projects].[ApplicantId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Projects]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[ResumeId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="827ec3a8-653c-4221-94de-d54c62c32830" ChangeDateTime="10/23/2019 19:59:34">
+    <Property Name="ElementName" Value="[dbo].[Education].[ApplicantId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Education]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[ResumeId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cf866173-3efe-4f36-b63a-fabf1458a726" ChangeDateTime="10/23/2019 20:00:06">
+    <Property Name="ElementName" Value="[dbo].[Education].[FormalId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Education]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[EducationId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ea6ee655-dfcd-4c82-b975-4d74dc5c2121" ChangeDateTime="10/23/2019 20:00:26">
+    <Property Name="ElementName" Value="[dbo].[Jobs].[PastJobId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Jobs]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[JobId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8e58f322-6513-4fd7-a635-13d181484d55" ChangeDateTime="10/23/2019 20:00:43">
+    <Property Name="ElementName" Value="[dbo].[Jobs].[ApplicantId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Jobs]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[ResumeId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4142b080-1013-4808-a0df-83841128ea06" ChangeDateTime="10/23/2019 20:01:08">
+    <Property Name="ElementName" Value="[dbo].[Projects].[ReleventProjectsId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Projects]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[ProjectsId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a2086a6a-4637-4cfe-b551-24d90e162c14" ChangeDateTime="10/23/2019 20:01:28">
+    <Property Name="ElementName" Value="[dbo].[Skills].[TopSkills]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Skills]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[Skills]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d372b3d9-3a41-4fb0-9c47-c308a350df7c" ChangeDateTime="10/23/2019 20:01:50">
+    <Property Name="ElementName" Value="[dbo].[Skills].[ApplicantId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Skills]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[ResumeId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="40180b67-324a-458c-8048-06ac08936a67" ChangeDateTime="10/23/2019 20:21:31">
+    <Property Name="ElementName" Value="[dbo].[Skills].[ExpLevelOptionOne]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Skills]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[ExperienceLevel]" />
+  </Operation>
+</Operations>
