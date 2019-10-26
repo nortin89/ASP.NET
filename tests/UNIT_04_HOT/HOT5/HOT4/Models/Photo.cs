@@ -25,6 +25,6 @@ namespace HOT4.Models
     [StringLength(100)]
     public string ImageMimeType { get; set; }
 
-    public virtual IList<ResumePhoto> Posts { get; set; }
+    public virtual IList<ResumePhoto> Photos { get; set; }
   }
 }

@@ -39,14 +39,14 @@
       }
     </fieldset>*@
     <div class="form-group">
-      @Html.LabelFor(x => x.TopSkill)
-      @Html.TextBoxFor(x => x.TopSkill, new { @class = "form-control  " })
-      @Html.ValidationMessageFor(x => x.TopSkill, null, new { @class = "text-danger" })
+      @Html.LabelFor(x => x.Skills)
+      @Html.TextBoxFor(x => x.Skills, new { @class = "form-control  " })
+      @Html.ValidationMessageFor(x => x.Skills, null, new { @class = "text-danger" })
     </div>
     <div class="form-group">
-      @Html.LabelFor(x => x.ReleventProject)
-      @Html.TextBoxFor(x => x.ReleventProject, new { @class = "form-control  " })
-      @Html.ValidationMessageFor(x => x.ReleventProject, null, new { @class = "text-danger" })
+      @Html.LabelFor(x => x.Projects)
+      @Html.TextBoxFor(x => x.Projects, new { @class = "form-control  " })
+      @Html.ValidationMessageFor(x => x.Projects, null, new { @class = "text-danger" })
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-lg">Add</button>

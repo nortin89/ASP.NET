@@ -12,12 +12,12 @@ namespace HOT4.Models
     {
     }
 
-    public virtual DbSet<Education> FormalEducations { get; set; }
-    public virtual DbSet<Job> PastJobs { get; set; }
+    public virtual DbSet<Education> Educations { get; set; }
+    public virtual DbSet<Job> Jobs { get; set; }
     public virtual DbSet<Product> Products { get; set; }
-    public virtual DbSet<Project> ReleventProjects { get; set; }
+    public virtual DbSet<Project> Projects { get; set; }
     public virtual DbSet<Resume> Resumes { get; set; }
-    public virtual DbSet<Skill> TopSkills { get; set; }
+    public virtual DbSet<Skill> Skills { get; set; }
     public virtual DbSet<ResumePhoto> ResumePhotos { get; set; }
     public virtual DbSet<Photo>Photos { get; set; }
     

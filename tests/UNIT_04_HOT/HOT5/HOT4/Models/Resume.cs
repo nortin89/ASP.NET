@@ -14,6 +14,8 @@ namespace HOT4.Models
     [Display(Name = "Resume ID")]
     public int ResumeId { get; set; }
 
+    public int PhotoId { get; set; }
+
     [Required(ErrorMessage ="Full Name is required")]
     [StringLength(100)]
     [Display(Name = "Full Name")]
@@ -34,16 +36,16 @@ namespace HOT4.Models
     public string LinkedIn { get; set; }
 
     [Display(Name = "Formal Education")]
-    public virtual IList<Education> FormalEducation { get; set; }
+    public virtual IList<Education> Educations { get; set; }
 
     [Display(Name = "Past Jobs")]
-    public virtual IList<Job> PastJob { get; set; }
+    public virtual IList<Job> Jobs { get; set; }
 
     [Display(Name = "Relevant Projects")]
-    public virtual IList<Project>ReleventProject { get; set; }
+    public virtual IList<Project>Projects { get; set; }
 
     [Display(Name = "Top Skill")]
-    public virtual IList<Skill> TopSkill { get; set; }
+    public virtual IList<Skill> Skills { get; set; }
 
     [Display(Name = "Last Update")]
     public DateTime? LastUpdate { get; set; }
