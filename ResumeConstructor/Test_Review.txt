@@ -4,7 +4,7 @@ WHERE (@OrderNumber ISNULL OR  @OrderNumber = o.OrderNumber)
 AND (@CustomerName ISNULL OR o.CustomerName LIKE '%' + @CustomerName + '%')
 AND (@StartDate ISNULL OR @StartDate <= o.RepairDate)
 
-AND (@EndDate ISNULL OR @EndDate >= o.RepairDate)
+AND (@EndDate ISNULL OR @EndDate >= o.RepairDate)`
 
 
 

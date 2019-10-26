@@ -1,0 +1,79 @@
+﻿@model IEnumerable<HOT4.Models.Resume>
+@{
+  ViewBag.Title = "Index";
+}
+
+<h2>Contact Information</h2>
+
+<div class="row">
+
+  <div class="card col-md-4 bg-light mb-3">
+    Search For Resume
+    @using (Html.BeginForm("Index", "Resume", FormMethod.Get))
+    {
+      <div class="input-group-append">
+        <input name="q" class="form-control" type="text" value="@ViewBag.Query" />
+        <button type="submit" class="btn btn-outline-primary">
+          <i class="fa-fw fas fa-search"></i>Search
+        </button>
+      </div>
+    }
+  </div>
+  <div class="col-md-8">
+
+    @foreach (var resume in Model)
+    {
+    <div class="card bg-light mb-3">
+      <div>
+        @if (resume.Photos != null && resume.Photos.Any())
+        {
+
+          <div id="ResumePhotos-@resume.ResumeId" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              @for (int i = 0; i < resume.Photos.Count; ++i)
+              {
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                  <img src="@Url.Action("GetImage", "Photo", new { photoId = resume.Photos[i].PhotoId })" class="d-block w-100" alt="" />
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+      <div class="card-body">
+
+        <div class="float-right">
+          @resume.LastUpdate
+        </div>
+        <p>
+          Resume # @resume.ResumeId
+        </p>
+        <p>
+          Full Name: @resume.FullName
+        </p>
+        <p>
+          Phone Number: @resume.PhoneNumber
+        </p>
+        <p>
+          Email Address: @resume.EmailAddress
+        </p>
+        <p>
+          LinkedIn Profile: @resume.LinkedIn
+        </p>
+        @*<section>
+          @Html.Partial("_ViewResume", new HOT4.Models.Resume { ResumeId = resume.ResumeId})
+        </section>*@
+        <p>
+      @Html.ActionLink("View Resume", "View", "Resume", new { ResumeId = resume.ResumeId }, null)
+    </p>
+      </div>
+    </div>
+    }
+
+  </div>
+
+</div>
+
+
+
+@*@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page, ViewBag.Query }))*@

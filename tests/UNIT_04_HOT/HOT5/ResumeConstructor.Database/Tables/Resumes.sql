@@ -4,6 +4,8 @@ CREATE TABLE [dbo].[Resumes](
 	[FullName] [varchar](100) NOT NULL,
 	[PhoneNumber][varchar](100) NOT NULL,
 	[EmailAddress][varchar](100) NOT NULL,
+  [LinkedIn] VARCHAR(100) NULL,
+  
   [LastUpdate] DATETIME DEFAULT(GETDATE()) NOT NULL,
 
 );

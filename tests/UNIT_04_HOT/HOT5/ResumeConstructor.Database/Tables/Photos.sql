@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Photos]
 (
   [PhotoId] INT NOT NULL PRIMARY KEY IDENTITY,
-  [ResumeId] INT NOT NULL,
+  [ResumeId] INT NULL,
   [ImageName] VARCHAR (100) NULL,
   [ImageData] VARBINARY (MAX) NULL,
   [ImageMimeType] VARCHAR (100) NULL,

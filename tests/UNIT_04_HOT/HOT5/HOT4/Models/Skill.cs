@@ -6,9 +6,13 @@ namespace HOT4.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class TopSkill
+    [Table("Skills")]
+    public partial class Skill
     {
         [Key]
+        public int SkillId { get; set; }
+
+        
         public int ResumeId { get; set; }
 
         [Required]

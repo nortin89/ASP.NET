@@ -1,0 +1,58 @@
+﻿@model HOT4.Models.Resume
+
+@using (Html.BeginForm("View", "Resume"))
+{
+  @Html.ValidationSummary("", new { @class = "text-danger" })
+  @Html.HiddenFor(x => x.ResumeId)
+
+  <div class="p-3">
+    <div class="form-group">
+      @Html.LabelFor(x => x.FullName)
+      @Html.TextBoxFor(x => x.FullName, new { @class = "form-control  " })
+      @Html.ValidationMessageFor(x => x.FullName, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.PhoneNumber)
+      @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control  " })
+      @Html.ValidationMessageFor(x => x.PhoneNumber, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.EmailAddress)
+      @Html.TextBoxFor(x => x.EmailAddress, new { @class = "form-control  " })
+      @Html.ValidationMessageFor(x => x.EmailAddress, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.LinkedIn)
+      @Html.TextBoxFor(x => x.LinkedIn, new { @class = "form-control  " })
+      @Html.ValidationMessageFor(x => x.LinkedIn, null, new { @class = "text-danger" })
+    </div>
+    @*<fieldset class="form-group">
+        <legend>Photos </legend>
+        @for (int i = 0; i < Model.Photos.Count; ++i)
+        {
+          var options = new SelectList(ViewBag.PhotoId, "PhotoId", "ImageName", Model.Photos[i].PhotoId);
+
+          @Html.HiddenFor(x => x.Photos[i].ResumeId)
+          @Html.DropDownListFor(x => x.Photos[i].PhotoId, options, "Please Select an Image...", new { @class = "form-control" })
+          @Html.ValidationMessageFor(x => x.Photos[i].PhotoId, null, new { @class = "text-danger" })
+          <img src="@Url.Action("GetImage","Photo",new { photoId = Model.Photos[i].PhotoId })" alt="" height="100" class="ProductPhotoPreview" />
+        }
+      </fieldset>*@
+    @*<div class="form-group">
+      @Html.LabelFor(x => x.TopSkill)
+      @Html.TextBoxFor(x => x.TopSkill, new { @class = "form-control  " })
+      @Html.ValidationMessageFor(x => x.TopSkill, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.ReleventProject)
+      @Html.TextBoxFor(x => x.ReleventProject, new { @class = "form-control  " })
+      @Html.ValidationMessageFor(x => x.ReleventProject, null, new { @class = "text-danger" })
+    </div>*@
+    <div class="form-group">
+      @Html.ActionLink("Edit Resume","Edit",routeValues:new { ResumeId = Model.ResumeId})
+      <button type="submit" class="btn btn-primary btn-lg">Add</button>
+      <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
+    </div>
+  </div>
+
+}

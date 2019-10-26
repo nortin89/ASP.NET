@@ -13,6 +13,9 @@ namespace HOT4.Models
     [Key]
     public int? PhotoId { get; set; }
 
+    [Display(Name = "Resume ID")]
+    public int? ResumeId { get; set; }
+
     [Required]
     [StringLength(100)]
     public string ImageName { get; set; }

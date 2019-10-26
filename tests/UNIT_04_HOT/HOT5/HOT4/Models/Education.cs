@@ -6,29 +6,29 @@ namespace HOT4.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class PastJob
+    [Table("Education")]
+    public partial class Education
     {
         [Key]
         public int ResumeId { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string CompanyName { get; set; }
-
-        [Required]
-        [StringLength(500)]
-        public string CompanyAddress { get; set; }
+        public string SchoolName { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string ManagerName { get; set; }
-
-        [StringLength(100)]
-        public string ManagerPhone { get; set; }
+        public string Degree { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string Position { get; set; }
+        public string Subject { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime StartDate { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? EndDate { get; set; }
 
         public virtual Resume Resume { get; set; }
     }

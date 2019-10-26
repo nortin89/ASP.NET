@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HOT4", "HOT4\HOT4.csproj", "{B79D265C-56CC-4C39-BEA1-569234C94BC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeConstructor", "HOT4\ResumeConstructor.csproj", "{B79D265C-56CC-4C39-BEA1-569234C94BC5}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ResumeConstructor.Database", "ResumeConstructor.Database\ResumeConstructor.Database.sqlproj", "{0D70D554-AA5D-4CCB-AB77-77459A60C217}"
 EndProject

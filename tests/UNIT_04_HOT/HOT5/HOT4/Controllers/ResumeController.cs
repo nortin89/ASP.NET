@@ -65,6 +65,7 @@ namespace HOT4.Controllers
       return View("Index", resume);
     }
 
+
     //[HttpGet]
     //public async Task<ActionResult> Edit()
     //{

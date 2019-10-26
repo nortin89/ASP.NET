@@ -5,10 +5,14 @@ namespace HOT4.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-
-    public partial class ReleventProject
+    
+    [Table("Projects")]
+    public partial class Project
     {
         [Key]
+        public int ProjectId { get; set; }
+
+        
         public int ResumeId { get; set; }
 
         [Required]

@@ -1,14 +1,17 @@
-namespace HOT4.Models
-{
+
   using System;
   using System.Collections.Generic;
   using System.ComponentModel.DataAnnotations;
   using System.ComponentModel.DataAnnotations.Schema;
   using System.Data.Entity.Spatial;
 
+namespace HOT4.Models
+{
+  [Table("Resumes")]
   public partial class Resume
   {
     [Key]
+    [Display(Name = "Resume ID")]
     public int ResumeId { get; set; }
 
     [Required(ErrorMessage ="Full Name is required")]
@@ -26,17 +29,21 @@ namespace HOT4.Models
     [Display(Name = "Email Address")]
     public string EmailAddress { get; set; }
 
+    [StringLength(100)]
+    [Display(Name = "LinkedIn Profile")]
+    public string LinkedIn { get; set; }
+
     [Display(Name = "Formal Education")]
-    public virtual IList<FormalEducation> FormalEducation { get; set; }
+    public virtual IList<Education> FormalEducation { get; set; }
 
     [Display(Name = "Past Jobs")]
-    public virtual IList<PastJob> PastJob { get; set; }
+    public virtual IList<Job> PastJob { get; set; }
 
     [Display(Name = "Relevant Projects")]
-    public virtual IList<ReleventProject>ReleventProject { get; set; }
+    public virtual IList<Project>ReleventProject { get; set; }
 
     [Display(Name = "Top Skill")]
-    public virtual IList<TopSkill> TopSkill { get; set; }
+    public virtual IList<Skill> TopSkill { get; set; }
 
     [Display(Name = "Last Update")]
     public DateTime? LastUpdate { get; set; }
