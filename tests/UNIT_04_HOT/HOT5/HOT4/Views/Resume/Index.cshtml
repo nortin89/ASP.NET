@@ -25,15 +25,15 @@
     {
     <div class="card bg-light mb-3">
       <div>
-        @if (resume.Photos != null && resume.Photos.Any())
+        @if (resume.ResumePhotos != null && resume.ResumePhotos.Any())
         {
 
           <div id="ResumePhotos-@resume.ResumeId" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-              @for (int i = 0; i < resume.Photos.Count; ++i)
+              @for (int i = 0; i < resume.ResumePhotos.Count; ++i)
               {
                 <div class="carousel-item @(i == 0 ? "active" : "")">
-                  <img src="@Url.Action("GetImage", "Photo", new { photoId = resume.Photos[i].PhotoId })" class="d-block w-100" alt="" />
+                  <img src="@Url.Action("GetImage", "Photo", new { photoId = resume.ResumePhotos[i].PhotoId })" class="d-block w-100" alt="" />
                 </div>
               }
             </div>

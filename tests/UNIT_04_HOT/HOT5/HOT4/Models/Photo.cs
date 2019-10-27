@@ -11,7 +11,7 @@ namespace HOT4.Models
   public class Photo
   {
     [Key]
-    public int? PhotoId { get; set; }
+    public int PhotoId { get; set; }
 
     [Display(Name = "Resume ID")]
     public int? ResumeId { get; set; }

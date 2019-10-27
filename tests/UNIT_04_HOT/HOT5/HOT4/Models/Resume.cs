@@ -14,7 +14,7 @@ namespace HOT4.Models
     [Display(Name = "Resume ID")]
     public int ResumeId { get; set; }
 
-    public int PhotoId { get; set; }
+    public int? PhotoId { get; set; }
 
     [Required(ErrorMessage ="Full Name is required")]
     [StringLength(100)]
@@ -50,8 +50,9 @@ namespace HOT4.Models
     [Display(Name = "Last Update")]
     public DateTime? LastUpdate { get; set; }
 
+    public virtual IList<Photo>Photos { get; set; }
 
-    public virtual IList<ResumePhoto> Photos { get; set; }
+    public virtual IList<ResumePhoto> ResumePhotos { get; set; }
 
 
   }

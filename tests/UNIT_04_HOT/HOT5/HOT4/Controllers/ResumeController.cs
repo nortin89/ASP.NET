@@ -55,11 +55,11 @@ namespace HOT4.Controllers
     {
       var resume = new Resume();
       resume.LastUpdate = DateTime.Now;
-      resume.Photos = new List<ResumePhoto>();
+      resume.ResumePhotos = new List<ResumePhoto>();
 
-      while(resume.Photos.Count < 3)
+      while(resume.ResumePhotos.Count < 3)
       {
-        resume.Photos.Add(new ResumePhoto());
+        resume.ResumePhotos.Add(new ResumePhoto());
       }
       await _db.SaveChangesAsync();
       return View("Index", resume);
