@@ -1,60 +1,125 @@
 ﻿@model HOT4.Models.Resume
 
-<div class="p-4">
-  @using (Html.BeginForm("View", "Resume"))
-  {
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    @Html.HiddenFor(x => x.ResumeId)
+<div class="p-5">
+  <h2>Resume Info of : @Model.FullName</h2>
+  <table class="table table-bordered table-condensed table-striped">
+    <tr>
+      <td>Phone Number :</td>
+      <td>@Model.PhoneNumber</td>
+    </tr>
+    <tr>
+      <td>Email :</td>
+      <td>@Model.EmailAddress</td>
+    </tr>
+    <tr>
+      <td>LinkedIn :</td>
+      <td>@Model.LinkedIn</td>
+    </tr>
+  </table>
+  <table class="table table-bordered table-condensed table-striped">
+    <tr>
+      <td>
+        <table class="table table-bordered table-condensed table-striped">
+          <tr>
+            <td colspan="2">Top Skills</td>
+          </tr>
+          <tr>
+            <td>Skill Name</td>
+            <td>@Model.Skills</td>
+          </tr>
+          <tr>
+            <td colspan="2">Relevant Projects</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>@Model.Projects</td>
+          </tr>
+          @*<tr>
+              <td>Technologies Used</td>
+              <td>@Model.Technologies</td>
+            </tr>*@
+          @*<tr>
+              <td>Project Description</td>
+              <td>@Model.Descriptions</td>
+            </tr>*@
 
-    <div class="p-3">
-      <div class="form-group">
-        @Html.LabelFor(x => x.FullName)
-        @Html.TextBoxFor(x => x.FullName, new { @class = "form-control  " })
-        @Html.ValidationMessageFor(x => x.FullName, null, new { @class = "text-danger" })
-      </div>
-      <div class="form-group">
-        @Html.LabelFor(x => x.PhoneNumber)
-        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control  " })
-        @Html.ValidationMessageFor(x => x.PhoneNumber, null, new { @class = "text-danger" })
-      </div>
-      <div class="form-group">
-        @Html.LabelFor(x => x.EmailAddress)
-        @Html.TextBoxFor(x => x.EmailAddress, new { @class = "form-control  " })
-        @Html.ValidationMessageFor(x => x.EmailAddress, null, new { @class = "text-danger" })
-      </div>
-      <div class="form-group">
-        @Html.LabelFor(x => x.LinkedIn)
-        @Html.TextBoxFor(x => x.LinkedIn, new { @class = "form-control  " })
-        @Html.ValidationMessageFor(x => x.LinkedIn, null, new { @class = "text-danger" })
-      </div>
-      <fieldset class="form-group">
-        <legend>Photos </legend>
-        @for (int i = 0; i < Model.Photos.Count; ++i)
-        {
-          var options = new SelectList(Model.Photos, "PhotoId", "ImageName", Model.Photos[i].PhotoId);
-
-          @Html.HiddenFor(x => x.Photos[i].ResumeId)
-          @Html.DropDownListFor(x => x.Photos[i].PhotoId, options, "Please Select an Image...", new { @class = "form-control" })
-          @Html.ValidationMessageFor(x => x.Photos[i].PhotoId, null, new { @class = "text-danger" })
-          <img src="@Url.Action("GetImage","Photo",new { photoId = Model.Photos[i].PhotoId })" alt="" height="100" class="ResumePhotoPreview" />
-        }
-      </fieldset>
-      <div class="form-group">
-        @Html.LabelFor(x => x.Skills)
-        @Html.TextBoxFor(x => x.Skills, new { Value = "SkillName", @class = "form-control  " })
-        @Html.ValidationMessageFor(x => x.Skills, null, new { @class = "text-danger" })
-      </div>
-      <div class="form-group">
-        @Html.LabelFor(x => x.Projects)
-        @Html.TextBoxFor(x => x.Projects, new { Value = "RelevantProjects", @class = "form-control  " })
-        @Html.ValidationMessageFor(x => x.Projects, null, new { @class = "text-danger" })
-      </div>
-      <div class="form-group">
-        @Html.ActionLink("Edit Resume", "Edit", routeValues: new { ResumeId = Model.ResumeId })
-        @*<button type="submit" class="btn btn-primary btn-lg">Add</button>
-          <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>*@
-      </div>
-    </div>
-
-  }
+        </table>
+      </td>
+      <td>
+        <table class="table table-bordered table-condensed table-striped">
+          <tr>
+            <td colspan="2">
+              Education
+            </td>
+          </tr>
+          <tr>
+            <td>Education</td>
+            <td>@Model.Educations</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p>
+    @Html.ActionLink("Back To Home", "Index")
+  </p>
 </div>
+
+@*<div class="p-4">
+    @using (Html.BeginForm("View", "Resume"))
+    {
+      @Html.ValidationSummary("", new { @class = "text-danger" })
+      @Html.HiddenFor(x => x.ResumeId)
+
+      <div class="p-3">
+        <div class="form-group">
+          @Html.LabelFor(x => x.FullName)
+          @Html.TextBoxFor(x => x.FullName, new { @class = "form-control  " })
+          @Html.ValidationMessageFor(x => x.FullName, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+          @Html.LabelFor(x => x.PhoneNumber)
+          @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control  " })
+          @Html.ValidationMessageFor(x => x.PhoneNumber, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+          @Html.LabelFor(x => x.EmailAddress)
+          @Html.TextBoxFor(x => x.EmailAddress, new { @class = "form-control  " })
+          @Html.ValidationMessageFor(x => x.EmailAddress, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+          @Html.LabelFor(x => x.LinkedIn)
+          @Html.TextBoxFor(x => x.LinkedIn, new { @class = "form-control  " })
+          @Html.ValidationMessageFor(x => x.LinkedIn, null, new { @class = "text-danger" })
+        </div>
+        <fieldset class="form-group">
+          <legend>Photos </legend>
+          @for (int i = 0; i < Model.Photos.Count; ++i)
+          {
+            var options = new SelectList(Model.Photos, "PhotoId", "ImageName", Model.Photos[i].PhotoId);
+
+            @Html.HiddenFor(x => x.Photos[i].ResumeId)
+            @Html.DropDownListFor(x => x.Photos[i].PhotoId, options, "Please Select an Image...", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Photos[i].PhotoId, null, new { @class = "text-danger" })
+            <img src="@Url.Action("GetImage","Photo",new { photoId = Model.Photos[i].PhotoId })" alt="" height="100" class="ResumePhotoPreview" />
+          }
+        </fieldset>
+        <div class="form-group">
+          @Html.LabelFor(x => x.Skills)
+          @Html.TextBoxFor(x => x.Skills, new { Value = "SkillName", @class = "form-control  " })
+          @Html.ValidationMessageFor(x => x.Skills, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+          @Html.LabelFor(x => x.Projects)
+          @Html.TextBoxFor(x => x.Projects, new { Value = "RelevantProjects", @class = "form-control  " })
+          @Html.ValidationMessageFor(x => x.Projects, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+          @Html.ActionLink("Edit Resume", "Edit", routeValues: new { ResumeId = Model.ResumeId })
+          <button type="submit" class="btn btn-primary btn-lg">Add</button>
+            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    }
+  </div>*@
