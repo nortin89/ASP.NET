@@ -19,27 +19,12 @@
       </div>
     }
   </div>
-  <div class="col-md-8 p-3">
+  <div class="col-md-8">
 
     @foreach (var resume in Model)
     {
     <div class="card bg-light mb-3">
-      <div>
-        @if (resume.ResumePhotos != null && resume.ResumePhotos.Any())
-        {
 
-          <div id="ResumePhotos-@resume.ResumeId" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              @for (int i = 0; i < resume.ResumePhotos.Count; ++i)
-              {
-                <div class="carousel-item @(i == 0 ? "active" : "")">
-                  <img src="@Url.Action("GetImage", "Photo", new { photoId = resume.ResumePhotos[i].PhotoId })" class="d-block w-100" alt="" />
-                </div>
-              }
-            </div>
-          </div>
-        }
-      </div>
       <div class="card-body">
 
         <div class="float-right">
@@ -60,12 +45,28 @@
         <p>
           LinkedIn Profile: @resume.LinkedIn
         </p>
+        <div class="float-right">
+          @if (resume.Photos != null && resume.Photos.Any())
+          {
+
+            <div id="ResumePhotos-@resume.ResumeId" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                @for (int i = 0; i < resume.Photos.Count; ++i)
+                {
+                  <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <img src="@Url.Action("GetImage", "Photo", new { photoId = resume.Photos[i].PhotoId })" class="img-fluid" width="64" height="64" alt="" />
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
         @*<section>
-          @Html.Partial("_ViewResume", new HOT4.Models.Resume { ResumeId = resume.ResumeId})
-        </section>*@
+      @Html.Partial("_ViewResume", new HOT4.Models.Resume { ResumeId = resume.ResumeId})
+    </section>*@
         <p>
-      @Html.ActionLink("View Resume", "View", "Resume", new { ResumeId = resume.ResumeId }, null)
-    </p>
+          @Html.ActionLink("View Resume", "View", "Resume", new { ResumeId = resume.ResumeId }, null)
+        </p>
       </div>
     </div>
     }

@@ -1,69 +1,102 @@
 ﻿@model HOT4.Models.Resume
 
-<div class="p-5">
-  <h2>Resume Info of : @Model.FullName</h2>
-  <table class="table table-bordered table-condensed table-striped">
-    <tr>
-      <td>Phone Number :</td>
-      <td>@Model.PhoneNumber</td>
-    </tr>
-    <tr>
-      <td>Email :</td>
-      <td>@Model.EmailAddress</td>
-    </tr>
-    <tr>
-      <td>LinkedIn :</td>
-      <td>@Model.LinkedIn</td>
-    </tr>
-  </table>
-  <table class="table table-bordered table-condensed table-striped">
-    <tr>
-      <td>
-        <table class="table table-bordered table-condensed table-striped">
-          <tr>
-            <td colspan="2">Top Skills</td>
-          </tr>
-          <tr>
-            <td>Skill Name</td>
-            <td>@Model.Skills</td>
-          </tr>
-          <tr>
-            <td colspan="2">Relevant Projects</td>
-          </tr>
-          <tr>
-            <td>Project Name</td>
-            <td>@Model.Projects</td>
-          </tr>
-          @*<tr>
-              <td>Technologies Used</td>
-              <td>@Model.Technologies</td>
-            </tr>*@
-          @*<tr>
-              <td>Project Description</td>
-              <td>@Model.Descriptions</td>
-            </tr>*@
+  <div class="p-5">
+    <h2>@Model.FullName</h2>
+    <div class="float-right">
+      Last Update :
+      @Model.LastUpdate
+    </div>
+    <table class="table table-bordered table-condensed table-striped">
+      <tr>
+        <td>Phone Number :</td>
+        <td>@Model.PhoneNumber</td>
+      </tr>
+      <tr>
+        <td>Email :</td>
+        <td>@Model.EmailAddress</td>
+      </tr>
+      <tr>
+        <td>LinkedIn :</td>
+        <td>@Model.LinkedIn</td>
+      </tr>
+    </table>
+    <table class="table table-bordered table-condensed table-striped">
+      <tr>
+        <td>Profile Picture :</td>
+        <td>
+          <div class="float-right">
+            @if (Model.Photos != null && Model.Photos.Any())
+            {
 
-        </table>
-      </td>
-      <td>
-        <table class="table table-bordered table-condensed table-striped">
-          <tr>
-            <td colspan="2">
-              Education
-            </td>
-          </tr>
-          <tr>
-            <td>Education</td>
-            <td>@Model.Educations</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <p>
-    @Html.ActionLink("Back To Home", "Index")
-  </p>
-</div>
+              <div id="ResumePhotos-@Model.ResumeId" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  @for (int i = 0; i < Model.Photos.Count; ++i)
+                  {
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                      <img src="@Url.Action("GetImage", "Photo", new { photoId = Model.Photos[i].PhotoId })" class="img-fluid" width="64" height="64" alt="" />
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </td>
+      </tr>
+    </table>
+    <table class="table table-bordered table-condensed table-striped">
+      <tr>
+        <td>
+          <table class="table table-bordered table-condensed table-striped">
+            <tr>
+              <td colspan="2">Top Skills</td>
+            </tr>
+            <tr>
+              <td>Skill Name</td>
+              <td>@Model.Skills</td>
+            </tr>
+            <tr>
+              <td colspan="2">Relevant Projects</td>
+            </tr>
+            <tr>
+              <td>Project Name</td>
+              <td>
+                @Model.Projects
+              </td>
+            </tr>
+            @*<tr>
+            <td>Technologies Used</td>
+            <td>@Model.Technologies</td>
+          </tr>*@
+            @*<tr>
+            <td>Project Description</td>
+            <td>@Model.Descriptions</td>
+          </tr>*@
+
+          </table>
+        </td>
+        <td>
+          <table class="table table-bordered table-condensed table-striped">
+            <tr>
+              <td colspan="2">
+                Formal Education
+              </td>
+            </tr>
+            <tr>
+              <td>Education</td>
+              <td>@Model.Educations</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>@Html.ActionLink("Edit", "Edit", routeValues: new { resumeId = Model.ResumeId })</td>
+        <td>@Html.ActionLink("Back To Home", "Index")</td>
+      </tr>
+    </table>
+    @*<p>
+      @Html.ActionLink("Back To Home", "Index")
+    </p>*@
+  </div>
 
 @*<div class="p-4">
     @using (Html.BeginForm("View", "Resume"))

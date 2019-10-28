@@ -50,9 +50,9 @@ namespace HOT4.Models
     [Display(Name = "Last Update")]
     public DateTime? LastUpdate { get; set; }
 
-    public virtual IList<Photo>Photos { get; set; }
+    //public virtual IList<Photo>Photos { get; set; }
 
-    public virtual IList<ResumePhoto> ResumePhotos { get; set; }
+    public virtual IList<ResumePhoto> Photos { get; set; }
 
 
   }

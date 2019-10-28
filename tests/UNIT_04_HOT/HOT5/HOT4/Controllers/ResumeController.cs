@@ -1,5 +1,6 @@
 ﻿using HOT4.HtmlHelpers;
 using HOT4.Models;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -53,31 +54,138 @@ namespace HOT4.Controllers
     [HttpGet]
     public async Task<ActionResult> Create()
     {
+      await PopulatePhotoDropdown();
+
       var resume = new Resume();
       resume.LastUpdate = DateTime.Now;
-      resume.ResumePhotos = new List<ResumePhoto>();
+      resume.Photos = new List<ResumePhoto>();
 
-      while(resume.ResumePhotos.Count < 3)
+      while(resume.Photos.Count < 3)
       {
-        resume.ResumePhotos.Add(new ResumePhoto());
+        resume.Photos.Add(new ResumePhoto());
       }
       await _db.SaveChangesAsync();
-      return View("Index", resume);
+      return View("Edit", resume);
     }
 
+    
 
-    //[HttpGet]
-    //public async Task<ActionResult> Edit()
-    //{
-    //  await _db.SaveChangesAsync
-    //}
+    [HttpGet]
+    public async Task<ActionResult> Edit(int resumeId)
+    {
+      Resume resume =
+        await _db.Resumes.SingleOrDefaultAsync(x => x.ResumeId == resumeId);
 
-    //[HttpPost]
-    //public async Task<ActionResult> Create()
-    //{
+      if(resume.Photos == null)
+      {
+        resume.Photos = new List<ResumePhoto>();
+      }
+      while(resume.Photos.Count < 2)
+      {
+        resume.Photos.Add(new ResumePhoto() { ResumeId = resume.ResumeId });
+      }
 
-    //}
+      await PopulatePhotoDropdown();
+      return View("Edit", resume);
+    }
 
+    [HttpPost]
+    public async Task<ActionResult> Edit(Resume resume)
+    {
+      var duplicateResume =
+        await _db.Resumes.FirstOrDefaultAsync(x => x.FullName == resume.FullName);
+
+      if(duplicateResume != null)
+      {
+        ModelState.AddModelError("Name", "That name is already in use.");
+      }
+
+      if (!ModelState.IsValid)
+      {
+        await PopulatePhotoDropdown();
+        return View("Edit", resume);
+      }
+      else if(resume.ResumeId == 0)
+      {
+        //Create New Resume
+        _db.Resumes.Add(resume);
+
+        for (int i = resume.Photos.Count -1; i >= 0; --i)
+        {
+          if (resume.Photos[i].PhotoId != null)
+          {
+            resume.Photos[i].Resume = resume;
+            _db.ResumePhotos.Add(resume.Photos[i]);
+          }
+          else
+          {
+            resume.Photos.RemoveAt(i);
+          }
+        }
+
+        await _db.SaveChangesAsync();
+        TempData["message"] = $"{resume.ResumeId} has been inserted";
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        //Edit Existing Resume
+        Resume dbEntry = _db.Resumes.SingleOrDefault(x => x.ResumeId == resume.ResumeId);
+        dbEntry.FullName = resume.FullName;
+        dbEntry.PhoneNumber = resume.PhoneNumber;
+        dbEntry.EmailAddress = resume.EmailAddress;
+        dbEntry.LinkedIn = resume.LinkedIn;
+        dbEntry.Skills = resume.Skills;
+        dbEntry.Projects = resume.Projects;
+        dbEntry.Educations = resume.Educations;
+
+        //Remove items from the model that do not have a photo selected
+        for (int i = resume.Photos.Count - 1; i >= 0; --i)
+        {
+          if (resume.Photos[i].PhotoId == null)
+          {
+            resume.Photos.RemoveAt(i);
+          }
+        }
+
+        //Add new photos
+        var photosToAdd = new List<ResumePhoto>();
+        foreach(var photo in resume.Photos)
+        {
+          if (!dbEntry.Photos.Any(x => x.PhotoId == photo.PhotoId))
+          {
+            photosToAdd.Add(photo);
+          }
+        }
+        _db.ResumePhotos.AddRange(photosToAdd);
+
+        //Remove existing photos
+        var photosToRemove = new List<ResumePhoto>();
+        foreach (var photo in dbEntry.Photos)
+        {
+          if (!resume.Photos.Any(x => x.PhotoId == photo.PhotoId))
+          {
+            photosToRemove.Add(photo);
+          }
+        }
+        _db.ResumePhotos.RemoveRange(photosToAdd);
+
+
+        await _db.SaveChangesAsync();
+        TempData["message"] = $"{resume.ResumeId} has been updated";
+        return RedirectToAction("Index");
+      }
+    }
+
+    private async Task PopulatePhotoDropdown()
+    {
+      List<Photo> photos =
+        await _db.Photos
+        .OrderBy(x => x.ImageName)
+        .ToListAsync();
+
+      ViewBag.PhotoId = photos;
+    }
 
     public async Task<ActionResult> View(int resumeId)
     {
@@ -85,6 +193,16 @@ namespace HOT4.Controllers
         await _db.Resumes.SingleOrDefaultAsync(x => x.ResumeId == resumeId);
 
       return View("View", resume);
+    }
+
+    public async Task<ActionResult> GetResumeName(string name)
+    {
+      var resume =
+        await _db.Resumes
+                 .Select(x => new { x.ResumeId, x.FullName })
+                 .FirstOrDefaultAsync(x => x.FullName == name);
+
+      return Json(resume != null ? (object)resume : false);
     }
   }
 }
