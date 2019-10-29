@@ -4,6 +4,7 @@
   using System.ComponentModel.DataAnnotations;
   using System.ComponentModel.DataAnnotations.Schema;
   using System.Data.Entity.Spatial;
+using System.Text.RegularExpressions;
 
 namespace HOT4.Models
 {

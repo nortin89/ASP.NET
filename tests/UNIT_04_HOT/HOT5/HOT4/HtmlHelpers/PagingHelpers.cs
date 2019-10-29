@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HOT4.HtmlHelpers
+namespace HOT4
 {
   public class PagingInfo
   {
@@ -27,9 +27,9 @@ namespace HOT4.HtmlHelpers
   public static class PagingHelpers
   {
     public static MvcHtmlString PageLinks(
-  this HtmlHelper html,
-  PagingInfo pagingInfo,
-  PageUrlFunction pageUrl)
+      this HtmlHelper html,
+      PagingInfo pagingInfo,
+      PageUrlFunction pageUrl)
     {
       var result = new StringBuilder();
       result.Append(@"<nav><ul class=""pagination"">");

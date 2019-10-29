@@ -5,13 +5,14 @@
 
 <h2>Contact Information</h2>
 
+<div class="mt-4"> <h5>Search For Resume</h5></div>
 <div class="row p-3">
 
-  <div class="card col-md-4 bg-light p-2">
-    <div > Search For Resume</div>
+  <div class="card col-md-4 bg-light">
+    
     @using (Html.BeginForm("Index", "Resume", FormMethod.Get))
     {
-      <div class="input-group-append p-1">
+      <div class="input-group-append p-3">
         <input name="q" class="form-control" type="text" value="@ViewBag.Query" />
         <button type="submit" class="btn btn-outline-primary">
           <i class="fa-fw fas fa-search"></i>Search
@@ -61,20 +62,15 @@
             </div>
           }
         </div>
-        @*<section>
-      @Html.Partial("_ViewResume", new HOT4.Models.Resume { ResumeId = resume.ResumeId})
-    </section>*@
         <p>
           @Html.ActionLink("View Resume", "View", "Resume", new { ResumeId = resume.ResumeId }, null)
         </p>
       </div>
     </div>
     }
-
   </div>
-
 </div>
 
-
-
-@*@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page, ViewBag.Query }))*@
+<div class="p-3 justify-content-center">
+  @Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page, ViewBag.Query }))
+</div>

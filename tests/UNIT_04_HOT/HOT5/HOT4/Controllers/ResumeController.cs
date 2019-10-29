@@ -1,4 +1,4 @@
-﻿using HOT4.HtmlHelpers;
+﻿using HOT4;
 using HOT4.Models;
 using Rotativa;
 using System;
@@ -21,6 +21,8 @@ namespace HOT4.Controllers
       string q = null)
     {
       var resume = await _db.Resumes
+        .Include("Skills")
+        .Include("Projects")
         .Where(x => q == null ||
         x.FullName.Contains(q) ||
         x.PhoneNumber.Contains(q) ||
@@ -60,15 +62,38 @@ namespace HOT4.Controllers
       resume.LastUpdate = DateTime.Now;
       resume.Photos = new List<ResumePhoto>();
 
-      while(resume.Photos.Count < 3)
+      while(resume.Photos.Count < 1)
       {
         resume.Photos.Add(new ResumePhoto());
       }
-      await _db.SaveChangesAsync();
+      //await _db.SaveChangesAsync();
       return View("Edit", resume);
     }
 
-    
+    [HttpPost]
+    public async Task<ActionResult> Create(Resume resume)
+    {
+      //Create New Resume
+      resume.LastUpdate = DateTime.Now;
+      _db.Resumes.Add(resume);
+
+      for (int i = resume.Photos.Count - 1; i >= 0; --i)
+      {
+        if (resume.Photos[i].PhotoId != null)
+        {
+          resume.Photos[i].Resume = resume;
+          _db.ResumePhotos.Add(resume.Photos[i]);
+        }
+        else
+        {
+          resume.Photos.RemoveAt(i);
+        }
+      }
+
+      await _db.SaveChangesAsync();
+      TempData["message"] = $"{resume.ResumeId} has been inserted";
+      return RedirectToAction("Index");
+    }
 
     [HttpGet]
     public async Task<ActionResult> Edit(int resumeId)
@@ -80,7 +105,7 @@ namespace HOT4.Controllers
       {
         resume.Photos = new List<ResumePhoto>();
       }
-      while(resume.Photos.Count < 2)
+      while(resume.Photos.Count < 1)
       {
         resume.Photos.Add(new ResumePhoto() { ResumeId = resume.ResumeId });
       }
@@ -97,35 +122,13 @@ namespace HOT4.Controllers
 
       if(duplicateResume != null)
       {
-        ModelState.AddModelError("Name", "That name is already in use.");
+        ModelState.AddModelError("FullName", "That name is already in use.");
       }
 
       if (!ModelState.IsValid)
       {
         await PopulatePhotoDropdown();
         return View("Edit", resume);
-      }
-      else if(resume.ResumeId == 0)
-      {
-        //Create New Resume
-        _db.Resumes.Add(resume);
-
-        for (int i = resume.Photos.Count -1; i >= 0; --i)
-        {
-          if (resume.Photos[i].PhotoId != null)
-          {
-            resume.Photos[i].Resume = resume;
-            _db.ResumePhotos.Add(resume.Photos[i]);
-          }
-          else
-          {
-            resume.Photos.RemoveAt(i);
-          }
-        }
-
-        await _db.SaveChangesAsync();
-        TempData["message"] = $"{resume.ResumeId} has been inserted";
-        return RedirectToAction("Index");
       }
       else
       {
@@ -195,7 +198,7 @@ namespace HOT4.Controllers
       return View("View", resume);
     }
 
-    public async Task<ActionResult> GetResumeName(string name)
+    public async Task<ActionResult> GetResumeByName(string name)
     {
       var resume =
         await _db.Resumes

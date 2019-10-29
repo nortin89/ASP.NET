@@ -115,6 +115,7 @@ namespace Blogger.Controllers
     {
       List<Photo> photos =
         await _db.Photos.OrderBy(x => x.ImageName).ToListAsync();
+
       ViewBag.Photos = photos;
       //_db.Photos.Add(photos);
       //return RedirectToAction("Index");
