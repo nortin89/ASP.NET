@@ -107,12 +107,16 @@
     let nameChangeHandler = null;
 
     function onNameChange() {
-      const name = $("#FullName").val();
-      if (!name) { return; }
+      const fullname = $("#FullName").val();
+      if (!fullname) { return; }
 
-      $.post('@Url.Action("GetResumeByName")'{ name })
+    //$("#FullName").change(function () {
+    //  const fullname = $(this).val();
+    //      });
+
+      $.post('@Url.Action("GetResumeByName")'{ fullname })
         .done(function (data) {
-          if (data && data.resumeId != resumeId) {
+          if (data && data.FullName == fullname && data.ResumeId != resumeId) {
             $('#NameError').html('That Name is already in use');
           }
           else {
@@ -122,7 +126,8 @@
         .fail(function (xhr, textStatus, errorThrown) {
           console.log(textStatus);
         });
-    }
+
+
 
     function onNameChangeDelayed() {
       clearTimeout(nameChangeHandler);

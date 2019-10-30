@@ -11,6 +11,7 @@ CREATE TABLE [dbo].[Resumes](
   [Projects] VARCHAR (200) NULL,
   [Skills] VARCHAR (200) NULL,
   [LastUpdate] DATETIME DEFAULT(GETDATE()) NOT NULL,
+  CONSTRAINT [IX_Resumes_FullName] UNIQUE ([FullName])
 
 
 );

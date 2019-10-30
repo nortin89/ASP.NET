@@ -118,7 +118,9 @@ namespace HOT4.Controllers
     public async Task<ActionResult> Edit(Resume resume)
     {
       var duplicateResume =
-        await _db.Resumes.FirstOrDefaultAsync(x => x.FullName == resume.FullName);
+        await _db.Resumes.FirstOrDefaultAsync(
+          x => x.FullName == resume.FullName && 
+          x.ResumeId != resume.ResumeId);
 
       if(duplicateResume != null)
       {
