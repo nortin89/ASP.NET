@@ -100,16 +100,19 @@ namespace SportsStore.Controllers
     {
       term = term.ToLower();
 
-      var categories = await _db.Products.Where(x => x.Category.Contains(term))
-                              .Select(x => x.Category.ToLower())
-                              .Distinct()
-                              .ToListAsync();
+      var categories = 
+        await _db.Products
+                 .Where(x => x.Category.Contains(term))
+                 .Select(x => x.Category.ToLower())
+                 .Distinct()
+                 .ToListAsync();
 
       var tags = await _db.Products
-                             .Where(x => x.Tags.Contains(term))
-                             .Select(x => x.Tags.ToLower())
-                             .Distinct()
-                             .ToListAsync();
+                          .Where(x => x.Tags.Contains(term))
+                          .Select(x => x.Tags.ToLower())
+                          .Distinct()
+                          .ToListAsync();
+
       var splitTags =
         tags.SelectMany(x => Regex.Split(x, @"\s*,\s*"))
             .Where(x => x.Contains(term));
