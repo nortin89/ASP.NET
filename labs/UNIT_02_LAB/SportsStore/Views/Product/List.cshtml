@@ -8,7 +8,7 @@
     @using (Html.BeginForm("List", "Product", FormMethod.Get))
     {
       <div class="input-group">
-        <input name="q" class="form-control" type="text" value="@Model.Query" />
+        <input name="q" class="form-control" type="text" id="q" value="@Model.Query" autocomplete="off"/>
         <div class="input-group-append">
           <button type="submit" class="btn btn-outline-primary"><i class="fa-fw fas fa-search"></i>Search</button>
         </div>
@@ -25,5 +25,15 @@
 <div>
   @Html.PageLinks(Model.PagingInfo,
   page => Url.Action("List",
-  new { page, category = Model.CurrentCategory }))
+  new { page, category = Model.CurrentCategory,q = Model.Query }))
 </div>
+
+@section Scripts{
+  <script>
+    //const categories = ["Chess", "Soccer", "Water Sports","A","B","C","D","E"];
+    //$("#q").autocomplete({ source: categories, minLength: 0 });
+
+    $("#q").autocomplete({ source: "@Url.Action("Keywords")", minLength: 2 });
+
+  </script>
+  }

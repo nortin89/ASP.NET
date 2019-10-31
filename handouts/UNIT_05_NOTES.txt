@@ -1,0 +1,32 @@
+UNIT_5
+
+\s any whitespace char
+
+\S any non-whitespace char
+
++ one ore more
+
+* zero or more
+
+? optional
+
+IEnumerable
+^^^^^^^^^^
+IQueryable
+
+bootstrap 
+jquery 
+main
+
+public ActionResult Names(string term){
+		term = term.ToLower();
+	List<string>pastas = _db.Pastas
+			.Where(x => x.Name.contains(term))
+			.Select(x -> x.Name)
+			.ToList();
+
+	var tags = pastas.SelectMany(x => Regex.Split(x,@"\s*,\s*"))
+			.Where(x => x.ToLower().Contains(term))
+
+	return Json(tags, AllowGet);
+}
