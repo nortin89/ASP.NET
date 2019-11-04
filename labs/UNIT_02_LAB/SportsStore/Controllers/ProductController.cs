@@ -117,12 +117,23 @@ namespace SportsStore.Controllers
         tags.SelectMany(x => Regex.Split(x, @"\s*,\s*"))
             .Where(x => x.Contains(term));
 
-      var keys = categories.Union(splitTags)
-                     
-                     .OrderBy(x => x)
-                     .Distinct();
+      var serverDir = Server.MapPath("~/");
+      var spelling = new NHunspell.Hunspell(serverDir + "en_US.aff", serverDir + "sportsstore.dic");
+      var suggestions =
+        spelling.Spell(term) ?
+        new List<string>() { term } :
+        spelling.Suggest(term).Take(5);
 
-      return Json(keys, JsonRequestBehavior.AllowGet);
+      var results = 
+        categories.Union(splitTags)
+                  .OrderBy(x => x)
+                  .Distinct();
+
+      //results =  results.Union(suggestions);
+
+      results = suggestions.Union(results);
+
+      return Json(results, JsonRequestBehavior.AllowGet);
     }
   }
 }

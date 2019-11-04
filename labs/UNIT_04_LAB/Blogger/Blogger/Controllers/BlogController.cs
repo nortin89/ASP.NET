@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -41,37 +42,90 @@ namespace Blogger.Controllers
     public async Task<ActionResult> Index(
       int page = 1,
       int pageSize = 3,
+      string text = null,
       string q = null)
     {
-      var posts = 
-        await _db.BlogPosts
-        .Include("BlogComments")
-        .Where(x => q == null ||
-        x.Tags.Contains(q) ||
-        x.Text.Contains(q) ||
-        x.Title.Contains(q))
-        .OrderByDescending(x => x.Posted)
-        .ThenByDescending(x => x.BlogPostId)
-        .Skip((page - 1) * pageSize)
-        .Take(pageSize)
-        .ToListAsync();
+      IQueryable<BlogPost> query = _db.BlogPosts;
 
-      var count =
-        await _db.BlogPosts.Where(x => q == null ||
-        x.Tags.Contains(q) ||
-        x.Text.Contains(q) ||
-        x.Title.Contains(q))
-                .CountAsync();
-
-      ViewBag.PagingInfo = new PagingInfo
+      if (!string.IsNullOrWhiteSpace(text))
       {
-        CurrentPage = page,
-        ItemsPerPage = pageSize,
-        TotalItems = count,
-      };
-      ViewBag.Query = q;
+        query = query.Where(x => x.Text == text);
+      }
+      if (!string.IsNullOrWhiteSpace(q))
+      {
+        string[] keywords = Regex.Split(q, @"\s+");
+        foreach(string word in keywords)
+        {
+          query = query.Where(x => x.Title.Contains(word) ||
+                                   x.Tags.Contains(word) ||
+                                   x.Text.Contains(word));
+        }
+      }
 
-      return View(posts);
+      int totalCount = await query.CountAsync();
+
+      List<BlogPost> posts =
+        await query.OrderBy(x => x.Title)
+                   .ThenBy(x => x.BlogPostId)
+                   .Skip((page - 1) * pageSize)
+                   .Take(pageSize).ToListAsync();
+
+      var model = new BlogListViewModel
+      {
+        BlogPosts = posts,
+        PagingInfo = new PagingInfo
+        {
+          CurrentPage = page,
+          ItemsPerPage = pageSize,
+          TotalItems = totalCount,
+        },
+        Text = text,
+        Query = q
+      };
+
+      return View(model);
+    }
+
+    public async Task<ActionResult> Keywords(string term)
+    {
+      term = term.ToLower();
+
+      var title =
+        await _db.BlogPosts
+                 .Where(x => x.Title.Contains(term))
+                 .Select(x => x.Title.ToLower())
+                 .Distinct()
+                 .ToListAsync();
+
+      var tags = await _db.BlogPosts
+                          .Where(x => x.Tags.Contains(term))
+                          .Select(x => x.Tags.ToLower())
+                          .Distinct()
+                          .ToListAsync();
+
+      var splitTags =
+                tags.SelectMany(x => Regex.Split(x, @"\s*,\s*"))
+                    .Where(x => x.Contains(term));
+
+      var serverDir = Server.MapPath("~/");
+
+      var spelling = new NHunspell.Hunspell(
+        serverDir + "en_US.aff",
+        serverDir + "sportsstore.dic");
+
+      var suggestions =
+        spelling.Spell(term) ?
+        new List<string>() { term } :
+        spelling.Suggest(term).Take(5);
+
+      var results =
+        title.Union(splitTags)
+                  .OrderBy(x => x)
+                  .Distinct();
+
+      results = suggestions.Union(results);
+
+      return Json(results, JsonRequestBehavior.AllowGet);
     }
 
     [HttpGet]

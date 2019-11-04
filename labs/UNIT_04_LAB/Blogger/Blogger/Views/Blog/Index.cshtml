@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Blogger.Models.BlogPost>
+﻿@model Blogger.Models.BlogListViewModel
 @{
   ViewBag.Title = "My Personal Blog";
 }
@@ -7,7 +7,7 @@
 @using (Html.BeginForm("Index", "Blog", FormMethod.Get))
 {
   <div class="input-group">
-    <input name="q" class="form-control" type="text" value="@ViewBag.Query" />
+    <input name="q" class="form-control" type="text" value="@Model.Query" autocomplete="off" id="q" />
     <div class="input-group-append">
       <button type="submit" class="btn btn-outline-primary">
         <i class="fa-fw fas fa-search"></i>Search
@@ -16,7 +16,7 @@
   </div>
 }
 
-@foreach (var post in Model)
+@foreach (var post in Model.BlogPosts)
 {
   <div class="card bg-light m-3">
     @if (post.Photos != null && post.Photos.Any())
@@ -94,10 +94,11 @@
   </div>
 }
 
-@Html.PageLinks((PagingInfo)ViewBag.PagingInfo, page => Url.Action("Index", new { page, ViewBag.Query }))
+@Html.PageLinks(Model.PagingInfo, page => Url.Action("Index", new { page, q = Model.Query }))
 
 @section Scripts{
   <script>
+     
         $('.LikeForm').submit(function (e) {
       e.preventDefault();
 
@@ -119,6 +120,10 @@
         .fail(function (xhr, textStatus, errorThrown) {
           alert(textStatus);
         });
-    });
+        });
+
+    $('#q').autocomplete({ source: "@Url.Action("Keywords")", minLength: 2 });
+
+
   </script>
 }

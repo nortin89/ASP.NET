@@ -1,18 +1,27 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans|Turret+Road&display=swap');
-
-body {
-  padding-top: 6em;
-  font-family: 'Open Sans', sans-serif;
-}
-.navbar {
-  font-family: 'Turret Road', cursive;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Turret Road', cursive;
+﻿body {
+  padding-top: 5em;
 }
 
-@media only screen and (min-width: 400px) {
-  body {
-    padding-top: 4em;
-  }
+/*auto complete popup*/
+.ui-autocomplete {
+  border: none !important;
+  padding: 0;
+  border-radius: 4px;
+  background: #333333;
+  color: lightgray;
+  max-height: 10em;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/*autocomplete menu item*/
+.ui-autocomplete .ui-menu-item-wrapper {
+    padding: 4px;
+    padding-left: 16px;
+    border-radius: 4px;
+}
+
+.ui-autocomplete .ui-menu-item-wrapper.ui-state-active {
+      background-color: #00bc8c !important;
+      border-color: #00bc8c !important;
 }
