@@ -27,7 +27,7 @@ namespace SportsStore.Controllers
       //_db.Database.Log = msg => Trace.WriteLine(msg);
 
       //Get all the data needed from the tables
-      // joins and .Include() calls should go here
+      //Joins and .Include() calls should go here
       IQueryable<Product> query = _db.Products;
 
       //Build the WHERE clause
@@ -58,28 +58,6 @@ namespace SportsStore.Controllers
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize).ToListAsync();
 
-
-
-      //var viewModel = new.ProductListViewModel
-
-      //List<Product> products =
-      //  await _db.Products
-      //        .Where(x=> category == null ||x.Category == category)
-      //        .Where(x => q == null ||
-      //                x.Name.Contains(q) ||
-      //                x.Tags.Contains(q) ||
-      //                x.Description.Contains(q))
-      //        .OrderBy(x => x.Name)
-      //        .Skip((page - 1) * pageSize)
-      //        .Take(pageSize)
-      //        .ToListAsync();
-
-      //int count =
-      //  await _db.Products
-      //        .Where(x => category == null || x.Category == category)
-      //        .CountAsync();
-
-      //Build the View model and return it
       var model = new ProductListViewModel
       {
         Products = products,

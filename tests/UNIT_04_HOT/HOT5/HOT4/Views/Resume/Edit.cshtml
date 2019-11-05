@@ -110,10 +110,6 @@
       const fullname = $("#FullName").val();
       if (!fullname) { return; }
 
-    //$("#FullName").change(function () {
-    //  const fullname = $(this).val();
-    //      });
-
       $.post('@Url.Action("GetResumeByName")'{ fullname })
         .done(function (data) {
           if (data && data.FullName == fullname && data.ResumeId != resumeId) {

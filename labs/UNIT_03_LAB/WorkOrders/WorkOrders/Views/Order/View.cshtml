@@ -13,10 +13,10 @@
     </tr>
     <tr>
       <td>
-        ORDERID
+        ORDERNUMBER
       </td>
       <td>
-        @Model.OrderId
+        @Model.OrderNumber
       </td>
     </tr>
     <tr>
@@ -115,9 +115,6 @@
   }
 </div>
 
-@*Button Delete Part
-  <button type="submit" class="btn btn-danger btn-sm">Delete</button>*@
-
 <button type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addPartDialog">
   Add Part
 </button>
@@ -139,14 +136,6 @@
       <section>
         @Html.Partial("AddPart", new WorkOrders.Models.Part { CustomerId = Model.CustomerId, OrderId = Model.OrderId })
       </section>
-
-
-    @*<div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
-      @Html.ActionLink("Go Back","View",null,htmlAttributes: new { @class = "btn btn-secondary"})
-      <button type="submit" class="btn btn-primary">Add Item</button>
-
-    </div>*@
     </div>
   </div>
 </div>

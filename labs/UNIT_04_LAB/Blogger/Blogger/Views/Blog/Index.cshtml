@@ -3,7 +3,6 @@
   ViewBag.Title = "My Personal Blog";
 }
 
-
 @using (Html.BeginForm("Index", "Blog", FormMethod.Get))
 {
   <div class="input-group">
@@ -15,13 +14,11 @@
     </div>
   </div>
 }
-
 @foreach (var post in Model.BlogPosts)
 {
   <div class="card bg-light m-3">
     @if (post.Photos != null && post.Photos.Any())
     {
-
       <div id="BlogPhotos-@post.BlogPostId" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           @for (int i = 0; i < post.Photos.Count; ++i)
@@ -33,10 +30,7 @@
         </div>
       </div>
     }
-
     <div class="card-body">
-
-
       @using (Html.BeginForm("EditPost", "Blog", FormMethod.Post))
       {
         @Html.Hidden("productId", post.BlogPostId)
@@ -85,9 +79,6 @@
         <button class="btn btn-outline-dark likeBtn" type="submit">
           <i class="fas fa-thumbs-up"></i> Like @post.Likes
         </button>
-        @*<span class="flex-grow-l"></span>
-        <span></span>*@
-
       }
     </div>
 
@@ -98,7 +89,7 @@
 
 @section Scripts{
   <script>
-     
+
         $('.LikeForm').submit(function (e) {
       e.preventDefault();
 
