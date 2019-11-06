@@ -101,25 +101,9 @@ namespace WorkOrders.Controllers
       return Json(results, JsonRequestBehavior.AllowGet);
     }
 
-    public async Task<ActionResult> View(int orderId)
-    {
-      var order =
-        await _db.Orders.SingleOrDefaultAsync(x => x.OrderId == orderId);
+    //public async Task<ActionResult> OrderNumbers(int number);
 
-      return View("View", order);
-    }
-
-    [HttpGet]
-    public ActionResult Start()
-    {
-      var order = new Order();
-      order.Customer = new Customer();
-      order.RepairDate = DateTime.Now;
-
-      //_db.SaveChanges();
-      //TempData["message"] = $"{order.OrderNumber} has been inserted";
-      return View("Start", order);
-    }
+    //public async Task<ActionResult> RepairDates(DateTime date);
 
     [HttpPost]
     public async Task<ActionResult> Start(Order order)

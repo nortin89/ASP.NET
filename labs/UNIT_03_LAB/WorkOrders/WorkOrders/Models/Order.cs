@@ -8,11 +8,6 @@ namespace WorkOrders.Models
 
     public partial class Order
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        //public Order()
-        //{
-        //    Parts = new HashSet<Part>();
-        //}
 
         public int? OrderId { get; set; }
 
@@ -66,8 +61,6 @@ namespace WorkOrders.Models
         public decimal? TotalTax { get; set; }
 
         public decimal? GrandTotal { get; set; }
-
-        //public string Query { get; set; }
 
         public virtual Customer Customer { get; set; }
 

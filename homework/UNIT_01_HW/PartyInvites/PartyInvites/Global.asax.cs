@@ -1,5 +1,9 @@
+using FluentScheduler;
+using PartyInvites.Jobs;
+using PartyInvites.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +17,12 @@ namespace PartyInvites
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            // disable migrations
+            Database.SetInitializer<PartyInvitesDatabase>(null);
+            
+            // let the JobManager know about our registry
+            JobManager.Initialize(new JobRegistry());
         }
     }
 }
