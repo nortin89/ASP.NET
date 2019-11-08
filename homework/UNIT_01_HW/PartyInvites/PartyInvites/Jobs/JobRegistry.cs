@@ -15,7 +15,7 @@ namespace PartyInvites.Jobs
         .ToRunOnceAt(new DateTime(2019, 11, 6, 15, 35, 0));
 
       Schedule<PartyReminder>()
-        .ToRunEvery(10).Seconds();
+        .ToRunNow();
 
       Debug.WriteLine("JobRegistry Started");
     }

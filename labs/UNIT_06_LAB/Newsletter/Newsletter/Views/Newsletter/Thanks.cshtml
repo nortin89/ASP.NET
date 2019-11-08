@@ -1,0 +1,9 @@
+﻿@model Newsletter.Models.Subscriber
+@{
+    ViewBag.Title = "Thank You!";
+}
+
+<h2>Thank You!</h2>
+<p>Please confirm your email to complete the signup process.</p>
+
+@Html.ActionLink("Go Back", "Subscribe", null, new { @class = "btn btn-secondary btn-lg" })

@@ -17,7 +17,7 @@
       <i class="fa-fw fas fa-rss"></i>
       My Personal Blog
     </a>
-
+    @Html.ActionLink("Subscribe", "Subscribe", "Blog", null, new { @class = "btn btn-secondary m-1"})
     <a class="btn btn-outline-light" href="@Url.Action("CreatePost", "Blog")">
       <i class="fa-fw fas fa-pencil-alt"></i>
       Create Post

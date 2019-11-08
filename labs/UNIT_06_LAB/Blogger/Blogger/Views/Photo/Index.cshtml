@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Blogger.Models.Photo>
+
+@{
+  ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="d-flex flex-row-reverse">
+  @Html.ActionLink("Upload", "Upload", null, new { @class = "btn btn-primary" })
+</div>
+
+@if (Model != null)
+{
+  <div class="row">
+
+    @foreach (var photo in Model)
+    {
+      <div class="col-lg-2 col-md-4">
+        <div class="card m-1">
+          <div class="card-body">
+            #@photo.PhotoId @photo.ImageName
+          </div>
+          <img src="@Url.Action("GetImage","Photo",new { photoId = photo.PhotoId })" class="card-img-bottom" alt="" />
+        </div>
+      </div>
+    }
+  </div>
+}

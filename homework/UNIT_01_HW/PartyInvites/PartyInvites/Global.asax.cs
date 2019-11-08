@@ -18,7 +18,8 @@ namespace PartyInvites
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            // disable migrations
+            // disable 
+      
             Database.SetInitializer<PartyInvitesDatabase>(null);
             
             // let the JobManager know about our registry

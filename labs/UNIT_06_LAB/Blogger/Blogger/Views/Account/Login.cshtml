@@ -1,0 +1,26 @@
+﻿@model Blogger.Models.LoginViewModel
+@{
+  ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.ValidationSummary("", new { @class = "text-danger" })
+  <div class="p-3">
+    <div class="form-group">
+      @Html.LabelFor(x => x.UserName)
+      @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.UserName, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(x => x.Password)
+      @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Password, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </div>
+}

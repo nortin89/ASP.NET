@@ -1,0 +1,18 @@
+﻿@model Newsletter.Models.Subscriber
+@{
+    ViewBag.Title = "Unsubscribe";
+}
+
+@if (Model != null && Model.IsConfirmed)
+{
+    <h2>Unsubscribed!</h2>
+    <p>You are unsubscribed. We will miss you.</p>
+}
+else
+{
+    <h2 class="text-danger">Failed!</h2>
+    <p class="text-danger">Your email address has not been confirmed.</p>
+}
+
+@Html.ValidationSummary(false, null, new { @class = "text-danger" })
+

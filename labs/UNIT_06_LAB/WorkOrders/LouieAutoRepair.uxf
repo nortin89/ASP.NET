@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>176</x>
+      <y>0</y>
+      <w>308</w>
+      <h>253</h>
+    </coordinates>
+    <panel_attributes>Customer
+--
++ CustomerId : INT
++ PhoneNumber : VARCHAR(100)
++ CustomerName : VARCHAR(100)
++ StreetAddress : VARCHAR(100)
++ City : VARCHAR(100)
++ State : VARCHAR(100)
++ Zip : VARCHAR(100)
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>176</x>
+      <y>319</y>
+      <w>308</w>
+      <h>352</h>
+    </coordinates>
+    <panel_attributes>COrder
+--
++ OrderId : INT
++ RepairDate : DATE
++ TechName : VARCHAR(100)
++ LicencePlate : VARCHAR(100)
++ VehicleYear : INT
++ VehicleMake : VARCHAR(100)
++ VehicleModel : VARCHAR(100)
++ VehicleMileage : VARCHAR(100)
+--
++ LaborHours : INT
++ LaborCostPerHour : INT
++ ServiceType : VARCHAR(100)
++ TotalCostParts : DECIMAL(8,2)
++ TotalCostLabor : DECIMAL(8,2)
++ TotalCostLaborParts : DECIMAL(8,2)
++ TotalTax : DECIMAL(8,2)
++ GrandTotal : DECIMAL(8,2)
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>165</x>
+      <y>737</y>
+      <w>319</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>Parts
+--
++ OrderId : INT
++ PartsName : VARCHAR(100)
++ PartQuantity : VARCHAR(100)
++ PartId : VARCHAR(100)
++ PartCost : DECIMAL (8,2)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>308</x>
+      <y>242</y>
+      <w>55</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>308</x>
+      <y>660</y>
+      <w>55</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+</diagram>

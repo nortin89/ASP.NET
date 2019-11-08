@@ -1,0 +1,69 @@
+﻿using PartyInvites.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Web;
+using System.Web.Mvc;
+
+namespace PartyInvites.Controllers
+{
+  public class HomeController : Controller
+  {
+    // GET: Home
+    public ActionResult Index()
+    {
+      return View();
+    }
+
+    [HttpGet]
+    public ActionResult RsvpForm()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult RsvpForm(GuestResponse guestResponse)
+    {
+      if (!ModelState.IsValid)
+      {
+        return View("RsvpForm", guestResponse);
+      }
+
+      try
+      {
+        // See https://www.siteground.com/kb/google_free_smtp_server/
+        // See https://devanswers.co/allow-less-secure-apps-access-gmail-account/
+
+        using (SmtpClient smtp = new SmtpClient())
+        {
+          smtp.Host = "smtp.gmail.com";
+          smtp.Port = 587;
+          smtp.EnableSsl = true;
+          smtp.UseDefaultCredentials = false;
+          smtp.Credentials = new NetworkCredential("paulsmithkc@gmail.com", "pass");
+
+          using (MailMessage message = new MailMessage())
+          {
+            message.From = new MailAddress("paulsmithkc@gmail.com");
+            message.To.Add(new MailAddress("paulsmithkc@gmail.com"));
+            message.Subject = "RSVP Notification";
+            message.Body =
+              guestResponse.Name + " is "
+              + (guestResponse.WillAttend == true ? "" : "not ")
+              + "attending";
+
+            smtp.Send(message);
+          }
+        }
+
+        return View("Thanks", guestResponse);
+      }
+      catch (Exception ex)
+      {
+        return View("Error", ex);
+      }
+    }
+  }
+}

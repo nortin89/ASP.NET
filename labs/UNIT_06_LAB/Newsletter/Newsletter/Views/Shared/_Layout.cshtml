@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Newsletter App</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header class="navbar navbar-dark bg-danger text-white p-1 mb-3">
+        <a class="navbar-brand" href="@Url.Action("Index", "Newsletter")"><h1>Newsletter App</h1></a>
+        <a class="btn btn-outline-light btn-sm" href="@Url.Action("Subscribe", "Newsletter")">Subscribe</a>
+        <span class="flex-grow-1"></span>
+    </header>
+    <main class="flex-grow-1 p-3">
+        @RenderBody()
+    </main>
+    <footer class="text-center p-3">
+        &copy; Ranken Technical College 2019
+    </footer>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+</html>

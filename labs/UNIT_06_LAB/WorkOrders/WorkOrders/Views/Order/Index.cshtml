@@ -1,0 +1,71 @@
+﻿@model WorkOrders.Models.OrderListViewModel
+
+@{
+  ViewBag.Title = "Louie's Auto Repair";
+}
+
+@using WorkOrders.HtmlHelpers
+
+<div class="row">
+
+  <div class="card col-md-4 bg-light mb-3">
+    <h3><i class="fa-fw fas fa-search"></i>Search For Order</h3>
+    <hr />
+    @using (Html.BeginForm("Index", "Order", FormMethod.Get))
+    {
+      <div class="form-group">
+        <label for="orderNumber">Order Number</label>
+        <input name="orderNumber" class="form-control" type="text" id="orderNumber" value="@Model.OrderNumber" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label for="clientName">Client Name</label>
+        <input name="clientName" class="form-control" type="text" id="clientName" value="@Model.ClientName" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input name="startDate" class="form-control" type="date" id="startDate" value="@Model.StartDate" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input name="endDate" class="form-control" type="date" id="endDate" value="@Model.EndDate" autocomplete="off" />
+      </div>
+
+      <button type="submit" class="btn btn-outline-primary"><i class="fa-fw fas fa-search"></i>Search</button>
+    }
+  </div>
+  <div class="col-md-8">
+    @foreach (var order in Model.Orders)
+    {
+      <div class="card bg-light mb-3">
+        <div class="card-body">
+          <div class="float-right">@order.RepairDate</div>
+          <p>
+            Order # @order.OrderNumber
+          </p>
+          <p>
+            @order.Customer.ClientName
+          </p>
+          <p>
+            @order.VehicleYear
+            @order.VehicleMake
+            @order.VehicleModel
+          </p>
+          <p>
+            @Html.ActionLink("View Order", "View", "Order", new { OrderId = order.OrderId }, null)
+          </p>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+@Html.PageLinks(Model.PagingInfo, page => Url.Action("Index", new { page, clientName = Model.ClientName }))
+
+@section Scripts{
+  <script>
+    @*$("#orderNumber").autocomplete({ source: "@Url.Action("OrderNumbers")", minLength: 2 });*@
+    $("#clientName").autocomplete({ source: "@Url.Action("ClientNames")", minLength: 2 });
+    @*$("#startDate").autocomplete({ source: "@Url.Action("Keywords")", minLength: 2 });
+    $("#endDate").autocomplete({ source: "@Url.Action("Keywords")", minLength: 2 });*@
+  </script>
+}

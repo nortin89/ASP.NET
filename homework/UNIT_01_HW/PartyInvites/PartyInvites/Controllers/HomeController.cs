@@ -56,7 +56,7 @@ namespace PartyInvites.Controllers
           await _db.SaveChangesAsync();
         }
 
-        throw new Exception("test");
+       
 
       }
       catch(Exception ex)
@@ -71,20 +71,22 @@ namespace PartyInvites.Controllers
         var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
         var client = new SendGridClient(apiKey);
 
-        var from = new EmailAddress("nortin89@gmail.com", "Scott Nortin");
-        var to = new EmailAddress(guestResponse.Email, guestResponse.Name);
-        var subject = "Will This Work? Lets Find Out......";
+      
+          var from = new EmailAddress("nortin89@gmail.com", "Scott Nortin"); 
+          var to = new EmailAddress(guestResponse.Email, guestResponse.Name);
 
-        var body =
-          guestResponse.Name + " is "
-          + (guestResponse.WillAttend == true ? "" : "not ")
-          + "attending";
+          var subject = "Will This Work? Lets Find Out......";
 
-        //var plainTextContent = "and easy to do anywhere, even with C#";
-        //var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+          var body =
+            guestResponse.Name + " is "
+            + (guestResponse.WillAttend == true ? "" : "not ")
+            + "attending";
 
-        var msg = MailHelper.CreateSingleEmail(from, to, subject, body, body);
-        var response = await client.SendEmailAsync(msg);
+          //var plainTextContent = "and easy to do anywhere, even with C#";
+          //var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+
+          var msg = MailHelper.CreateSingleEmail(from, to, subject, body, body);
+          var response = await client.SendEmailAsync(msg);
 
       }
       catch (Exception ex)

@@ -1,0 +1,18 @@
+﻿@model Newsletter.Models.Subscriber
+@{
+    ViewBag.Title = "Confirm";
+}
+
+@if (Model != null && Model.IsConfirmed)
+{
+    <h2>Subscribed!</h2>
+    <p>Your email address is confirmed. Welcome to the group!</p>
+}
+else
+{
+    <h2 class="text-danger">Failed!</h2>
+    <p class="text-danger">Your email address has not been confirmed.</p>
+}
+
+@Html.ValidationSummary(false, null, new { @class = "text-danger" })
+
