@@ -1,5 +1,19 @@
 ﻿@model HOT4.Models.Resume
 
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>@Model.FullName</h1>
+      </div>
+      <div class="col-md-6 text-right">
+        <div>@Model.PhoneNumber</div>
+        <div>@Model.EmailAddress</div>
+        <div>@Model.LinkedIn</div>
+      </div>
+    </div>
+  </div>
+
   <div class="p-5">
     <h2>@Model.FullName</h2>
     <div class="float-right">
