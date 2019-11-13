@@ -1,4 +1,6 @@
+using Blogger.Jobs;
 using Blogger.Models;
+using FluentScheduler;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,7 +17,9 @@ namespace Blogger
     {
       AreaRegistration.RegisterAllAreas();
       RouteConfig.RegisterRoutes(RouteTable.Routes);
+
       Database.SetInitializer<BloggerDatabase>(null);
+      JobManager.Initialize(new JobRegistry());
     }
   }
 }

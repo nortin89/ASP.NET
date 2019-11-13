@@ -45,16 +45,20 @@ namespace Blogger.Jobs
 
     private async Task DoWork()
     {
-
       List<BlogPost> posts;
-
       List<Subscriber> subscribers;
       using (var db = new BloggerDatabase())
       {
+        var today = DateTime.Today;
         posts =
           await db.BlogPosts
-                  .Where(x => x.Posted.Value.Date == DateTime.Today)
+                  .Where(x => x.Posted >= today)
                   .ToListAsync();
+
+        if(posts.Count == 0)
+        {
+          return;
+        }
 
         subscribers =
             await db.Subscribers

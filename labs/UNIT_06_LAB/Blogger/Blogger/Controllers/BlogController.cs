@@ -92,7 +92,7 @@ namespace Blogger.Controllers
       int totalCount = await query.CountAsync();
 
       List<BlogPost> posts =
-        await query.OrderBy(x => x.Title)
+        await query.OrderByDescending(x => x.Posted)
                    .ThenBy(x => x.BlogPostId)
                    .Skip((page - 1) * pageSize)
                    .Take(pageSize).ToListAsync();
