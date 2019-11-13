@@ -47,9 +47,11 @@ namespace Blogger.Jobs
     {
       List<BlogPost> posts;
       List<Subscriber> subscribers;
+
       using (var db = new BloggerDatabase())
       {
         var today = DateTime.Today;
+
         posts =
           await db.BlogPosts
                   .Where(x => x.Posted >= today)

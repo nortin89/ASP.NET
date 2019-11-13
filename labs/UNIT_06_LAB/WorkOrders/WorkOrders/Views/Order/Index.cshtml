@@ -42,9 +42,13 @@
           <p>
             Order # @order.OrderNumber
           </p>
-          <p>
-            @order.Customer.ClientName
-          </p>
+          @if (order.Customer != null)
+          {
+            <p>
+              @order.Customer.ClientName
+            </p>
+          }
+
           <p>
             @order.VehicleYear
             @order.VehicleMake

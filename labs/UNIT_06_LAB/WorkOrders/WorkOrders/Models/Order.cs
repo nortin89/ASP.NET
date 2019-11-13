@@ -13,7 +13,7 @@ namespace WorkOrders.Models
 
         public int? OrderNumber { get; set; }
 
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? RepairDate { get; set; }

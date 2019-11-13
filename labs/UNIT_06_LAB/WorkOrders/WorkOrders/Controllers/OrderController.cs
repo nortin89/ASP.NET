@@ -46,8 +46,8 @@ namespace WorkOrders.Controllers
       //Download a single page of results
       //Remember to always include an ORDER BY clause
       List<Order> orders =
-        await query.OrderBy(x => x.Customer.ClientName)
-                   .ThenBy(x => x.OrderNumber)
+        await query.OrderByDescending(x => x.RepairDate)
+                   .ThenBy(x => x.OrderId)
                    .Skip((page - 1) * pageSize)
                    .Take(pageSize).ToListAsync();
 
@@ -101,51 +101,72 @@ namespace WorkOrders.Controllers
       return Json(results, JsonRequestBehavior.AllowGet);
     }
 
-    //public async Task<ActionResult> OrderNumbers(int number);
+    public async Task<ActionResult> View(int orderId)
+    {
+      var order =
+        await _db.Orders.SingleOrDefaultAsync(x => x.OrderId == orderId);
 
-    //public async Task<ActionResult> RepairDates(DateTime date);
+      return View("View", order);
+    }
+
+    public async Task<ActionResult> GetOrderByClient(string name)
+    {
+      var order =
+        await _db.Orders
+                 .Select(x => new { x.OrderId, x.Customer.ClientName })
+                 .FirstOrDefaultAsync(x => x.ClientName == name);
+
+      return Json(order != null ? (object)order : false);
+    }
+
+    [HttpGet]
+    public ActionResult Start()
+    {
+      var order = new Order();
+      order.RepairDate = DateTime.Now;
+
+      return View("Start", order);
+    }
 
     [HttpPost]
     public async Task<ActionResult> Start(Order order)
     {
-      //Create new Order
-      order.RepairDate = DateTime.Now;
-      _db.Orders.Add(order);
+        //Create new order
+        order.RepairDate = DateTime.Now;
+        _db.Orders.Add(order);
 
-      await _db.SaveChangesAsync();
-      TempData["message"] = $"Order # {order.OrderNumber} has been inserted";
-      return RedirectToAction("Index");
-
-      //if (!ModelState.IsValid)
-      //{
-      //  return View("Start", order);
-      //}
-      //else if (order.OrderId == 0)
-      //{
-
-      //}
+        await _db.SaveChangesAsync();
+        TempData["message"] = $"{order.OrderId} has been inserted";
+        return RedirectToAction("Index");
+      
       //else
       //{
       //  //Edit existing Order
       //  var dbEntry = _db.Orders.SingleOrDefault(x => x.OrderId == order.OrderId);
-      //  dbEntry.OrderNumber = order.OrderNumber;
       //  dbEntry.Customer.ClientName = order.Customer.ClientName;
+      //  dbEntry.Customer.PhoneNumber = order.Customer.PhoneNumber;
+      //  dbEntry.OrderNumber = order.OrderNumber;
       //  dbEntry.TechName = order.TechName;
-      //  dbEntry.RepairDate = order.RepairDate;
       //  dbEntry.VehicleYear = order.VehicleYear;
       //  dbEntry.VehicleMake = order.VehicleMake;
       //  dbEntry.VehicleModel = order.VehicleModel;
       //  dbEntry.Mileage = order.Mileage;
+      //  dbEntry.LicencePlate = order.LicencePlate;
 
       //  await _db.SaveChangesAsync();
-      //  TempData["message"] = $"{order.OrderNumber} has been updated";
+      //  TempData["message"] = $"{order.OrderId} has been updated";
       //  return RedirectToAction("Index");
       //}
+
     }
 
     [HttpPost]
     public async Task<ActionResult> AddPart(Part part)
     {
+      if (!ModelState.IsValid)
+      {
+        return View("AddPart",part);
+      }
       _db.Parts.Add(part);
       await _db.SaveChangesAsync();
 

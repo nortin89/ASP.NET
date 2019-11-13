@@ -68,5 +68,6 @@
     <Build Include="Tables\Customers.sql" />
     <Build Include="Tables\Orders.sql" />
     <Build Include="Tables\Parts.sql" />
+    <Build Include="Tables\CompletedOrders.sql" />
   </ItemGroup>
 </Project>

@@ -183,6 +183,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="Jobs\JobRegistry.cs" />
+    <Compile Include="Jobs\OrderNotification.cs" />
+    <Compile Include="Models\CompletedOrder.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Part.cs" />

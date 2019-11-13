@@ -81,6 +81,7 @@ namespace Blogger.Controllers
       if (!string.IsNullOrWhiteSpace(q))
       {
         string[] keywords = Regex.Split(q, @"\s+");
+
         foreach(string word in keywords)
         {
           query = query.Where(x => x.Title.Contains(word) ||
