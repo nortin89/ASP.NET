@@ -12,7 +12,43 @@
         <div>@Model.LinkedIn</div>
       </div>
     </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Top Skills</h5>
+        <div>
+          @foreach (var skill in Model.Skills)
+          {
+            @skill.SkillName;
+          }
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>Formal Education</h5>
+        <div>
+          @foreach (var school in Model.Educations)
+          {
+            @school.SchoolName;
+          }
+        </div>
+      </div>
+      <div class="col-md-4">
+      <h5>Relevant Projects</h5>
+        <div>
+          <div>
+            @foreach (var project in Model.Projects)
+            {
+              @project.ProjectName;
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
 
   <div class="p-5">
     <h2>@Model.FullName</h2>

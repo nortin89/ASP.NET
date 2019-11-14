@@ -1,0 +1,86 @@
+MIME type. Multipurpose Internet Mail Extensions. 
+
+Originally defined for Email. 
+
+General Structure: type/subtype
+
+<input id= "foo">
+<label for= "foo">Foo</label>
+
+d-none
+display: none
+position fixed more offscreen
+HTML hidden
+HTML disabled
+height + width to zero
+opacity to transparent
+visibility hidden
+position + z-index
+
+
+/*
+<label>
+	Foo
+	<input>
+</label>
+*/
+
+~ <= means the root of the website. It is virtual directory. Server.MapPath turns in physical directory
+
+
+foo.tar.gz
+
+Spreadsheet					Database
+John Smith					John Doe
+John Doe					Mary Sue
+		Existing
+		John Doe
+
+		New 
+		I - John Smith --> G
+		I - John Doe --> G {John Doe}
+
+Subtraction
+SS - DB
+
+// Load data from the table into memory
+var importedCustomers = new List<ImportedCustomer>();
+int rowNumber = 1;
+foreach (DataRow row in table.Rows)
+{
+++rowNumber;
+var customer = new ImportedCustomer
+{
+RowNumber = rowNumber,
+FirstName = row[0].ToString().Trim(),
+LastName = row[1].ToString().Trim(),
+Email = row[2].ToString().Trim(),
+};
+importedCustomers.Add(customer);
+}
+
+// Load existing customer data from the database
+var existingCustomers = (
+from c in db.Customers
+join i in importedCustomers
+on new { c.FirstName, c.LastName, c.Email }
+equals new { i.FirstName, i.LastName, i.Email }
+select c
+).ToList();
+
+// Filter out existing customers
+var newCustomers =
+from i in importedCustomers
+join e in existingCustomers
+on new { c.FirstName, c.LastName, c.Email }
+equals new { i.FirstName, i.LastName, i.Email }
+into g
+where !g.Any()
+select i;
+
+// Save only the new customers
+db.Customers.AddRange(newCustomers);
+db.SaveChanges();
+}
+
+John Smith is only the newCustomers()
