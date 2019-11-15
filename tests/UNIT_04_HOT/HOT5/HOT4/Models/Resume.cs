@@ -23,13 +23,14 @@ namespace HOT4.Models
     public string FullName { get; set; }
 
     [Required(ErrorMessage = "Phone Number is required")]
-    [StringLength(100)]
+    [StringLength(200, ErrorMessage ="Name is too long. ")]
     [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
 
     [Required(ErrorMessage = "Email Address is required")]
-    [StringLength(100)]
+    [StringLength(200,ErrorMessage ="Email is too long. ")]
     [Display(Name = "Email Address")]
+    [EmailAddress(ErrorMessage ="Must be a valid email address. ")]
     public string EmailAddress { get; set; }
 
     [StringLength(100)]
@@ -49,6 +50,8 @@ namespace HOT4.Models
     public virtual IList<Skill> Skills { get; set; }
 
     [Display(Name = "Last Update")]
+    [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}",ApplyFormatInEditMode = true)]
+    [DataType(DataType.Date)]
     public DateTime? LastUpdate { get; set; }
 
     //public virtual IList<Photo>Photos { get; set; }

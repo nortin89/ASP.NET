@@ -1,65 +1,54 @@
-﻿@model HOT4.Models.Resume
+﻿@*@model HOT4.Models.Resume
 
 @{
-  ViewBag.Title = "Create";
+  ViewBag.Title = "Create Resume: ";
 }
 
 @using (Html.BeginForm("Create", "Resume", FormMethod.Post))
 {
   <div class="form-horizontal">
-    <h4>Resume</h4>
+    <div class="bg-light p-3">
+      <h3>@ViewBag.Title</h3>
+    </div>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-      @Html.LabelFor(x => x.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
-      <div class="col-md-10">
-        @Html.EditorFor(x => x.FullName, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(x => x.FullName, "", new { @class = "text-danger" })
-      </div>
+      @Html.LabelFor(x => x.FullName)
+      @Html.EditorFor(x => x.FullName, new { htmlAttributes = new { @class = "form-control", autocomplete = "name" } })
+      @Html.ValidationMessageFor(x => x.FullName, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-      @Html.LabelFor(x => x.PhoneNumber, htmlAttributes: new { @class = "form-control" })
-      <div class="col-md-10">
-        @Html.EditorFor(x => x.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "text-danger" })
-      </div>
+      @Html.LabelFor(x => x.PhoneNumber)
+      @Html.EditorFor(x => x.PhoneNumber, new { htmlAttributes = new { @class = "form-control", autocomplete = "tel" } })
+      @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-      @Html.LabelFor(x => x.EmailAddress, htmlAttributes: new { @class = "form-control" })
-      <div class="col-md-10">
-        @Html.EditorFor(x => x.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(x => x.EmailAddress, "", new { @class = "text-danger" })
-      </div>
+      @Html.LabelFor(x => x.EmailAddress)
+      @Html.EditorFor(x => x.EmailAddress, new { htmlAttributes = new { @class = "form-control", autocomplete = "email" } })
+      @Html.ValidationMessageFor(x => x.EmailAddress, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-      @Html.LabelFor(x => x.LinkedIn, htmlAttributes: new { @class = "form-control" })
-      <div class="col-md-10">
-        @Html.EditorFor(x => x.LinkedIn, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(x => x.LinkedIn, "", new { @class = "text-danger" })
-      </div>
+      @Html.LabelFor(x => x.LinkedIn)
+      @Html.EditorFor(x => x.LinkedIn, new { htmlAttributes = new { @class = "form-control", autocomplete = "url" } })
+      @Html.ValidationMessageFor(x => x.LinkedIn, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-      @Html.LabelFor(x => x.Skills, htmlAttributes: new { @class = "form-control" })
-      <div class="col-md-10">
-        @Html.EditorFor(x => x.Skills, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(x => x.Skills, "", new { @class = "text-danger" })
-      </div>
+      @Html.LabelFor(x => x.Skills)
+      @Html.EditorFor(x => x.Skills, new { htmlAttributes = new { @class = "form-control" } })
+      @Html.ValidationMessageFor(x => x.Skills, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-      @Html.LabelFor(x => x.Projects, htmlAttributes: new { @class = "form-control" })
-      <div class="col-md-10">
-        @Html.EditorFor(x => x.Projects, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(x => x.Projects, "", new { @class = "text-danger" })
-      </div>
+      @Html.LabelFor(x => x.Projects)
+      @Html.EditorFor(x => x.Projects, new { htmlAttributes = new { @class = "form-control" } })
+      @Html.ValidationMessageFor(x => x.Projects, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-      @Html.LabelFor(x => x.Educations, htmlAttributes: new { @class = "form-control" })
-      <div class="col-md-10">
-        @Html.EditorFor(x => x.Educations, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(x => x.Educations, "", new { @class = "text-danger" })
-      </div>
-      <fieldset class="form-group">
-        <legend>Photos </legend>
+      @Html.LabelFor(x => x.Educations)
+      @Html.EditorFor(x => x.Educations, new { htmlAttributes = new { @class = "form-control" } })
+      @Html.ValidationMessageFor(x => x.Educations, "", new { @class = "text-danger" })
+
+      <div class="form-group">
+        <h3>Photos </h3>
         @for (int i = 0; i < Model.Photos.Count; ++i)
         {
           var options = new SelectList(ViewBag.PhotoId, "PhotoId", "ImageName", Model.Photos[i].PhotoId);
@@ -69,13 +58,18 @@
           @Html.ValidationMessageFor(x => x.Photos[i].PhotoId, null, new { @class = "text-danger" })
           <img src="@Url.Action("GetImage","Photo",new { photoId = Model.Photos[i].PhotoId })" alt="" height="100" class="ResumePhotoPreview" />
         }
-      </fieldset>
+      </div>
     </div>
   </div>
-  <div class="bg-light p-3">
-    <button type="submit" class="btn btn-primary">Save</button>
-    @Html.ActionLink("Cancel", "Index", null,
-            htmlAttributes: new { @class = "btn btn-secondary" })
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">
+      <i class="fa-fw fas fa-save"></i>
+      Save
+    </button>
+    <a class="btn btn-secondary" href="@Url.Action("Index")">
+      <i class="fa-fw fas fa-ban"></i>
+      Cancel
+    </a>
   </div>
 }
 
@@ -115,4 +109,4 @@
       this.next().next().attr('src', src);
     });
   </script>
-  }
+}*@

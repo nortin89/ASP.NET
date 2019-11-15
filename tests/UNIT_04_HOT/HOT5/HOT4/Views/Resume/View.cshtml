@@ -13,44 +13,68 @@
       </div>
     </div>
 
-    <hr />
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Profile Picture</h4>
+        <div>
+          @if (Model.Photos != null && Model.Photos.Any())
+          {
 
+            <div id="ResumePhotos-@Model.ResumeId" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                @for (int i = 0; i < Model.Photos.Count; ++i)
+                {
+                  <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <img src="@Url.Action("GetImage", "Photo", new { photoId = Model.Photos[i].PhotoId })" class="img-fluid" width="64" height="64" alt="" />
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+    <hr />
     <div class="row">
       <div class="col-md-4">
-        <h5>Top Skills</h5>
+        <h4>Top Skills</h4>
         <div>
           @foreach (var skill in Model.Skills)
           {
-            @skill.SkillName;
+            <div>@skill.SkillName</div>
           }
         </div>
       </div>
       <div class="col-md-4">
-        <h5>Formal Education</h5>
+        <h4>Formal Education</h4>
         <div>
           @foreach (var school in Model.Educations)
           {
-            @school.SchoolName;
+            <div> @school.SchoolName</div>
           }
         </div>
       </div>
       <div class="col-md-4">
-      <h5>Relevant Projects</h5>
+        <h4>Relevant Projects</h4>
         <div>
           <div>
             @foreach (var project in Model.Projects)
             {
-              @project.ProjectName;
+             <div> @project.ProjectName</div>
             }
           </div>
         </div>
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-6">@Html.ActionLink("Edit", "Edit", routeValues: new { resumeId = Model.ResumeId })</div>
+      <div class="col-md-6 text-right">@Html.ActionLink("Back To Home", "Index")</div>
+    </div>
   </div>
 
 
-  <div class="p-5">
+  @*<div class="p-5">
     <h2>@Model.FullName</h2>
     <div class="float-right">
       Last Update :
@@ -134,4 +158,4 @@
         <td>@Html.ActionLink("Back To Home", "Index")</td>
       </tr>
     </table>
-  </div>
+  </div>*@
